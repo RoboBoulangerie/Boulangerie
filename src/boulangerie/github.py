@@ -8,6 +8,7 @@ import requests
 API = "https://api.github.com"
 CHECK_LABEL = "croissant-check"
 FEEDBACK_LABEL = "feedback"
+NEEDS_HUMAN_LABEL = "needs-review"
 
 
 def _session() -> requests.Session:
@@ -70,6 +71,12 @@ def upsert_check_issue(repo: str, slug: str, kb_name: str, body: str, all_good: 
         return f"#{number} unchanged"
     _check(s.patch(f"{API}/repos/{repo}/issues/{number}", json={"title": title, "body": body, "state": state}))
     return f"updated #{number} ({state})"
+
+
+def add_labels(repo: str, number: int, labels: list[str]) -> None:
+    for name in labels:
+        ensure_label(repo, name, "fbca04", "A person needs to read this")
+    _check(_session().post(f"{API}/repos/{repo}/issues/{number}/labels", json={"labels": labels}))
 
 
 def comment(repo: str, number: int, body: str) -> None:

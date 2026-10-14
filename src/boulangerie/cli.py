@@ -179,9 +179,15 @@ def cmd_feedback(args) -> None:
     croissant = read_croissant(kb)
     provenance = read_provenance(kb)
     changes = feedback.apply_feedback(croissant, provenance, answers, issue["html_url"])
-    if not changes and "other" not in answers:
-        github.comment(config.REPO, issue["number"], "Thanks! Everything you sent already matches the croissant, "
-                       "so there's nothing to change.")
+    if not changes:
+        # Notes about files, tables or anything else need a person; there's nothing to commit.
+        if "other" in answers:
+            github.add_labels(config.REPO, issue["number"], [github.NEEDS_HUMAN_LABEL])
+            github.comment(config.REPO, issue["number"], "Thank you! A member of our team will read your notes and "
+                           "follow up here.")
+        else:
+            github.comment(config.REPO, issue["number"], "Thanks! Everything you sent already matches the "
+                           "croissant, so there's nothing to change.")
         return
     write_croissant(kb, croissant)
     write_provenance(kb, provenance)
