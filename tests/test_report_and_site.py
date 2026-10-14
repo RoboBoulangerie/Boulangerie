@@ -74,6 +74,11 @@ def test_build_site(kbs_dir, tmp_path):
     assert "We couldn't find this on your website." in page
     assert "Found on <a href=\"https://example.org/about\">" in page
     assert json.loads((out / "catalog.json").read_text())[0]["slug"] == "tiny-kb"
+    # Every file and table is published for review, and the KB page links to it.
+    review_data = json.loads((out / "kb" / "tiny-kb" / "review.json").read_text())
+    assert review_data["counts"]["files"] == 2 and review_data["counts"]["tables"] == 1
+    assert (out / "kb" / "tiny-kb" / "review" / "index.html").exists()
+    assert 'href="review/index.html#files"' in page
 
 
 def test_parse_and_show_sizes():
