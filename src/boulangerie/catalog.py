@@ -6,6 +6,7 @@ Each knowledge base lives in ``kbs/<slug>/`` with:
 - ``croissant.json`` or ``croissant.json.gz``: the Croissant metadata itself;
   large files are stored gzipped to stay under GitHub's file size limits
 - ``provenance.json`` (optional): where each dataset-level value was found
+- ``confidence.json`` (optional): how sure the pipeline was about each file and table
 """
 
 import gzip
@@ -40,6 +41,10 @@ class KnowledgeBase:
     @property
     def provenance_path(self) -> Path:
         return self.directory / "provenance.json"
+
+    @property
+    def confidence_path(self) -> Path:
+        return self.directory / "confidence.json"
 
 
 def slugify(name: str) -> str:
@@ -108,3 +113,15 @@ def read_provenance(kb: KnowledgeBase) -> dict[str, dict]:
 def write_provenance(kb: KnowledgeBase, provenance: dict[str, dict]) -> None:
     entries = [provenance[p] for p in sorted(provenance)]
     kb.provenance_path.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def read_confidence(kb: KnowledgeBase) -> dict[str, dict]:
+    if not kb.confidence_path.exists():
+        return {}
+    return json.loads(kb.confidence_path.read_text(encoding="utf-8"))
+
+
+def write_confidence(kb: KnowledgeBase, confidence: dict[str, dict]) -> None:
+    # One item per line keeps diffs readable without the size of fully indented JSON.
+    lines = [f"  {json.dumps(k)}: {json.dumps(confidence[k], ensure_ascii=False)}" for k in sorted(confidence)]
+    kb.confidence_path.write_text("{\n" + ",\n".join(lines) + "\n}\n", encoding="utf-8")

@@ -1,0 +1,15 @@
+{
+  "file-cadre-ancillary-data-elements-2025-10-08-csv": {"confidence": 0.99, "values": 6, "reviewed": 0, "auto_reviewed": 2, "unsure": []},
+  "file-cadre-core-data-elements-2025-10-07-csv": {"confidence": 0.99, "values": 6, "reviewed": 0, "auto_reviewed": 2, "unsure": []},
+  "file-cadre-data-dictionary-core-variables-21may26-xlsx": {"confidence": 0.99, "values": 6, "reviewed": 0, "auto_reviewed": 2, "unsure": []},
+  "file-crew02-airways-adolescence-crf-v1-0-pdf": {"confidence": 0.99, "values": 6, "reviewed": 0, "auto_reviewed": 3, "unsure": []},
+  "file-crew02-airways-early-childhood-crf-v1-0-pdf": {"confidence": 0.99, "values": 6, "reviewed": 0, "auto_reviewed": 3, "unsure": []},
+  "file-crew02-airways-middle-childhood-crf-v1-0-pdf": {"confidence": 0.99, "values": 6, "reviewed": 0, "auto_reviewed": 3, "unsure": []},
+  "file-crew02-airways-outcomes-crf-v3-0-pdf": {"confidence": 0.99, "values": 6, "reviewed": 0, "auto_reviewed": 3, "unsure": []},
+  "file-test-elements-csv": {"confidence": 0.99, "values": 6, "reviewed": 0, "auto_reviewed": 2, "unsure": []},
+  "recordset-cadre-ancillary-data-elements-2025-10-08-csv": {"confidence": 0.85, "values": 22, "reviewed": 0, "auto_reviewed": 5, "unsure": [{"path": "field[0].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[1].dataType", "value": "sc:Integer", "confidence": 0.85}, {"path": "field[2].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[3].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[4].dataType", "value": "sc:Text", "confidence": 0.85}]},
+  "recordset-cadre-core-data-elements-2025-10-07-csv": {"confidence": 0.85, "values": 14, "reviewed": 0, "auto_reviewed": 3, "unsure": [{"path": "field[0].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[1].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[2].dataType", "value": "sc:Text", "confidence": 0.85}]},
+  "recordset-cadre-core-workbook-crew01-data-dictionary": {"confidence": 0.85, "values": 42, "reviewed": 0, "auto_reviewed": 10, "unsure": [{"path": "field[0].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[1].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[2].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[3].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[4].dataType", "value": "sc:Text", "confidence": 0.85}]},
+  "recordset-cadre-core-workbook-crew02-canoe-echo-variables": {"confidence": 0.85, "values": 38, "reviewed": 0, "auto_reviewed": 9, "unsure": [{"path": "field[0].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[1].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[2].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[3].dataType", "value": "sc:Text", "confidence": 0.85}, {"path": "field[4].dataType", "value": "sc:Text", "confidence": 0.85}]},
+  "recordset-test-elements-csv": {"confidence": 0.85, "values": 6, "reviewed": 0, "auto_reviewed": 1, "unsure": [{"path": "field[0].dataType", "value": "sc:Text", "confidence": 0.85}]}
+}

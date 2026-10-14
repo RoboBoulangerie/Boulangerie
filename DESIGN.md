@@ -48,6 +48,35 @@ robo-croissant-pipeline ──► kbs/<slug>/ (croissant + provenance) ──►
 - When a maintainer corrects a value, its provenance becomes `{"source": "maintainer", "url": <the issue>}`, and the
   site shows "Confirmed by your team".
 
+### Reviewing files and tables
+
+Maintainers are the judges of whether we described their data correctly, not just its name and license. Each KB
+has a "Did we describe your data correctly?" page (`kb/<slug>/review/`) listing every file and table:
+
+- **Searchable and paged in the browser.** The data is one compact `review.json` per KB (17 MB for PGS Catalog,
+  which lists 17k files and 17k tables; Pages compresses it in transit, and it loads and searches in well under
+  a second).
+- **Ranked "needs a look" first:** items the checks found something wrong with (worst first), then items the
+  pipeline was less than 0.9 confident about, then items nobody has reviewed. Pipeline confidence alone barely
+  varies at this level (nearly everything is at least 0.9), so the checks do most of the ranking.
+- **Each item shows:** what we found, why it's flagged, the parts we weren't sure about in plain words ("pos ·
+  kind of value"), and a "Something wrong with this?" link that pre-fills the correction form with that item.
+  Item-level corrections go to a person (`needs-review`); changing table descriptions automatically isn't safe.
+- **Three standing questions at the top:** did we miss files, is anything listed that shouldn't be, and is there
+  a better download page.
+- `confidence.json` holds one summary per file and table from the database: lowest confidence, how many values
+  have been reviewed, and the least certain values. The database stores rows by position (`distribution[12]`),
+  so positions are mapped to `@id`s through the database's own copy of each croissant (checked to match ours for
+  all 20). FileSets made by `collapse-filesets` take the lowest confidence among their former members.
+
+### FileSets
+
+`collapse-filesets` replaces repeated members of one archive (same format, same name pattern with digit runs as
+`*`, same columns) with one `cr:FileSet` and one record set. A group is collapsed only when its glob matches exactly
+that group among everything known to be in the archive. Remote files outside an archive are never grouped, because
+Croissant 1.1 can only glob inside a container. The minimum group size is 20, because small families like MSigDB's
+C1-C8 collections are distinct products to their owners. It took FlyBase from 121,916 listed files to 2,202.
+
 ### Checks
 
 All checks produce `Finding`s with a plain-language `title`/`message` for maintainers, a `technical` detail for us,
@@ -118,8 +147,10 @@ issue and the page stay readable.
 
 - **The dashboard:** keep it as the internal curation tool and export into Boulangerie, or move review into GitHub
   entirely? Boulangerie only depends on its database, for provenance.
-- **Very large croissants:** BRCA Exchange describes 4,839 files and 296k columns, and FlyBase describes 122k files.
-  These are hard for maintainers to review, and probably need the pipeline to model repeated files as `cr:FileSet`
-  patterns.
+- **Past releases:** each croissant should describe one release, but several include past ones (BRCA Exchange,
+  PGS Catalog, ICTV, PhenX, maybe ClinPGx). How to handle stale links in older croissants is under discussion in
+  RoboBoulangerie/robo-croissant-pipeline#8.
+- **Large remote file collections:** PGS Catalog's 16k scoring files and similar can't be globbed in Croissant 1.1;
+  left as they are for now (RoboBoulangerie/robo-croissant-pipeline#7).
 - **Ownership:** once a KB is happy with its croissant, do they host it themselves and we mirror it, or do we
   stay the source of truth?

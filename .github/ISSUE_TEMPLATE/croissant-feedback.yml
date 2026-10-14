@@ -18,6 +18,11 @@ body:
       placeholder: e.g. CIViC
     validations:
       required: true
+  - type: input
+    id: item
+    attributes:
+      label: Which file or table? (if it's about one)
+      description: Filled in for you if you came from a "Something wrong with this?" link.
   - type: dropdown
     id: relationship
     attributes:

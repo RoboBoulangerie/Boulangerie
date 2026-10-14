@@ -1,0 +1,226 @@
+{% extends "base.html.j2" %}
+{% block title %}Review files and tables · {{ kb.name }} · Boulangerie{% endblock %}
+{% block description %}Every file and table in the {{ kb.name }} croissant, for its maintainers to check.{% endblock %}
+{% block content %}
+<p class="crumbs"><a href="{{ root }}index.html">All croissants</a> / <a href="../index.html">{{ kb.name }}</a> / Files and tables</p>
+
+<section class="review-hero">
+  <h1>Did we describe your data correctly?</h1>
+  <p class="lede">Here is every file and table in the {{ kb.name }} croissant. You know your data best, so you're the
+    judge. The ones we think most need a look are at the top.</p>
+  <div class="questions">
+    <a class="question" href="{{ feedback_url }}&amp;other={{ 'Files you missed (links or the page they are on): '|urlencode }}">
+      <strong>Did we miss any files?</strong><span>Tell us where they are.</span></a>
+    <a class="question" href="{{ feedback_url }}&amp;other={{ 'Files that should not be listed: '|urlencode }}">
+      <strong>Is anything here that shouldn't be?</strong><span>Old, internal or test files, for example.</span></a>
+    <a class="question" href="{{ feedback_url }}&amp;other={{ 'A better page to find our downloads: '|urlencode }}">
+      <strong>Is there a better download page?</strong><span>We'll start from there next time.</span></a>
+  </div>
+</section>
+
+<section class="card review" id="review">
+  <div class="tabs" role="tablist">
+    <button role="tab" class="tab" id="tab-files" data-tab="files" aria-selected="true">
+      Files <span class="count">{{ counts.files|thousands }}</span></button>
+    <button role="tab" class="tab" id="tab-tables" data-tab="tables" aria-selected="false">
+      Tables <span class="count">{{ counts.tables|thousands }}</span></button>
+  </div>
+  <p class="muted small" id="tab-help"></p>
+  <div class="controls">
+    <label class="search"><span class="visually-hidden">Search</span>
+      <input id="q" type="search" placeholder="Search by name, column or link…" autocomplete="off"></label>
+    <label class="check"><input type="checkbox" id="look-only"> <span id="look-label">Only ones that need a look</span></label>
+    <label class="sort">Order
+      <select id="sort">
+        <option value="rank">Needs a look first</option>
+        <option value="order">As listed in the croissant</option>
+        <option value="name">By name</option>
+      </select>
+    </label>
+  </div>
+  <p id="status" class="muted small" aria-live="polite">Loading…</p>
+  <ul id="items" class="items"></ul>
+  <nav class="pager" aria-label="Pages">
+    <button id="prev" class="button button-quiet" type="button">← Previous</button>
+    <button id="next" class="button button-quiet" type="button">Next →</button>
+  </nav>
+</section>
+
+<script>
+(function () {
+  var PAGE = 50;
+  var FEEDBACK = {{ feedback_url|tojson }};
+  var counts = {{ counts|tojson }};
+  var state = { tab: location.hash === '#tables' ? 'tables' : 'files', q: '', lookOnly: false, sort: 'rank', page: 0 };
+  var data = null;
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined && text !== null) e.textContent = text;
+    return e;
+  }
+  function link(href, text) { var a = el('a', null, text); a.href = href; return a; }
+
+  function searchText(item) {
+    if (item._s) return item._s;
+    var parts = [item.name, item.description, item.kind, item.url, item.inside, item.pattern];
+    (item.columns || []).forEach(function (c) { parts.push(c[0]); });
+    (item.from || []).forEach(function (f) { parts.push(f); });
+    item._s = parts.filter(Boolean).join(' ').toLowerCase();
+    return item._s;
+  }
+
+  function visible() {
+    var items = data[state.tab];
+    var q = state.q.trim().toLowerCase();
+    var out = items.filter(function (i) {
+      return (!state.lookOnly || i.look) && (!q || searchText(i).indexOf(q) !== -1);
+    });
+    var key = state.sort;
+    out.sort(function (a, b) {
+      if (key === 'name') return String(a.name).localeCompare(String(b.name));
+      return a[key] - b[key];
+    });
+    return out;
+  }
+
+  var SEV = { problem: 'Needs fixing', warning: 'Worth checking', note: 'Nice to have' };
+
+  function confidenceBadge(c) {
+    if (c === null || c === undefined || c >= 0.9) return null;
+    return el('span', 'badge badge-warn', c >= 0.7 ? 'We’re fairly sure' : 'We’re not sure');
+  }
+
+  function render() {
+    var list = visible();
+    var pages = Math.max(1, Math.ceil(list.length / PAGE));
+    state.page = Math.min(state.page, pages - 1);
+    var start = state.page * PAGE;
+    var shown = list.slice(start, start + PAGE);
+    var ul = $('items');
+    ul.textContent = '';
+    shown.forEach(function (item) { ul.appendChild(state.tab === 'files' ? fileItem(item) : tableItem(item)); });
+
+    var noun = state.tab === 'files' ? 'files' : 'tables';
+    $('status').textContent = list.length === 0
+      ? 'No ' + noun + ' match.'
+      : 'Showing ' + (start + 1).toLocaleString() + '–' + (start + shown.length).toLocaleString() +
+        ' of ' + list.length.toLocaleString() + ' ' + noun + '.';
+    $('prev').disabled = state.page === 0;
+    $('next').disabled = state.page >= pages - 1;
+    $('look-label').textContent = 'Only ones that need a look (' +
+      counts[state.tab + '_look'].toLocaleString() + ')';
+    $('tab-help').textContent = state.tab === 'files'
+      ? 'Each downloadable file we found. Where many files in an archive share a name pattern and layout, we list them once as a group.'
+      : 'For files that hold tables, the columns we found and the kind of value in each.';
+    ['files', 'tables'].forEach(function (t) {
+      $('tab-' + t).setAttribute('aria-selected', String(t === state.tab));
+    });
+  }
+
+  function head(item, metaParts) {
+    var summary = el('summary');
+    var top = el('div', 'item-head');
+    if (item.look) top.appendChild(el('span', 'badge badge-warn', 'Needs a look'));
+    var conf = confidenceBadge(item.confidence);
+    if (conf && !item.look) top.appendChild(conf);
+    top.appendChild(el('strong', 'item-name', item.name));
+    summary.appendChild(top);
+    var meta = metaParts.filter(Boolean).join(' · ');
+    if (meta) summary.appendChild(el('span', 'item-meta', meta));
+    return summary;
+  }
+
+  function common(body, item) {
+    if (item.look && !item.issues.length) {
+      body.appendChild(el('p', 'why', 'Why we flagged this: the pipeline that wrote your croissant wasn\u2019t fully sure about it.'));
+    }
+    if (item.issues.length) {
+      var ul = el('ul', 'item-issues');
+      item.issues.forEach(function (i) {
+        var li = el('li');
+        li.appendChild(el('span', 'sev sev-' + i.severity, SEV[i.severity]));
+        li.appendChild(document.createTextNode(' ' + i.title));
+        ul.appendChild(li);
+      });
+      body.appendChild(ul);
+    }
+    if (item.unsure.length) {
+      body.appendChild(el('p', 'small', 'Parts we weren’t sure about:'));
+      var u = el('ul', 'unsure');
+      item.unsure.forEach(function (x) {
+        var li = el('li');
+        li.appendChild(el('strong', null, x.part));
+        li.appendChild(document.createTextNode(' = ' + x.value));
+        u.appendChild(li);
+      });
+      body.appendChild(u);
+    }
+    var report = link(FEEDBACK + '&item=' + encodeURIComponent(item.name + ' (' + item.id + ')'),
+                      'Something wrong with this? Tell us →');
+    report.className = 'text-link small';
+    body.appendChild(el('p')).appendChild(report);
+  }
+
+  function fileItem(item) {
+    var li = el('li', 'item' + (item.look ? ' item-look' : ''));
+    var d = el('details');
+    d.appendChild(head(item, [item.group ? 'Group of files' : '', item.kind, item.size,
+                              item.inside ? 'inside ' + item.inside : '']));
+    var body = el('div', 'item-body');
+    if (item.description) body.appendChild(el('p', null, item.description));
+    if (item.group) body.appendChild(el('p', 'small', 'Every file matching ')).appendChild(el('code', null, item.pattern));
+    if (item.url) {
+      var p = el('p', 'small');
+      p.appendChild(link(item.url, item.url));
+      body.appendChild(p);
+    }
+    common(body, item);
+    d.appendChild(body);
+    li.appendChild(d);
+    return li;
+  }
+
+  function tableItem(item) {
+    var li = el('li', 'item' + (item.look ? ' item-look' : ''));
+    var d = el('details');
+    d.appendChild(head(item, [item.columns.length + ' column' + (item.columns.length === 1 ? '' : 's'),
+                              item.from.length ? 'from ' + item.from.join(', ') : '']));
+    var body = el('div', 'item-body');
+    if (item.description) body.appendChild(el('p', null, item.description));
+    var cols = el('div', 'columns');
+    item.columns.forEach(function (c) {
+      var chip = el('span', 'col');
+      chip.appendChild(el('code', null, c[0]));
+      if (c[1]) chip.appendChild(el('span', 'col-type', c[1]));
+      cols.appendChild(chip);
+    });
+    body.appendChild(cols);
+    common(body, item);
+    d.appendChild(body);
+    li.appendChild(d);
+    return li;
+  }
+
+  document.querySelectorAll('.tab').forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.tab = b.dataset.tab; state.page = 0;
+      history.replaceState(null, '', state.tab === 'tables' ? '#tables' : '#files');
+      render();
+    });
+  });
+  $('q').addEventListener('input', function (e) { state.q = e.target.value; state.page = 0; render(); });
+  $('look-only').addEventListener('change', function (e) { state.lookOnly = e.target.checked; state.page = 0; render(); });
+  $('sort').addEventListener('change', function (e) { state.sort = e.target.value; state.page = 0; render(); });
+  $('prev').addEventListener('click', function () { state.page--; render(); $('review').scrollIntoView(); });
+  $('next').addEventListener('click', function () { state.page++; render(); $('review').scrollIntoView(); });
+
+  fetch('../review.json')
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (d) { data = d; render(); })
+    .catch(function (e) { $('status').textContent = 'Sorry, the list didn’t load (' + e.message + ').'; });
+})();
+</script>
+{% endblock %}

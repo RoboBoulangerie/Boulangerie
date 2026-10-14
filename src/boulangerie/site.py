@@ -6,8 +6,9 @@ from pathlib import Path
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from boulangerie import config, report, summary
-from boulangerie.catalog import REPO_ROOT, KnowledgeBase, read_croissant, read_provenance
+from boulangerie import checks, config, report, review, summary
+from boulangerie.catalog import REPO_ROOT, KnowledgeBase, read_confidence, read_croissant, read_provenance
+from boulangerie.checks import Finding
 from boulangerie.online import MATCH_EXACT, MATCH_NORMALIZED
 
 STATIC_DIR = Path(__file__).parent / "static"
@@ -96,6 +97,18 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
             for g in results["groups"] if g["check"] == "missing_core_field" for ex in g["examples"]
         }
         size = _publish_croissant(kb, croissant, out_dir / "kb" / kb.slug / "croissant.json")
+        findings = checks.run_offline_checks(croissant) + [Finding(**f) for f in results.get("online_findings", [])]
+        review_data = review.build_review(croissant, read_confidence(kb), findings)
+        (out_dir / "kb" / kb.slug / "review.json").write_text(
+            json.dumps(review_data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        (out_dir / "kb" / kb.slug / "review").mkdir()
+        (out_dir / "kb" / kb.slug / "review" / "index.html").write_text(env.get_template("review.html.j2").render(
+            root="../../../",
+            kb=kb,
+            counts=review_data["counts"],
+            feedback_url=report.feedback_url(kb, config.REPO),
+        ), encoding="utf-8")
+
         page = env.get_template("kb.html.j2").render(
             root="../../",
             kb=kb,
@@ -108,6 +121,7 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
             page_url=f"{config.SITE_URL.rstrip('/')}/kb/{kb.slug}/",
             croissant_url=f"{config.SITE_URL.rstrip('/')}/kb/{kb.slug}/croissant.json",
             has_provenance=bool(provenance),
+            review_counts=review_data["counts"],
         )
         (out_dir / "kb" / kb.slug / "index.html").write_text(page, encoding="utf-8")
         cards.append({

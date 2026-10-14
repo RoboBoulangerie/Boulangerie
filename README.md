@@ -18,6 +18,7 @@ See [DESIGN.md](DESIGN.md) for how the pieces fit together and why.
 kbs/<slug>/kb.toml              who the knowledge base is, and its maintainers' GitHub usernames
 kbs/<slug>/croissant.json[.gz]  the croissant (gzipped when over 10 MB)
 kbs/<slug>/provenance.json      where each dataset-level value was found
+kbs/<slug>/confidence.json      how sure the pipeline was about each file and table
 src/boulangerie/                checks, site builder, feedback handling, CLI
 .github/workflows/              publish, PR checks, corrections → PRs, automatic fixes
 ```
@@ -68,11 +69,17 @@ From a folder of `<KB name>.json` files and the pipeline's `knowledge_bases.toml
 uv run boulangerie import-croissants ../croissant-files --kb-config ../robo-croissant-pipeline/knowledge_bases.toml
 ```
 
-Provenance (where each dataset-level value came from) is imported from the pipeline's database. Values a
-maintainer confirmed through the correction form are kept:
+Provenance (where each dataset-level value came from) and per-file/per-table confidence are imported from the
+pipeline's database. Values a maintainer confirmed through the correction form are kept:
 
 ```bash
 uv run boulangerie import-provenance --db ~/Downloads/robo_croissant.db
+```
+
+Collapse repeated archive members into FileSets (run after importing croissants, before importing provenance):
+
+```bash
+uv run boulangerie collapse-filesets --dry-run
 ```
 
 ## One-time GitHub setup

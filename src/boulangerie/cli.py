@@ -10,7 +10,7 @@ from pathlib import Path
 from boulangerie import checks, config, feedback, filesets, github, paths, provenance_import, report, site
 from boulangerie.catalog import (
     KBS_DIR, KnowledgeBase, find_kb, load_catalog, load_kb, read_croissant, read_provenance,
-    slugify, write_croissant, write_provenance,
+    slugify, write_confidence, write_croissant, write_provenance,
 )
 
 
@@ -59,8 +59,10 @@ def cmd_import_provenance(args) -> None:
         existing = read_provenance(kb)
         confirmed = {p: e for p, e in existing.items() if e.get("source") == "maintainer"}
         write_provenance(kb, imported | confirmed)
+        confidence = provenance_import.read_item_confidence(db, kb.name, read_croissant(kb))
+        write_confidence(kb, confidence)
         kept = f", kept {len(confirmed)} confirmed by maintainers" if confirmed else ""
-        print(f"{kb.name}: {len(imported)} dataset-level fields{kept}")
+        print(f"{kb.name}: {len(imported)} dataset-level fields{kept}; {len(confidence):,} files and tables")
 
 
 def cmd_collapse_filesets(args) -> None:

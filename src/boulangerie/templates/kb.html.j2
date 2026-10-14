@@ -17,6 +17,7 @@
       {%- if stats.table_count %} and {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }}{% endif %}.</p>
     <a class="button" href="croissant.json" download="{{ kb.slug }}-croissant.json">Download croissant</a>
     <a class="button button-quiet" href="{{ feedback_url }}">Suggest a correction</a>
+    <p class="small pickup-review"><a href="review/index.html">Check every file and table we described →</a></p>
   </div>
 </section>
 
@@ -69,6 +70,8 @@
   <h2>Your files</h2>
   <p class="muted">These are the downloadable files we found and described. If we missed some, or included some that
     aren't really part of your data, please <a href="{{ feedback_url }}">let us know</a>.</p>
+  <p><a class="review-link" href="review/index.html#files">Review all {{ review_counts.files|thousands }} files →</a>
+    {% if review_counts.files_look %}<span class="muted">({{ review_counts.files_look|thousands }} we think need a look)</span>{% endif %}</p>
   <table class="formats">
     <thead><tr><th>Kind of file</th><th class="num">How many</th><th class="num">Total size</th></tr></thead>
     <tbody>
@@ -102,6 +105,8 @@
   <p class="muted">For files that hold tables, we listed the columns, so people know what's inside before they
     download. We found {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }} with
     {{ stats.column_count|thousands }} columns in total. Here are a few:</p>
+  <p><a class="review-link" href="review/index.html#tables">Review all {{ review_counts.tables|thousands }} tables →</a>
+    {% if review_counts.tables_look %}<span class="muted">({{ review_counts.tables_look|thousands }} we think need a look)</span>{% endif %}</p>
   <div class="tables">
     {% for t in stats.tables %}
     <details class="table-card">

@@ -14,6 +14,7 @@ NO_RESPONSE = "_No response_"
 # (form field id, form label, croissant field or None if a human must handle it)
 FEEDBACK_FIELDS = [
     ("kb", "Which resource is this about?", None),
+    ("item", "Which file or table? (if it's about one)", None),
     ("relationship", "How are you connected to this resource?", None),
     ("name", "Name", "name"),
     ("description", "Description", "description"),
@@ -102,6 +103,8 @@ def render_pr_body(kb_name: str, issue_number: int, changes: list[dict], answers
         lines += [f"**{c['field']}**", "", f"- Before: {old}", f"- After: {c['new']}", ""]
     if not changes:
         lines += ["No fields changed; see the notes below.", ""]
+    if "item" in answers:
+        lines += [f"About this file or table: {answers['item']}", ""]
     if "other" in answers:
         lines += ["## Other notes from the maintainer (need a human)", "", answers["other"], ""]
     if "relationship" in answers:
