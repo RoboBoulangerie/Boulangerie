@@ -7,7 +7,7 @@ import sys
 import tomllib
 from pathlib import Path
 
-from boulangerie import checks, config, feedback, github, paths, provenance_import, report, site
+from boulangerie import checks, config, feedback, filesets, github, paths, provenance_import, report, site
 from boulangerie.catalog import (
     KBS_DIR, KnowledgeBase, find_kb, load_catalog, load_kb, read_croissant, read_provenance,
     slugify, write_croissant, write_provenance,
@@ -61,6 +61,22 @@ def cmd_import_provenance(args) -> None:
         write_provenance(kb, imported | confirmed)
         kept = f", kept {len(confirmed)} confirmed by maintainers" if confirmed else ""
         print(f"{kb.name}: {len(imported)} dataset-level fields{kept}")
+
+
+def cmd_collapse_filesets(args) -> None:
+    """Replace repeated archive members with FileSets (see filesets.py)."""
+    for kb in _selected(args):
+        croissant = read_croissant(kb)
+        collapsed, groups = filesets.collapse_filesets(croissant, min_group=args.min_group)
+        if not groups:
+            continue
+        before, after = len(croissant["distribution"]), len(collapsed["distribution"])
+        print(f"{kb.name}: {before:,} -> {after:,} files listed, "
+              f"{len(croissant.get('recordSet', [])):,} -> {len(collapsed.get('recordSet', [])):,} record sets")
+        for g in sorted(groups, key=lambda g: -g.files):
+            print(f"    {g.files:7,} x {g.pattern}")
+        if not args.dry_run:
+            write_croissant(kb, collapsed)
 
 
 def _selected_many(args) -> list[KnowledgeBase]:
@@ -200,6 +216,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--db", required=True, help="path to the pipeline's robo_croissant.db")
     p.add_argument("--kb")
     p.set_defaults(func=cmd_import_provenance)
+
+    p = sub.add_parser("collapse-filesets", help="replace repeated archive members with FileSets")
+    p.add_argument("--kb")
+    p.add_argument("--min-group", type=int, default=filesets.DEFAULT_MIN_GROUP)
+    p.add_argument("--dry-run", action="store_true")
+    p.set_defaults(func=cmd_collapse_filesets)
 
     p = sub.add_parser("check", help="run checks and write results/<slug>.json")
     p.add_argument("--kb")
