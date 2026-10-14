@@ -1,5 +1,6 @@
 """Build the static site that maintainers visit to pick up their croissant."""
 
+import gzip
 import json
 import shutil
 from pathlib import Path
@@ -72,11 +73,15 @@ def describe_fields(croissant: dict, provenance: dict[str, dict], grounding: dic
     return rows
 
 
-def _publish_croissant(kb: KnowledgeBase, croissant: dict, dest: Path) -> int:
-    """Copy the croissant to the site. Big ones (stored gzipped) are written compactly to keep the site small."""
+def _publish_croissant(kb: KnowledgeBase, dest: Path) -> int:
+    """Copy the croissant to the site as indented JSON, so people can read the file they download.
+
+    Croissants are stored indented; big ones are gzipped in the repo and served uncompressed.
+    """
     dest.parent.mkdir(parents=True, exist_ok=True)
     if kb.croissant_path.suffix == ".gz":
-        dest.write_text(json.dumps(croissant, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        with gzip.open(kb.croissant_path, "rb") as fin, open(dest, "wb") as fout:
+            shutil.copyfileobj(fin, fout)
     else:
         shutil.copyfile(kb.croissant_path, dest)
     return dest.stat().st_size
@@ -102,7 +107,7 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
             ex["path"]: g["severity"]
             for g in results["groups"] if g["check"] == "missing_core_field" for ex in g["examples"]
         }
-        size = _publish_croissant(kb, croissant, out_dir / "kb" / kb.slug / "croissant.json")
+        size = _publish_croissant(kb, out_dir / "kb" / kb.slug / "croissant.json")
         findings = checks.run_offline_checks(croissant) + [Finding(**f) for f in results.get("online_findings", [])]
         review_data = review.build_review(croissant, read_confidence(kb), findings)
         (out_dir / "kb" / kb.slug / "review.json").write_text(

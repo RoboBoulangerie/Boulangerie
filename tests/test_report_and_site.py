@@ -66,7 +66,9 @@ def test_build_site(kbs_dir, tmp_path):
     index = (out / "index.html").read_text()
     page = (out / "kb" / "tiny-kb" / "index.html").read_text()
     assert "Tiny KB" in index and "Needs your help" in index
-    assert json.loads((out / "kb" / "tiny-kb" / "croissant.json").read_text())["name"] == "Tiny KB"
+    published = (out / "kb" / "tiny-kb" / "croissant.json").read_text()
+    assert json.loads(published)["name"] == "Tiny KB"
+    assert published.startswith('{\n  "@context"')  # indented, so people can read it
     assert (out / "about" / "index.html").exists()
     assert (out / "static" / "style.css").exists()
     # Values from the croissant are escaped, and missing fields ask for help.
