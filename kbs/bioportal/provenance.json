@@ -4,90 +4,116 @@
     "value": "Jennifer Vendetti, Nomi L Harris, Michael V Dorf, Alex Skrenchuk, J Harry Caufield, Rafael S Goncalves, John B Graybeal, Harshad Hegde, Timothy Redmond, Christopher J Mungall, Mark A Musen. BioPortal: an open community resource for sharing, searching, and utilizing biomedical ontologies. Nucleic Acids Research, Volume 53, Issue W1, 7 July 2025, Pages W84-W94, https://academic.oup.com/nar/article/53/W1/W84/8129374.",
     "url": "https://www.bioontology.org/about-us/#cite-bioportal",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "BioPortal is free and open to all users, with no login required. During response validation, 4,169 official API contentUrl values returned HTTP 401 Unauthorized when requested without the anonymous API key published by BioPortal; those URLs may require authentication or authorization.",
     "url": "https://bioportal.bioontology.org/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "creator.name",
     "value": "Stanford Center for Biomedical Informatics Research",
     "url": "https://www.bioontology.org/about-us/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "creator.url",
     "value": "https://www.bioontology.org/about-us/",
     "url": "https://www.bioontology.org/about-us/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "Welcome to BioPortal, the world's most comprehensive repository of biomedical ontologies",
     "url": "https://bioportal.bioontology.org/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "biomedical ontologies",
     "url": "https://bioportal.bioontology.org/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "ontology repository",
     "url": "https://bioportal.bioontology.org/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "terminologies",
     "url": "https://bioportal.bioontology.org/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "semantic interoperability",
     "url": "https://bioportal.bioontology.org/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license",
     "value": "Not Found",
     "url": "https://www.bioontology.org/terms/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "BioPortal",
     "url": "https://bioportal.bioontology.org/",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://bioportal.bioontology.org/ontologies",
     "url": "https://bioportal.bioontology.org/ontologies",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]

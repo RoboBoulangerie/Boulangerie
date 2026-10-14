@@ -5,10 +5,9 @@ import json
 import os
 import sys
 import tomllib
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from boulangerie import checks, config, feedback, github, paths, report, site
+from boulangerie import checks, config, feedback, github, paths, provenance_import, report, site
 from boulangerie.catalog import (
     KBS_DIR, KnowledgeBase, find_kb, load_catalog, load_kb, read_croissant, read_provenance,
     slugify, write_croissant, write_provenance,
@@ -52,17 +51,16 @@ def cmd_import_croissants(args) -> None:
         print(f"{name} -> {written.relative_to(KBS_DIR.parent)}")
 
 
-def cmd_import_dashboard_provenance(args) -> None:
-    from boulangerie import dashboard_import
-
-    def one(kb: KnowledgeBase) -> str:
-        provenance = dashboard_import.dataset_level_provenance(kb.name)
-        write_provenance(kb, provenance)
-        return f"{kb.name}: {len(provenance)} dataset-level fields"
-
-    with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        for line in pool.map(one, _selected(args)):
-            print(line)
+def cmd_import_provenance(args) -> None:
+    """Replace each KB's pipeline provenance from the database, keeping anything a maintainer confirmed."""
+    db = Path(args.db).expanduser()
+    for kb in _selected(args):
+        imported = provenance_import.read_dataset_provenance(db, kb.name)
+        existing = read_provenance(kb)
+        confirmed = {p: e for p, e in existing.items() if e.get("source") == "maintainer"}
+        write_provenance(kb, imported | confirmed)
+        kept = f", kept {len(confirmed)} confirmed by maintainers" if confirmed else ""
+        print(f"{kb.name}: {len(imported)} dataset-level fields{kept}")
 
 
 def _selected_many(args) -> list[KnowledgeBase]:
@@ -198,10 +196,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--skip", nargs="*", default=[], help="KB names to leave out")
     p.set_defaults(func=cmd_import_croissants)
 
-    p = sub.add_parser("import-dashboard-provenance", help="INTERIM: pull source URLs from the review dashboard")
+    p = sub.add_parser("import-provenance", help="import dataset-level provenance from robo_croissant.db")
+    p.add_argument("--db", required=True, help="path to the pipeline's robo_croissant.db")
     p.add_argument("--kb")
-    p.add_argument("--workers", type=int, default=3)
-    p.set_defaults(func=cmd_import_dashboard_provenance)
+    p.set_defaults(func=cmd_import_provenance)
 
     p = sub.add_parser("check", help="run checks and write results/<slug>.json")
     p.add_argument("--kb")

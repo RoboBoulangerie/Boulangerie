@@ -4,125 +4,161 @@
     "value": "Ashburner et al. Gene ontology: tool for the unification of biology. Nat Genet. 2000 May;25(1):25-9. DOI: 10.1038/75556\nThe Gene Ontology Consortium. The Gene Ontology knowledgebase in 2026. Nucleic Acids Res. 2025 Dec 18;gkaf1292. DOI: 10.1093/nar/gkaf1292",
     "url": "https://geneontology.org/docs/go-citation-policy/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "Documents from this server are provided “AS-IS” without any warranty, expressed or implied.",
     "url": "https://geneontology.org/docs/go-citation-policy/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "creator.name",
     "value": "Gene Ontology Consortium",
     "url": "https://geneontology.org/docs/whoweare/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "dateModified",
     "value": "2026-06-19",
     "url": "https://current.geneontology.org/metadata/date.txt",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "datePublished",
     "value": "2026-06-19",
     "url": "https://current.geneontology.org/metadata/date.txt",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "The Gene Ontology (GO) knowledgebase is the world’s largest source of information on the functions of genes. This knowledge is both human-readable and machine-readable, and is a foundation for computational analysis of large-scale molecular biology and genetics experiments in biomedical research.",
     "url": "https://geneontology.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "isAccessibleForFree",
     "value": "true",
     "url": "https://current.geneontology.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "isLiveDataset",
     "value": "true",
     "url": "https://geneontology.org/docs/download-go-annotations/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "Gene Ontology",
     "url": "https://geneontology.org/",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "ontology",
     "url": "https://geneontology.org/",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "annotations",
     "url": "https://geneontology.org/",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "GO-CAM",
     "url": "https://geneontology.org/",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license",
     "value": "https://creativecommons.org/licenses/by/4.0/legalcode",
     "url": "https://geneontology.org/docs/go-citation-policy/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "The Gene Ontology Resource",
     "url": "https://geneontology.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "publisher.name",
     "value": "Gene Ontology Consortium",
     "url": "https://geneontology.org/docs/whoweare/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://geneontology.org/",
     "url": "https://geneontology.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "version",
     "value": "2026-06-19",
     "url": "https://current.geneontology.org/metadata/date.txt",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]

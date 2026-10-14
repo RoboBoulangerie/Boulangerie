@@ -41,9 +41,10 @@ robo-croissant-pipeline ──► kbs/<slug>/ (croissant + provenance) ──►
   `persistent_fields.json` (path, value, source URL, confidence), and the review dashboard holds it in its database.
 - We keep only **dataset-level** provenance (name, description, license, ...). It's what maintainers need to see,
   and the per-file and per-column rows are hundreds of thousands of entries for the big KBs.
-- **Stopgap:** `boulangerie import-dashboard-provenance` reads it from the dashboard's review pages. It bisects over
-  the dashboard's pages to skip the long `distribution[...]` and `recordSet[...]` runs, so 13 requests cover BRCA's
-  2,434 pages. Replace this with an import from the pipeline database, then delete `dashboard_import.py`.
+- `boulangerie import-provenance --db robo_croissant.db` reads the dataset-level rows of the database's `kb_links`
+  table: about 450 rows across all KBs, out of 4.4 million. The database is 3.3 GB, almost all of it per-file and
+  per-column rows, indexes, and run history, so we never host it. The import opens the database read-only, keeps
+  the `reviewed`/`auto_reviewed` flags, and never overwrites values a maintainer confirmed.
 - When a maintainer corrects a value, its provenance becomes `{"source": "maintainer", "url": <the issue>}`, and the
   site shows "Confirmed by your team".
 
@@ -116,7 +117,7 @@ issue and the page stay readable.
 ## Open questions
 
 - **The dashboard:** keep it as the internal curation tool and export into Boulangerie, or move review into GitHub
-  entirely? Boulangerie doesn't depend on it except for the stopgap provenance import.
+  entirely? Boulangerie only depends on its database, for provenance.
 - **Very large croissants:** BRCA Exchange describes 4,839 files and 296k columns, and FlyBase describes 122k files.
   These are hard for maintainers to review, and probably need the pipeline to model repeated files as `cr:FileSet`
   patterns.

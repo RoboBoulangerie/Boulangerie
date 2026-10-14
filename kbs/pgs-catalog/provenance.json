@@ -4,146 +4,188 @@
     "value": "Samuel A. Lambert, Laurent Gil, Simon Jupp, Scott C. Ritchie, Yu Xu, Annalisa Buniello, Aoife McMahon, Gad Abraham, Michael Chapman, Helen Parkinson, John Danesh, Jacqueline A. L. MacArthur, Michael Inouye The Polygenic Score Catalog as an open database for reproducibility and systematic evaluation Nature Genetics volume 53, pages420–425 doi: 10.1038/s41588-021-00783-5 (2021).",
     "url": "https://www.pgscatalog.org/about/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "EMBL-EBI itself places no additional restrictions on the use or redistribution of the data available via its Data Resources and Tools other than those provided by the original data owners, unless otherwise specified in these Terms of Use.",
     "url": "https://www.ebi.ac.uk/about/terms-of-use/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "creator.name",
     "value": "PGS Catalog",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "creator.url",
     "value": "https://www.pgscatalog.org/",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "dateModified",
     "value": "2026-07-15",
     "url": "https://www.pgscatalog.org/latest_release",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "An open database of polygenic scores and the relevant metadata required for accurate application and evaluation.",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "isAccessibleForFree",
     "value": "true",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "isLiveDataset",
     "value": "true",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "polygenic scores",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "polygenic risk scores",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "genetic scores",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "genomic risk scores",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[4]",
     "value": "genetic variants",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[5]",
     "value": "predictive performance",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license",
     "value": "https://www.ebi.ac.uk/about/terms-of-use/",
     "url": "https://www.ebi.ac.uk/about/terms-of-use/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "The Polygenic Score (PGS) Catalog",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "publisher.name",
     "value": "EMBL-EBI",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "publisher.url",
     "value": "https://www.ebi.ac.uk/",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://www.pgscatalog.org/",
     "url": "https://www.pgscatalog.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "version",
     "value": "2026-07-15",
     "url": "https://www.pgscatalog.org/latest_release",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]

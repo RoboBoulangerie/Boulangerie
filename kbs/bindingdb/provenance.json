@@ -4,272 +4,350 @@
     "value": "Liu,T., Hwang, L., Burley,S.K., Nitsche,C.I., Southan,C., Walters,W.P., and Gilson,M.K. BindingDB in 2024: a FAIR knowledgebase of protein-small molecule binding data Nucleic Acids Research 53:D1633-D1644 (2025).",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "Data curated by BindingDB are made available subject to a Creative Commons Attribution License, so long as BindingDB is cited. Data in BindingDB from ChEMBL are subject to a Creative Commons Attribution-Share Alike License, which, in addition to citation of ChEMBL, also requires that any collection or product based on ChEMBL data be redistributed under the same Share Alike license. You agree to cite BindingDB and ChEMBL as required; please use the following citation for BindingDB: BindingDB in 2015: A public database for medicinal chemistry, computational chemistry and systems pharmacology. M.K. Gilson, T. Liu, M. Baitaluk, G. Nicola, L. Hwang and J. Chong Nucleic Acids Research 44:D0145-D1053, doi: 10.1093/nar/gkv1072 By downloading data, you are acknowledging that you have read, understand, and will abide by this statement.",
     "url": "https://www.bindingdb.org/rwd/bind/chemsearch/marvin/PolicyNotice.jsp?all_download=yes",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "http://mlcommons.org/croissant/1.1",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "creator.name",
     "value": "Binding Database",
     "url": "https://www.bindingdb.org/rwd/bind/aboutus.jsp",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "creator.url",
     "value": "https://www.bindingdb.org/rwd/bind/aboutus.jsp",
     "url": "https://www.bindingdb.org/rwd/bind/aboutus.jsp",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "BindingDB is a public, web-accessible database of measured binding affinities, focusing chiefly on the interactions of proteins considered to be candidate drug-targets with ligands that are small, drug-like molecules. BindingDB supports medicinal chemistry and drug discovery via literature awareness and development of structure-activity relations (SAR and QSAR); validation of computational chemistry and molecular modeling approaches such as docking, scoring and free energy methods; chemical biology and chemical genomics; and basic studies of the physical chemistry of molecular recognition. BindingDB also includes a small collection of host-guest binding data of interest to chemists studying supramolecular systems.",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "chemical biology",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[10]",
     "value": "binding free energy",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[11]",
     "value": "drug design",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[12]",
     "value": "drug discovery",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[13]",
     "value": "article",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[14]",
     "value": "publication",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[15]",
     "value": "pharmaceutical",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[16]",
     "value": "ucsd",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[17]",
     "value": "target",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[18]",
     "value": "small molecule",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[19]",
     "value": "compound",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "medicinal chemistry",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[20]",
     "value": "chemical",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[21]",
     "value": "download",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[22]",
     "value": "SAR",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[23]",
     "value": "structure activity relationship",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[24]",
     "value": "pubchem",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[25]",
     "value": "chembl",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[26]",
     "value": "enzyme inhibition",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "docking",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "ligand",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[4]",
     "value": "affinity",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[5]",
     "value": "free energy",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[6]",
     "value": "virtual screening",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[7]",
     "value": "computational chemistry",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[8]",
     "value": "validation",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[9]",
     "value": "binding affinity",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license[0]",
     "value": "https://creativecommons.org/licenses/by/3.0/us/",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license[1].name",
     "value": "Creative Commons Attribution-Share Alike 3.0 Unported License",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license[1].url",
     "value": "https://www.ebi.ac.uk/chembl/about",
     "url": "https://www.bindingdb.org/rwd/bind/info.jsp",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "BindingDB",
     "url": "https://www.bindingdb.org/rwd/bind/index.jsp",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "sameAs",
     "value": "https://fairsharing.org/FAIRsharing.3b36hk",
     "url": "https://www.bindingdb.org/rwd/bind/index.jsp",
     "confidence": 0.98,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://www.bindingdb.org/rwd/bind/index.jsp",
     "url": "https://www.bindingdb.org/rwd/bind/index.jsp",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]

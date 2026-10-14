@@ -4,146 +4,188 @@
     "value": "https://doi.org/10.1093/genetics/iyad211",
     "url": "https://wiki.flybase.org/wiki/FlyBase:Citing_FlyBase",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "citeAs",
     "value": "Öztürk-Çolak A, Marygold SJ, Antonazzo G, Attrill H, Goutte-Gattat D, Jenkins VK, Matthews BB, Millburn G, dos Santos G, Tabone CJ, the FlyBase Consortium (2024)\n\nFlyBase: updates to the Drosophila genes and genomes database.\n\nGenetics 227(1) iyad211",
     "url": "https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Publications",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "All FlyBase data are available for download to other resources without restriction.",
     "url": "https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Licenses_and_Availability",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "creator.name",
     "value": "FlyBase Consortium",
     "url": "https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Consortium",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "creator.url",
     "value": "https://flybase.org/",
     "url": "https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Consortium",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "dateModified",
     "value": "2026-06-18",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "datePublished",
     "value": "2026-06-18",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "The aim of the FlyBase project is to provide an openly accessible centralized resource for Drosophila genetic, genomic and functional data.",
     "url": "https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Mission_Statement",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "isLiveDataset",
     "value": "true",
     "url": "https://wiki.flybase.org/wiki/FlyBase:Downloads_Overview",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "Drosophila",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "genome",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "melanogaster",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "fruit fly",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[4]",
     "value": "research resource",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license",
     "value": "https://creativecommons.org/licenses/by/4.0/",
     "url": "https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Licenses_and_Availability",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "A Database of Drosophila Genes & Genomes",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "publisher.name",
     "value": "FlyBase Consortium",
     "url": "https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Consortium",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "publisher.url",
     "value": "https://flybase.org/",
     "url": "https://wiki.flybase.org/wiki/FlyBase:About#FlyBase_Consortium",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://flybase.org/",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "version",
     "value": "FB2026_02",
     "url": "https://flybase.org/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]

@@ -4,125 +4,161 @@
     "value": "Updates to the Alliance of Genome Resources central infrastructure. 2024. Alliance of Genome Resources Consortium. Genetics. 2024 May 7;227(1):iyae049. doi: 10.1093/genetics/iyae049. PMID: 38552170.",
     "url": "https://www.alliancegenome.org/cite-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "All annotations and data produced by Alliance members that are accessible from alliancegenome.org are distributed under a CC BY 4.0 license.",
     "url": "https://www.alliancegenome.org/privacy-warranty-licensing",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "datePublished",
     "value": "2026-05-13T11:20:32.970+00:00",
     "url": "https://www.alliancegenome.org/api/releaseInfo",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "The Alliance of Genome Resources (the Alliance) is a knowledgebase for the domains of genetics and genomics in the discipline of comparative biology. The primary mission of the Alliance is to develop and maintain a knowledge commons platform for comparative genomics that facilitates the use of diverse model organisms to investigate the genetic and genomic basis of human biology, health, and disease. At the heart of our mission lies our commitment to ensuring long-term preservation and accessibility to the expertly curated and standardized annotations representing functional, phenotypic, and disease association properties of genes and other genome features diligently provided by Alliance members.",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "genetics",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "genomics",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "comparative biology",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "model organisms",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[4]",
     "value": "human biology",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[5]",
     "value": "health",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[6]",
     "value": "disease",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license",
     "value": "https://creativecommons.org/licenses/by/4.0/",
     "url": "https://www.alliancegenome.org/privacy-warranty-licensing",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "Alliance of Genome Resources",
     "url": "https://www.alliancegenome.org/about-us",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "publisher.name",
     "value": "Alliance of Genome Resources",
     "url": "https://www.alliancegenome.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "publisher.url",
     "value": "https://www.alliancegenome.org/",
     "url": "https://www.alliancegenome.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://www.alliancegenome.org/",
     "url": "https://www.alliancegenome.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "version",
     "value": "9.0.0",
     "url": "https://www.alliancegenome.org/api/releaseInfo",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]

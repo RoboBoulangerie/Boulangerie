@@ -4,125 +4,161 @@
     "value": "Davis AP, Wiegers TC, Sciaky D, Barkalow F, Strong M, Wyatt B, Wiegers J, McMorran R, Abrar S, Mattingly CJ Comparative Toxicogenomics Database’s 20th anniversary: update 2025. Nucleic Acids Res. 2024 Oct 10.",
     "url": "https://ctdbase.org/about/publications/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "The Comparative Toxicogenomics DatabaseTM (CTDTM) is provided to enhance knowledge and encourage progress in the scientific community. It is to be used only for research and educational purposes. Medical treatment decisions should not be made based on the information in CTD.",
     "url": "https://ctdbase.org/about/legal.jsp",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "creator.name",
     "value": "Comparative Toxicogenomics Database",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.96,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "creator.url",
     "value": "https://ctdbase.org/about/",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.96,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "dateModified",
     "value": "2026-07-01",
     "url": "https://ctdbase.org/downloads/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "CTD is a robust, publicly available database that aims to advance understanding about how environmental exposures affect human health.",
     "url": "https://ctdbase.org/about/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "anatomy",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.91,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "chemicals",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.91,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "diseases",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.91,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "environmental exposures",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.91,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[4]",
     "value": "genes",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.91,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[5]",
     "value": "phenotypes",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.91,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[6]",
     "value": "toxicogenomics",
     "url": "https://ctdbase.org/about/",
     "confidence": 0.91,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license",
     "value": "Not Found",
     "url": "https://ctdbase.org/about/legal.jsp",
     "confidence": 0.97,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "Comparative Toxicogenomics Database",
     "url": "https://ctdbase.org/about/publications/",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://ctdbase.org/",
     "url": "https://ctdbase.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "version",
     "value": "July 2026",
     "url": "https://ctdbase.org/downloads/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]

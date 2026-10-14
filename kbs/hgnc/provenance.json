@@ -4,111 +4,143 @@
     "value": "Seal RL, Braschi B, Gray K, Jones TEM, Tweedie S, Haim-Vilmovsky L, Bruford EA. Genenames.org: the HGNC resources in 2023. Nucleic Acids Res. 2023 Jan 6;51(D1):D1003-D1009. doi: 10.1093/nar/gkac888.",
     "url": "https://pubmed.ncbi.nlm.nih.gov/36243972/?format=pubmed",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "No restrictions are imposed on access to, or use of, the data provided by the HGNC, which are provided to enhance knowledge and encourage progress in the scientific community. The HGNC provides these data in good faith, but make no warranty, express or implied, nor assume any legal liability or responsibility for any purpose for which they are used.",
     "url": "https://www.genenames.org/about/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "creator.name",
     "value": "HUGO Gene Nomenclature Committee (HGNC)",
     "url": "https://www.genenames.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "creator.url",
     "value": "https://www.genenames.org/",
     "url": "https://www.genenames.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "dateModified",
     "value": "2026-07-14",
     "url": "https://www.genenames.org/cgi-bin/statistics/symbol-reports-by-chromosome?ref-type=reference&chr=all",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "The resource for approved human gene nomenclature",
     "url": "https://www.genenames.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "human gene nomenclature",
     "url": "https://www.genenames.org/about/",
     "confidence": 0.9,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "gene symbols",
     "url": "https://www.genenames.org/about/",
     "confidence": 0.9,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "gene names",
     "url": "https://www.genenames.org/about/",
     "confidence": 0.9,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "genomics",
     "url": "https://www.genenames.org/about/",
     "confidence": 0.9,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[4]",
     "value": "ontology",
     "url": "https://www.genenames.org/about/",
     "confidence": 0.9,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license",
     "value": "https://creativecommons.org/share-your-work/public-domain/cc0/",
     "url": "https://www.genenames.org/about/license/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "HGNC - HUGO Gene Nomenclature Committee",
     "url": "https://www.genenames.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://www.genenames.org/",
     "url": "https://www.genenames.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "version",
     "value": "2026-07-14",
     "url": "https://www.genenames.org/cgi-bin/statistics/symbol-reports-by-chromosome?ref-type=reference&chr=all",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]

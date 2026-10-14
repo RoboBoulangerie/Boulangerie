@@ -68,10 +68,11 @@ From a folder of `<KB name>.json` files and the pipeline's `knowledge_bases.toml
 uv run boulangerie import-croissants ../croissant-files --kb-config ../robo-croissant-pipeline/knowledge_bases.toml
 ```
 
-Provenance currently comes from the review dashboard (stopgap until we import from the pipeline database):
+Provenance (where each dataset-level value came from) is imported from the pipeline's database. Values a
+maintainer confirmed through the correction form are kept:
 
 ```bash
-uv run boulangerie import-dashboard-provenance
+uv run boulangerie import-provenance --db ~/Downloads/robo_croissant.db
 ```
 
 ## One-time GitHub setup

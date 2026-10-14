@@ -4,160 +4,206 @@
     "value": "Clinical Pharmacogenomics Resource",
     "url": "https://www.clinpgx.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "citeAs",
     "value": "M. Whirl-Carrillo, R. Huddart, L. Gong, K. Sangkuhl, C.F. Thorn, R. Whaley, T.E. Klein. \"An evidence-based framework for evaluating pharmacogenomics knowledge for personalized medicine\" Clinical Pharmacology & Therapeutics (2021) Sep;110(3):563-572.",
     "url": "https://www.clinpgx.org/page/citingClinpgx",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conditionsOfAccess",
     "value": "ClinPGx/PharmGKB is for research purposes. Prior to initiating research with this data as the researcher, you are obligated to be aware of applicable privacy laws.",
     "url": "https://www.clinpgx.org/page/dataUsagePolicy",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "conformsTo",
     "value": "http://mlcommons.org/croissant/1.1",
     "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
-    "confidence": null,
-    "source": "dashboard"
+    "confidence": 1.0,
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": true
   },
   {
     "path": "creator[0].name",
     "value": "ClinPGx",
     "url": "https://www.clinpgx.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "dateModified",
     "value": "2026-07-13",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "datePublished",
     "value": "2026-07-13",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "description",
     "value": "The Clinical Pharmacogenomics Resource (ClinPGx) is a comprehensive resource designed to provide clinicians, laboratories, researchers and patients access to PGx information.",
     "url": "https://www.clinpgx.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "isLiveDataset",
     "value": "true",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[0]",
     "value": "pharmacogenomics",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[1]",
     "value": "PGx",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[2]",
     "value": "clinical annotations",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[3]",
     "value": "drug labels",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[4]",
     "value": "genes",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[5]",
     "value": "variants",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[6]",
     "value": "pathways",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[7]",
     "value": "CPIC",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "keywords[8]",
     "value": "PharmCAT",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "license",
     "value": "https://creativecommons.org/licenses/by-sa/4.0/",
     "url": "https://www.clinpgx.org/page/dataUsagePolicy",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "name",
     "value": "ClinPGx",
     "url": "https://www.clinpgx.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "publisher[0].name",
     "value": "ClinPGx",
     "url": "https://www.clinpgx.org/",
     "confidence": 1.0,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "url",
     "value": "https://www.clinpgx.org/downloads",
     "url": "https://www.clinpgx.org/downloads",
     "confidence": 0.99,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   },
   {
     "path": "version",
     "value": "2026.07.13",
     "url": "https://api.clinpgx.org/v1/data/file/data/?view=min",
     "confidence": 0.95,
-    "source": "dashboard"
+    "source": "pipeline",
+    "reviewed": false,
+    "auto_reviewed": false
   }
 ]
