@@ -99,3 +99,25 @@ def test_trim_partial_word():
     assert organize.trim_partial_word("arabidopsis_prote", ["arabidopsis_protein", "arabidopsis_proteoform"]) == "arabidopsis_"
     assert organize.trim_partial_word("x-AcceptedA", ["x-AcceptedAndSubmitted", "x-AcceptedAssertions"]) == "x-Accepted"
     assert organize.trim_partial_word("CTD_chemicals", ["CTD_chemicals.csv", "CTD_chemicals_diseases.csv"]) == "CTD_chemicals"
+
+
+def test_layouts_ignore_recorded_types_but_report_disagreements():
+    def rs(i, ic50_type, file_id):
+        return {"@id": f"rs{i}", "field": [
+            {"name": "Compound", "dataType": "sc:Text", "source": {"fileObject": {"@id": file_id}, "extract": {"column": "Compound"}}},
+            {"name": "IC50", "dataType": ic50_type, "source": {"fileObject": {"@id": file_id}, "extract": {"column": "IC50"}}},
+        ]}
+    record_sets = [rs(0, "sc:Integer", "a"), rs(1, "sc:Text", "b"), rs(2, "sc:Integer", "c")]
+    paths = {"a": "x › 1A29.csv", "b": "x › 1AO8.csv", "c": "x › 1BCD.csv"}
+    [family] = organize.build_table_families(record_sets, paths, [False] * 3)
+    [layout] = family["layouts"]
+    assert layout["columns"] == [["Compound", "Text"], ["IC50", "Integer or Text"]]
+    assert layout["types_vary"] == [{"column": "IC50", "types": [["Integer", 2], ["Text", 1]]}]
+
+
+def test_files_in_two_places_are_named_by_file_and_places():
+    paths = [f"rwd › surflex.tar › {i:04d}_X › {i:04d}.csv" for i in range(6)] + \
+            [f"data › surflex › {i:04d}_X › {i:04d}.csv" for i in range(4)]
+    record_sets = [_rs(i, ["a"], f"f{i}") for i in range(10)]
+    family = organize.build_table_families(record_sets, {f"f{i}": p for i, p in enumerate(paths)}, [False] * 10)[0]
+    assert family["name"] == "*.csv in rwd › surflex.tar › * and data › surflex › *"

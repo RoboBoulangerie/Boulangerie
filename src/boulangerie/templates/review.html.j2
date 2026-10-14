@@ -232,6 +232,25 @@
     layout.tables.slice(0, 5).forEach(function (i) { out = out.concat(data.tables[i].unsure); });
     return out.slice(0, 5);
   }
+  // Files that share a layout but disagree on a column's kind of value (guessed from each file's first rows).
+  function typeNotes(layout) {
+    if (!layout.types_vary || !layout.types_vary.length) return null;
+    var box = el('div', 'type-notes');
+    box.appendChild(el('p', 'small', 'These files have the same columns, but the kind of value we recorded for some ' +
+      'columns differs from file to file. Usually that means a column is mostly numbers with some text, or some files ' +
+      'are mostly empty. Please tell us the right kind if you know it.'));
+    var ul = el('ul', 'small');
+    layout.types_vary.forEach(function (v) {
+      var li = el('li');
+      li.appendChild(el('code', null, v.column));
+      li.appendChild(document.createTextNode(': ' + v.types.map(function (t) {
+        return (t[0] || 'unknown') + ' in ' + t[1].toLocaleString();
+      }).join(', ')));
+      ul.appendChild(li);
+    });
+    box.appendChild(ul);
+    return box;
+  }
   function fileList(files) {
     var box = el('div', 'family-files');
     box.appendChild(el('p', 'small muted', files.length === 1 ? 'In this file:' : 'In these ' + files.length.toLocaleString() + ' files:'));
@@ -261,6 +280,7 @@
       if (fam.layouts.length === 1) {
         var l = fam.layouts[0];
         body.appendChild(chips(l.columns));
+        var notes = typeNotes(l); if (notes) body.appendChild(notes);
         if (l.look && !layoutIssues(l).length) body.appendChild(el('p', 'why', 'Why we flagged this: the pipeline that wrote your croissant wasn’t fully sure about it.'));
         issuesAndDoubts(body, layoutIssues(l), layoutUnsure(l));
         body.appendChild(fileList(l.files));
@@ -288,6 +308,7 @@
             d2._filled = true;
             var b = el('div', 'item-body');
             if (l.extra.length) b.appendChild(chips(l.extra));
+            var n2 = typeNotes(l); if (n2) b.appendChild(n2);
             issuesAndDoubts(b, layoutIssues(l), layoutUnsure(l));
             b.appendChild(fileList(l.files));
             d2.appendChild(b);

@@ -18,7 +18,6 @@ import re
 from collections import Counter, defaultdict
 from urllib.parse import unquote, urlsplit
 
-from boulangerie.filesets import _schema_signature
 from boulangerie.summary import parse_size
 
 GROUP_AT = 5  # siblings that look alike are grouped once there are this many
@@ -180,7 +179,10 @@ def build_table_families(record_sets: list[dict], file_paths: dict[str, str], lo
     Returns families, those needing a look first, then the most widely used:
     {"name", "common": [[col, type]], "layouts": [{"tables", "files", "columns", "extra", "look"}], "files", "look"}
     """
-    signatures = [_schema_signature(rs) for rs in record_sets]
+    # A layout is the columns and how they're read. The recorded kind of value (dataType) is left out: the pipeline
+    # guesses it from a file's first rows, so identical files can disagree (BindingDB's 1,907 surflex CSVs came out
+    # as 7 "layouts" that differed only in whether Ki/IC50 were Text, Integer or Float).
+    signatures = [_layout_signature(rs.get("field") or []) for rs in record_sets]
     sources = [sorted(_sources(rs.get("field") or [])) for rs in record_sets]
 
     # Union-find over tables: join tables with the same layout or the same file path pattern.
@@ -212,10 +214,12 @@ def build_table_families(record_sets: list[dict], file_paths: dict[str, str], lo
             layouts[signatures[i]].append(i)
         family_layouts = []
         for tables in layouts.values():
+            columns, types_vary = _columns_with_types([record_sets[i].get("field") or [] for i in tables])
             family_layouts.append({
                 "tables": tables,
                 "files": _natural_sorted({file_paths.get(s, s) for i in tables for s in sources[i]}),
-                "columns": _columns(record_sets[tables[0]].get("field") or []),
+                "columns": columns,
+                "types_vary": types_vary,
                 "look": sum(look[i] for i in tables),
             })
         column_sets = [{c[0] for c in layout["columns"]} for layout in family_layouts]
@@ -262,6 +266,35 @@ def _merge_same_name(families: list[dict]) -> list[dict]:
     return merged
 
 
+def _layout_signature(fields: list[dict]) -> tuple:
+    """Columns and how each is read, in order, without the recorded kind of value."""
+    return tuple(
+        (f.get("name"), repr((f.get("source") or {}).get("extract")), repr((f.get("source") or {}).get("transform")),
+         _layout_signature(f.get("subField") or []))
+        for f in fields
+    )
+
+
+def _columns_with_types(tables_fields: list[list[dict]]) -> tuple[list[list[str]], list[dict]]:
+    """Columns of tables that share a layout, with each column's kind of value.
+
+    When the tables disagree about a column's kind of value, the column shows them all ("Integer or Text") and
+    ``types_vary`` says how many tables had each: [{"column", "types": [[type, count], ...]}].
+    """
+    per_table = [_columns(fields) for fields in tables_fields]
+    columns, types_vary = [], []
+    for position, (name, _) in enumerate(per_table[0]):
+        counts = Counter(cols[position][1] for cols in per_table if position < len(cols))
+        ranked = [t for t, _ in counts.most_common()]
+        if len(ranked) > 1:
+            types_vary.append({"column": name, "types": [[t, n] for t, n in counts.most_common()]})
+            shown = ", ".join(t or "unknown" for t in ranked[:-1]) + f" or {ranked[-1] or 'unknown'}"
+        else:
+            shown = ranked[0] if ranked else ""
+        columns.append([name, shown])
+    return columns, types_vary
+
+
 def _columns(fields: list[dict], prefix: str = "") -> list[list[str]]:
     cols = []
     for f in fields:
@@ -293,30 +326,71 @@ def _sources(fields: list[dict]) -> set[str]:
 def _family_name(record_sets: list[dict], members: list[int], files: list[str]) -> str:
     """Name a family after its files: their shared path pattern, else what their paths share, else an example.
 
-    The name is a glob. If it doesn't match every file, it says how many are named differently.
+    The name is a glob. Files spread over a few places are named by their file names plus the places
+    ("*.csv in data › surflex › * and rwd › … › surflex.tar › *"). Otherwise, if the glob doesn't match
+    every file, the name says how many are named differently.
     """
     if len(files) == 1:
         return files[0]
     if not files:
         rs = record_sets[members[0]]
         return re.sub(r"^Records from ", "", rs.get("name") or rs.get("@id") or "Table")
-    patterns = Counter(name_pattern(f) for f in files)
+    candidate, misfits = _best_pattern(files)
+    # A glob that starts with a wildcard folder ("* › *_X › *.csv") hides where the files are; name the places.
+    if candidate and not misfits and candidate.split(" › ")[0] != "*":
+        return candidate
+    spread = _name_by_places(files)
+    if spread:
+        return spread
+    if candidate and not misfits:
+        return candidate
+    if not candidate or misfits * 2 > len(files):
+        return f"{files[0]} and {len(files) - 1:,} similar files"
+    return f"{candidate} (and {misfits:,} {'file' if misfits == 1 else 'files'} named differently)"
+
+
+def _best_pattern(names: list[str], allow_extension_only: bool = False) -> tuple[str, int]:
+    """The glob that matches the most names (most specific first), and how many names it misses."""
+    patterns = Counter(name_pattern(n) for n in names)
     top = patterns.most_common(1)[0][0]
-    # Most specific first; keep whichever matches the most files.
     repeated = [p for p, count in patterns.items() if count > 1]  # one-off names (e.g. "nightly") aside
     candidates = [c for c in (top, _wordwise_pattern(list(patterns)), _common_affixes(list(patterns)),
-                              _common_affixes(repeated) if len(repeated) > 1 else "", _common_affixes(files))
+                              _common_affixes(repeated) if len(repeated) > 1 else "", _common_affixes(names))
                   if c and "*" in c]
+    if allow_extension_only:
+        extensions = {n.rsplit(".", 1)[-1] for n in names if "." in n}
+        if len(extensions) == 1:
+            candidates.append(f"*.{extensions.pop()}")
     if not candidates:
-        return f"{files[0]} and {len(files) - 1:,} similar files"
-    misfit_counts = [sum(not fnmatch.fnmatchcase(f, c) for f in files) for c in candidates]
+        return "", len(names)
+    misfit_counts = [sum(not fnmatch.fnmatchcase(n, c) for n in names) for c in candidates]
     best = min(range(len(candidates)), key=lambda k: misfit_counts[k])
-    candidate, misfits = candidates[best], misfit_counts[best]
-    if misfits * 2 > len(files):
-        return f"{files[0]} and {len(files) - 1:,} similar files"
-    if not misfits:
-        return candidate
-    return f"{candidate} (and {misfits:,} {'file' if misfits == 1 else 'files'} named differently)"
+    return candidates[best], misfit_counts[best]
+
+
+def _name_by_places(paths: list[str]) -> str:
+    """'*.csv in A and B' for files that share a name pattern but sit in two or three different places."""
+    split = [p.split(" › ") for p in paths]
+    if any(len(parts) < 2 for parts in split):
+        return ""
+    folders = Counter(" › ".join(parts[:-1]) for parts in split)
+    # Many sibling folders (one per entry, like 1A29_TFP) count as one place: their parent, plus " › *".
+    by_parent: dict[str, set[str]] = defaultdict(set)
+    for folder in folders:
+        parent, _, last = folder.rpartition(" › ")
+        by_parent[parent].add(last)
+    places = Counter()
+    for parts in split:
+        folder = " › ".join(parts[:-1])
+        parent, _, _ = folder.rpartition(" › ")
+        places[f"{parent} › *" if len(by_parent[parent]) > 3 else folder] += 1
+    if not 2 <= len(places) <= 3:
+        return ""
+    base, misfits = _best_pattern([parts[-1] for parts in split], allow_extension_only=True)
+    if not base or misfits:
+        return ""
+    names = [p.lstrip(" ›") or "the top folder" for p, _ in places.most_common()]
+    return f"{base} in {', '.join(names[:-1])} and {names[-1]}"
 
 
 _WORDS = re.compile(r"([-_. ›]+)")
