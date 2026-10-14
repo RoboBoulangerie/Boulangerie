@@ -13,6 +13,7 @@ To keep big KBs readable:
   folders and CIViC's monthly release folders are one entry each
 """
 
+import fnmatch
 import re
 from collections import Counter, defaultdict
 from urllib.parse import unquote, urlsplit
@@ -290,20 +291,32 @@ def _sources(fields: list[dict]) -> set[str]:
 
 
 def _family_name(record_sets: list[dict], members: list[int], files: list[str]) -> str:
-    """Name a family after its files: their shared path pattern, else what their paths share, else an example."""
+    """Name a family after its files: their shared path pattern, else what their paths share, else an example.
+
+    The name is a glob. If it doesn't match every file, it says how many are named differently.
+    """
     if len(files) == 1:
         return files[0]
     if not files:
         rs = record_sets[members[0]]
         return re.sub(r"^Records from ", "", rs.get("name") or rs.get("@id") or "Table")
     patterns = Counter(name_pattern(f) for f in files)
-    top, n = patterns.most_common(1)[0]
-    if n == len(files):
-        return top
-    if n >= len(files) / 2:
-        return f"{top} (+{len(files) - n:,} other files)"
-    return _wordwise_pattern(list(patterns)) or _common_affixes(list(patterns)) or \
-        f"{files[0]} and {len(files) - 1:,} similar"
+    top = patterns.most_common(1)[0][0]
+    # Most specific first; keep whichever matches the most files.
+    repeated = [p for p, count in patterns.items() if count > 1]  # one-off names (e.g. "nightly") aside
+    candidates = [c for c in (top, _wordwise_pattern(list(patterns)), _common_affixes(list(patterns)),
+                              _common_affixes(repeated) if len(repeated) > 1 else "", _common_affixes(files))
+                  if c and "*" in c]
+    if not candidates:
+        return f"{files[0]} and {len(files) - 1:,} similar files"
+    misfit_counts = [sum(not fnmatch.fnmatchcase(f, c) for f in files) for c in candidates]
+    best = min(range(len(candidates)), key=lambda k: misfit_counts[k])
+    candidate, misfits = candidates[best], misfit_counts[best]
+    if misfits * 2 > len(files):
+        return f"{files[0]} and {len(files) - 1:,} similar files"
+    if not misfits:
+        return candidate
+    return f"{candidate} (and {misfits:,} {'file' if misfits == 1 else 'files'} named differently)"
 
 
 _WORDS = re.compile(r"([-_. ›]+)")
@@ -322,9 +335,22 @@ def _wordwise_pattern(names: list[str]) -> str:
     fixed = [w for w in merged[::2] if w != "*"]
     if not fixed or sum(len(w) for w in fixed) < 4:
         return ""
-    pattern = re.sub(r"\*(?:[-_.]\*)+", "*", "".join(merged))
-    others = len(names) - len(split)
-    return f"{pattern} (+{others:,} other kinds)" if others else pattern
+    return re.sub(r"\*(?:[-_.]\*)+", "*", "".join(merged))
+
+
+def _cuts_word(prefix: str, name: str) -> bool:
+    """Does ``prefix`` end partway through a word of ``name``? A capital letter starts a new word (CamelCase)."""
+    if not prefix or len(name) <= len(prefix):
+        return False
+    last, following = prefix[-1], name[len(prefix)]
+    return last.isalnum() and following.isalnum() and not (following.isupper() and not last.isupper())
+
+
+def trim_partial_word(prefix: str, names: list[str]) -> str:
+    """'arabidopsis_prote' -> 'arabidopsis_'; 'Summary-AcceptedA' -> 'Summary-Accepted'."""
+    if not any(_cuts_word(prefix, n) for n in names):
+        return prefix
+    return re.sub(r"[A-Z]?[a-z0-9]*$|[A-Z]+$", "", prefix, count=1) if prefix[-1].isalnum() else prefix
 
 
 def _common_affixes(names: list[str]) -> str:
@@ -341,6 +367,7 @@ def _common_affixes(names: list[str]) -> str:
     while suffix and suffix[0].isalnum() and len(suffix) < min(len(n) for n in names) and \
             any(n[-len(suffix) - 1].isalnum() for n in names):
         suffix = suffix[1:]
+    prefix = trim_partial_word(prefix, names)
     if len(prefix.strip(" ›")) < 3 and len(suffix.split(".")[0]) < 3:
         return ""
     return f"{prefix}*{suffix}"
@@ -422,9 +449,7 @@ def _group_flat(children: list[dict]) -> list[dict]:
         for n in names[1:]:
             while not n.startswith(prefix):
                 prefix = prefix[:-1]
-        # Don't stop mid-word ("arabidopsis_prote*" for protein/proteoform): back off to a separator.
-        if prefix and prefix[-1].isalnum() and any(len(n) > len(prefix) and n[len(prefix)].isalnum() for n in names):
-            prefix = re.sub(r"[^-_. ]+$", "", prefix)
+        prefix = trim_partial_word(prefix, names)  # not "arabidopsis_prote*" for protein/proteoform
         grouped.append({
             "name": (prefix or word) + "*", "type": "family",
             "children": _merge_formats(members),

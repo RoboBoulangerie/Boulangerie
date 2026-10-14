@@ -81,3 +81,21 @@ def test_tables_with_the_same_columns_share_a_family_even_with_unrelated_names()
     record_sets = [_rs(0, ["id", "name"], "a"), _rs(1, ["id", "name"], "b")]
     families = organize.build_table_families(record_sets, {"a": "human_x.csv", "b": "mouse_y.csv"}, [False, False])
     assert len(families) == 1 and families[0]["files"] == 2
+
+
+def test_family_names_only_mention_files_the_pattern_misses():
+    record_sets = [_rs(i, ["a"], f"f{i}") for i in range(4)]
+    paths = {"f0": "INTERACTION-GEN_FB.tsv.gz", "f1": "INTERACTION-MOL_HUMAN.tsv.gz",
+             "f2": "INTERACTION-GEN_WB.tsv.gz", "f3": "INTERACTION-MOL_SARS-CoV-2.tsv.gz"}
+    [family] = organize.build_table_families(record_sets, paths, [False] * 4)
+    assert family["name"] == "INTERACTION-*.tsv.gz"  # the glob matches the odd one out too
+
+    paths["f3"] = "summary.txt"
+    [family] = organize.build_table_families(record_sets, paths, [False] * 4)
+    assert family["name"].endswith("(and 1 file named differently)")
+
+
+def test_trim_partial_word():
+    assert organize.trim_partial_word("arabidopsis_prote", ["arabidopsis_protein", "arabidopsis_proteoform"]) == "arabidopsis_"
+    assert organize.trim_partial_word("x-AcceptedA", ["x-AcceptedAndSubmitted", "x-AcceptedAssertions"]) == "x-Accepted"
+    assert organize.trim_partial_word("CTD_chemicals", ["CTD_chemicals.csv", "CTD_chemicals_diseases.csv"]) == "CTD_chemicals"
