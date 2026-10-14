@@ -11,7 +11,7 @@ the ones most likely to be wrong come first:
 
 import re
 
-from boulangerie import paths
+from boulangerie import organize, paths
 from boulangerie.checks import SEVERITY_ORDER, WARNING, Finding
 from boulangerie.summary import format_name, human_size, parse_size
 
@@ -35,27 +35,6 @@ def _type_name(data_type) -> str:
     if not isinstance(data_type, str):
         return ""
     return data_type.split(":", 1)[-1]
-
-
-def _columns(fields: list[dict], prefix: str = "") -> list[list[str]]:
-    cols = []
-    for f in fields or []:
-        name = f"{prefix}{f.get('name', '')}"
-        cols.append([name, _type_name(f.get("dataType"))])
-        cols += _columns(f.get("subField") or [], prefix=f"{name}.")
-    return cols
-
-
-def _sources(fields: list[dict]) -> set[str]:
-    ids = set()
-    for f in fields or []:
-        source = f.get("source") or {}
-        for key in ("fileObject", "fileSet"):
-            ref = source.get(key)
-            if isinstance(ref, dict) and ref.get("@id"):
-                ids.add(ref["@id"])
-        ids |= _sources(f.get("subField") or [])
-    return ids
 
 
 def _attention(issues: list[dict], conf: dict | None) -> tuple[bool, tuple]:
@@ -148,8 +127,6 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
             "id": item_id,
             "name": rs.get("name") or item_id,
             "description": rs.get("description") or "",
-            "from": sorted(names.get(i, i) for i in _sources(rs.get("field") or [])),
-            "columns": _columns(rs.get("field") or []),
             "confidence": conf.get("confidence") if conf else None,
             "unsure": _unsure(conf, rs.get("field") or []),
             "issues": item_issues,
@@ -158,17 +135,26 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
             "order": order,
         })
 
-    # Most likely wrong first; JS re-sorts for the other orderings.
+    # Lists stay in croissant order (the tree and table families point into them by position);
+    # "rank" is each item's place in most-likely-wrong-first order.
     for items in (files, tables):
-        items.sort(key=lambda i: (i["rank"], i["order"]))
-        for position, item in enumerate(items):
+        for position, item in enumerate(sorted(items, key=lambda i: (i["rank"], i["order"]))):
             item["rank"] = position
+
+    paths = organize.relative_paths(dists)
+    for f in files:
+        f["path"] = paths.get(f["id"], f["name"])
+    tree = organize.build_file_tree(dists, [f["look"] for f in files])
+    families = organize.build_table_families(croissant.get("recordSet") or [], paths, [t["look"] for t in tables])
     return {
         "files": files,
         "tables": tables,
+        "tree": tree,
+        "families": families,
         "counts": {
             "files": len(files), "tables": len(tables),
             "files_look": sum(i["look"] for i in files), "tables_look": sum(i["look"] for i in tables),
+            "families": len(families), "families_look": sum(f["look"] > 0 for f in families),
         },
     }
 

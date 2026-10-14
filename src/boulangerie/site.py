@@ -30,6 +30,7 @@ def _env() -> Environment:
     env.filters["display"] = summary.display_value
     env.filters["link_dois"] = summary.link_dois
     env.filters["thousands"] = lambda n: f"{n:,}"
+    env.filters["size"] = lambda n: summary.human_size(n) if n else ""
     return env
 
 
@@ -125,6 +126,8 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
             croissant_url=f"{config.SITE_URL.rstrip('/')}/kb/{kb.slug}/croissant.json",
             has_provenance=bool(provenance),
             review_counts=review_data["counts"],
+            tree=review_data["tree"],
+            families=review_data["families"][:8],
         )
         (out_dir / "kb" / kb.slug / "index.html").write_text(page, encoding="utf-8")
         cards.append({

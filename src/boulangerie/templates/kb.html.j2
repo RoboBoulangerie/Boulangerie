@@ -71,56 +71,50 @@
   {% endif %}
 </section>
 
+{% set icons = {"folder": "📁", "archive": "🗜️", "group": "🗂️", "family": "🗂️", "formats": "📑", "fileset": "🗃️", "file": "📄"} %}
 <section class="card">
   <h2>Your files</h2>
-  <p class="muted">These are the downloadable files we found and described. If we missed some, or included some that
+  <p class="muted">These are the {{ stats.file_count|thousands }} downloadable files we found{% if stats.total_size %},
+    {{ stats.total_size }} in all{% endif %}, in the folders they live in. If we missed some, or included some that
     aren't really part of your data, please <a href="{{ feedback_url }}">let us know</a>.</p>
-  <p><a class="review-link" href="review/index.html#files">Review all {{ review_counts.files|thousands }} files →</a>
-    {% if review_counts.files_look %}<span class="muted">({{ review_counts.files_look|thousands }} we think need a look)</span>{% endif %}</p>
-  <table class="formats">
-    <thead><tr><th>Kind of file</th><th class="num">How many</th><th class="num">Total size</th></tr></thead>
-    <tbody>
-    {% for g in stats.formats %}
-      <tr>
-        <td>
-          <details>
-            <summary>{{ g.format }}</summary>
-            <ul class="examples">
-              {% for ex in g.examples %}
-              <li>{% if ex.url and ex.url.startswith('http') %}<a href="{{ ex.url }}">{{ ex.name }}</a>{% else %}{{ ex.name }}{% endif %}
-                {% if ex.size %}<span class="muted">· {{ ex.size }}</span>{% endif %}
-                {% if ex.inside %}<span class="muted">· inside an archive</span>{% endif %}
-                {% if ex.is_set %}<span class="muted">· a group of files{% if ex.pattern %} ({{ ex.pattern|display }}){% endif %}</span>{% endif %}</li>
-              {% endfor %}
-              {% if g.count > g.examples|length %}<li class="muted">…and {{ (g.count - g.examples|length)|thousands }} more</li>{% endif %}
-            </ul>
-          </details>
-        </td>
-        <td class="num">{{ g.count|thousands }}</td>
-        <td class="num">{{ g.size_display or "—" }}</td>
-      </tr>
+  <p class="tree-root"><span class="node-icon">📁</span><strong>{{ tree.name or kb.name }}</strong></p>
+  <ul class="tree tree-top tree-static">
+    {% for node in tree.children[:12] %}
+    <li><span class="node-icon">{{ icons[node.type] }}</span><span class="node-name">{{ node.name }}</span>
+      <span class="node-meta">
+        {%- if node.type == "group" %}{{ node.count|thousands }} {{ node.of if node.count != 1 else node.of[:-1] }} named like this
+        {%- elif node.type == "formats" %}{{ node.formats|join(", ") }}
+        {%- elif node.type in ("file", "fileset") %}{% else %}{{ node.files|thousands }} file{{ "" if node.files == 1 else "s" }}{% endif %}
+        {%- if node.size %} · {{ node.size|size }}{% endif %}</span></li>
     {% endfor %}
-    </tbody>
-  </table>
+    {% if tree.children|length > 12 %}<li class="muted">…and {{ (tree.children|length - 12)|thousands }} more</li>{% endif %}
+  </ul>
+  <p><a class="review-link" href="review/index.html#files">Browse all {{ review_counts.files|thousands }} files →</a>
+    {% if review_counts.files_look %}<span class="muted">({{ review_counts.files_look|thousands }} we think need a look)</span>{% endif %}</p>
 </section>
 
-{% if stats.table_count %}
+{% if families %}
 <section class="card">
   <h2>Your tables</h2>
   <p class="muted">For files that hold tables, we listed the columns, so people know what's inside before they
-    download. We found {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }} with
-    {{ stats.column_count|thousands }} columns in total. Here are a few:</p>
-  <p><a class="review-link" href="review/index.html#tables">Review all {{ review_counts.tables|thousands }} tables →</a>
-    {% if review_counts.tables_look %}<span class="muted">({{ review_counts.tables_look|thousands }} we think need a look)</span>{% endif %}</p>
-  <div class="tables">
-    {% for t in stats.tables %}
-    <details class="table-card">
-      <summary><strong>{{ t.name }}</strong> <span class="muted">· {{ t.columns|length + t.more_columns }} columns</span></summary>
-      {% if t.description %}<p class="small">{{ t.description }}</p>{% endif %}
-      <p class="columns">{% for c in t.columns %}<code>{{ c }}</code> {% endfor %}{% if t.more_columns %}<span class="muted">…and {{ t.more_columns }} more</span>{% endif %}</p>
-    </details>
+    download. Files with the same kind of table are grouped together: there are {{ review_counts.families|thousands }}
+    kind{{ "" if review_counts.families == 1 else "s" }} of tables, {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }} in all.</p>
+  <ul class="families">
+    {% for fam in families %}
+    <li>
+      <span class="path">{% set parts = fam.name.split(" › ") %}{% if parts|length > 1 %}<span class="path-folders">{{ parts[:-1]|join(" › ") }} › </span>{% endif %}<strong>{{ parts[-1] }}</strong></span>
+      <span class="node-meta">{{ fam.files|thousands }} file{{ "" if fam.files == 1 else "s" }} ·
+        {% if fam.layouts|length == 1 %}{{ fam.layouts[0].columns|length }} columns{% else %}{{ fam.layouts|length|thousands }} column layouts{% endif %}</span>
+      {% if fam.layouts|length == 1 %}
+      <p class="columns small">{% for c in fam.layouts[0].columns[:12] %}<code>{{ c[0] }}</code> {% endfor %}{% if fam.layouts[0].columns|length > 12 %}<span class="muted">…and {{ fam.layouts[0].columns|length - 12 }} more</span>{% endif %}</p>
+      {% elif fam.common %}
+      <p class="columns small"><span class="muted">All have</span> {% for c in fam.common[:12] %}<code>{{ c[0] }}</code> {% endfor %}{% if fam.common|length > 12 %}<span class="muted">…and {{ fam.common|length - 12 }} more</span>{% endif %}</p>
+      {% endif %}
+    </li>
     {% endfor %}
-  </div>
+  </ul>
+  <p><a class="review-link" href="review/index.html#tables">See all {{ review_counts.families|thousands }} kinds of tables →</a>
+    {% if review_counts.families_look %}<span class="muted">({{ review_counts.families_look|thousands }} we think need a look)</span>{% endif %}</p>
 </section>
 {% endif %}
 

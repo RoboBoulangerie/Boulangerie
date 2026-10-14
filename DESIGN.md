@@ -51,19 +51,33 @@ robo-croissant-pipeline ──► kbs/<slug>/ (croissant + provenance) ──►
 ### Reviewing files and tables
 
 Maintainers are the judges of whether we described their data correctly, not just its name and license. Each KB
-has a "Did we describe your data correctly?" page (`kb/<slug>/review/`) listing every file and table:
+has a "Did we describe your data correctly?" page (`kb/<slug>/review/`), and the KB page previews the same
+structure. Both show files and tables the way their owners organize them (`organize.py`), not by file type.
 
-- **Searchable and paged in the browser.** The data is one compact `review.json` per KB (17 MB for PGS Catalog,
-  which lists 17k files and 17k tables; Pages compresses it in transit, and it loads and searches in well under
-  a second).
-- **Ranked "needs a look" first:** items the checks found something wrong with (worst first), then items the
-  pipeline was less than 0.9 confident about, then items nobody has reviewed. Pipeline confidence alone barely
-  varies at this level (nearly everything is at least 0.9), so the checks do most of the ranking.
-- **Each item shows:** what we found, why it's flagged, the parts we weren't sure about in plain words ("pos ·
-  kind of value"), and a "Something wrong with this?" link that pre-fills the correction form with that item.
-  Item-level corrections go to a person (`needs-review`); changing table descriptions automatically isn't safe.
+- **Files, in their folders.** The tree comes from the download URLs, and archive contents sit inside their
+  archive. To keep big KBs readable:
+  - Chains of single folders collapse into one step (`ftp.ebi.ac.uk › pub › databases › spot › pgs`).
+  - Sibling files or folders with the same name pattern (digit runs and month names as `*`) are grouped:
+    PGS's 5,450 `PGS######` folders, CIViC's 133 monthly release folders.
+  - Folders with many loose files are grouped into families by name (CTD's `CTD_chem_*`, GlyGen's species),
+    and copies of one dataset in several formats merge into one entry (`CTD_anatomy` · CSV, TSV, XML).
+  - Folders open on demand, and long lists render 100 at a time.
+- **Tables, by kind.** Tables belong to one family if they have the same columns, or if their files share a path
+  pattern: PGS's 17,091 tables are 13 kinds, and Gene Ontology's 2,760 are 12. Within a family, each column
+  layout lists only the columns that differ from what the whole family shares. PGS's harmonized scoring files
+  come in 203 layouts over 6 shared columns. Each layout lists the files that use it.
+- **Search, or "only ones that need a look,"** switches to a flat list of matching files or table kinds,
+  most-likely-wrong first, with each file's folder path shown.
+- **"Needs a look"** is ranked by check findings (worst first), then the pipeline's confidence below 0.9, then
+  unreviewed items. It rolls up, so a folder or table kind shows how many of its items need a look. Pipeline
+  confidence barely varies at this level, so the checks do most of the ranking.
+- **Each file** shows what we found, why it's flagged, the parts we weren't sure about in plain words, and a
+  "Something wrong with this?" link that pre-fills the correction form. Item-level corrections go to a person
+  (`needs-review`).
 - **Three standing questions at the top:** did we miss files, is anything listed that shouldn't be, and is there
   a better download page.
+- **Data:** one compact `review.json` per KB holds the file details, the tree and the table families. The largest
+  is BioPortal at 24 MB, mostly its ontologies' long column IRIs; Pages compresses it in transit.
 - `confidence.json` holds one summary per file and table from the database: lowest confidence, how many values
   have been reviewed, and the least certain values. The database stores rows by position (`distribution[12]`),
   so positions are mapped to `@id`s through the database's own copy of each croissant (checked to match ours for

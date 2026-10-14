@@ -26,10 +26,21 @@ def test_build_review_ranks_likely_problems_first(tiny_croissant):
     assert readme["unsure"][0] == {"part": "name", "value": "README.pdf", "confidence": 0.5}
 
     [table] = data["tables"]
-    assert table["columns"] == [["symbol", "Text"], ["where", "Text"]]
-    assert table["from"] == ["file-missing", "genes.tsv"]  # unknown ids are shown as-is
     assert table["issues"][0]["severity"] == checks.PROBLEM
-    assert data["counts"] == {"files": 2, "tables": 1, "files_look": 2, "tables_look": 1}
+    assert data["counts"] == {"files": 2, "tables": 1, "files_look": 2, "tables_look": 1,
+                              "families": 1, "families_look": 1}
+
+    # Tables are shown by family, with their columns and the files they come from.
+    [family] = data["families"]
+    [layout] = family["layouts"]
+    assert layout["columns"] == [["symbol", "Text"], ["where", "Text"]]
+    assert layout["files"] == ["file-missing", "genes.tsv"]  # unknown ids are shown as-is
+    assert family["look"] == 1
+
+    # Files are shown in their folders: example.org › downloads › genes.tsv
+    assert data["tree"]["name"] == "example.org › downloads"
+    assert [c["name"] for c in data["tree"]["children"]] == ["genes.tsv", "README.pdf"]
+    assert {f["path"] for f in files} == {"genes.tsv", "README.pdf"}
 
 
 def test_nothing_flagged_when_all_is_well():
