@@ -28,6 +28,7 @@ def _env() -> Environment:
         severity_words=report.SEVERITY_WORDS,
     )
     env.filters["display"] = summary.display_value
+    env.filters["link_dois"] = summary.link_dois
     env.filters["thousands"] = lambda n: f"{n:,}"
     return env
 

@@ -2,6 +2,8 @@
 
 import re
 
+from markupsafe import Markup, escape
+
 # What each dataset-level field means, in plain words. Order is display order.
 FIELD_EXPLANATIONS = [
     ("name", "Name", "What your resource is called."),
@@ -150,3 +152,21 @@ def summarize(croissant: dict, max_examples: int = 8) -> dict:
         "column_count": field_count,
         "tables": tables,
     }
+
+
+# A DOI, optionally written as a doi.org link. Trailing punctuation from the surrounding sentence isn't part of it.
+_DOI = re.compile(r"(?:https?://(?:dx\.)?doi\.org/)?(10\.\d{4,9}/[^\s\"<>]+)", re.IGNORECASE)
+_DOI_TRAILING = ".,;:)]}'"
+
+
+def link_dois(text: str) -> Markup:
+    """Escape ``text`` for HTML and turn each DOI in it into a link to https://doi.org/."""
+    out, last = [], 0
+    for m in _DOI.finditer(text):
+        doi = m.group(1).rstrip(_DOI_TRAILING)
+        end = m.start(1) + len(doi)
+        out.append(escape(text[last:m.start()]))
+        out.append(Markup('<a href="https://doi.org/{0}">{1}</a>').format(doi, text[m.start():end]))
+        last = end
+    out.append(escape(text[last:]))
+    return Markup("").join(out)

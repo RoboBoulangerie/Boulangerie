@@ -42,6 +42,8 @@
           {% endif %}
         {% elif f.is_url %}
           <p class="field-value"><a href="{{ f.value }}">{{ f.value }}</a></p>
+        {% elif f.field == "citeAs" %}
+          <p class="field-value">{{ f.value|link_dois }}</p>
         {% else %}
           <p class="field-value">{{ f.value }}</p>
         {% endif %}

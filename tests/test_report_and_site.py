@@ -97,3 +97,17 @@ def test_summarize(tiny_croissant):
     assert s["total_size"] == "1.5 MB"
     assert {g["format"] for g in s["formats"]} == {"CSV spreadsheet", "PDF document"}
     assert s["table_count"] == 1 and s["column_count"] == 2
+
+
+def test_link_dois():
+    html = str(summary.link_dois("Seal RL, et al. Nucleic Acids Res. 2023;51(D1):D1003. doi: 10.1093/nar/gkac888."))
+    assert '<a href="https://doi.org/10.1093/nar/gkac888">10.1093/nar/gkac888</a>.' in html
+    html = str(summary.link_dois("See https://doi.org/10.1093/genetics/iyae049 (2024)"))
+    assert '<a href="https://doi.org/10.1093/genetics/iyae049">https://doi.org/10.1093/genetics/iyae049</a> (2024)' in html
+
+
+def test_link_dois_escapes_everything_else():
+    html = str(summary.link_dois("<b>Tiny</b> & co, doi:10.1234/a<b>"))
+    assert "&lt;b&gt;Tiny&lt;/b&gt; &amp; co" in html
+    assert '<a href="https://doi.org/10.1234/a">10.1234/a</a>&lt;b&gt;' in html
+    assert str(summary.link_dois("No identifiers here.")) == "No identifiers here."
