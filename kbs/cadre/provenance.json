@@ -1,0 +1,44 @@
+[
+  {
+    "path": "conditionsOfAccess",
+    "value": "Limited Data Sets (LDS) will be available in the future via a secure cloud environment for a fee. Biospecimens are not available for request at this time. The following requirements must be met before CADRE data will be shared: The Third-Party Investigator must briefly present the research concept to the Steering Committee. The Publications and Steering Committees must approve the investigator's analysis proposal. The Third-Party Site must sign an FDP Data Transfer and Use Agreement (DTUA) with UW-Madison.",
+    "url": "https://redcap.wisc.edu/surveys/?s=AYTTTFACXLP83XYL",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "http://mlcommons.org/croissant/1.1",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "The Children’s Allergy and Asthma Data Repository (CADRE) is a centralized resource created to address a critical gap in asthma research: identifying the risk factors and biological mechanisms that lead to childhood asthma. By uniting data from various cohorts, CADRE empowers researchers to uncover insights that individual studies alone cannot provide.",
+    "url": "https://cadre.med.wisc.edu/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "Not Found",
+    "url": "https://cadre.med.wisc.edu/data/",
+    "confidence": 0.3,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "Children's Allergy and Asthma Data Repository (CADRE)",
+    "url": "https://redcap.wisc.edu/surveys/?s=AYTTTFACXLP83XYL",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://cadre.med.wisc.edu/",
+    "url": "https://cadre.med.wisc.edu/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  }
+]

@@ -1,0 +1,172 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ kb.name }} · Boulangerie{% endblock %}
+{% block description %}The Croissant metadata file for {{ kb.name }}, explained in plain language.{% endblock %}
+{% block content %}
+<p class="crumbs"><a href="{{ root }}index.html">All croissants</a> / {{ kb.name }}</p>
+
+<section class="kb-hero">
+  <div>
+    <span class="status status-{{ results.status }}">{{ status_labels[results.status] }}</span>
+    <h1>{{ kb.name }}</h1>
+    {% if kb.title and kb.title != kb.name %}<p class="kb-title">{{ kb.title }}</p>{% endif %}
+    {% if kb.homepage %}<p><a class="text-link" href="{{ kb.homepage }}">{{ kb.homepage }}</a></p>{% endif %}
+  </div>
+  <div class="pickup">
+    <h2>Your croissant</h2>
+    <p>One file, {{ download_size }}. It describes {{ stats.file_count|thousands }} file{{ "" if stats.file_count == 1 else "s" }}
+      {%- if stats.table_count %} and {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }}{% endif %}.</p>
+    <a class="button" href="croissant.json" download="{{ kb.slug }}-croissant.json">Download croissant</a>
+    <a class="button button-quiet" href="{{ feedback_url }}">Suggest a correction</a>
+  </div>
+</section>
+
+<section class="card">
+  <h2>What your croissant says about you</h2>
+  <p class="muted">This is what anyone using your croissant will read about {{ kb.name }}. We gathered it from your
+    website. Please check that each part is right.</p>
+  <dl class="fields">
+    {% for f in fields %}
+    <div class="field{% if f.missing %} field-missing{% endif %}">
+      <dt>
+        <span class="field-label">{{ f.label }}</span>
+        <span class="field-help">{{ f.explanation }}</span>
+      </dt>
+      <dd>
+        {% if f.missing %}
+          {% if f.missing_severity == "note" %}
+          <p class="missing-note missing-optional">Not given. If you have one, <a href="{{ feedback_url }}">add it →</a></p>
+          {% else %}
+          <p class="missing-note">We couldn't find this on your website.
+            <a href="{{ feedback_url }}">Tell us →</a></p>
+          {% endif %}
+        {% elif f.is_url %}
+          <p class="field-value"><a href="{{ f.value }}">{{ f.value }}</a></p>
+        {% else %}
+          <p class="field-value">{{ f.value }}</p>
+        {% endif %}
+        {% if not f.missing %}
+        <p class="field-source">
+          {% if f.from_maintainer %}
+            <span class="badge badge-good">Confirmed by your team</span>
+          {% elif f.source_url %}
+            {% if f.verified %}<span class="badge badge-good">✓ Matches the page we found it on</span>
+            {% elif f.unverified %}<span class="badge badge-warn">Please double-check: this wording isn't on the page</span>
+            {% endif %}
+            Found on <a href="{{ f.source_url }}">{{ f.source_url|truncate(70) }}</a>
+          {% endif %}
+        </p>
+        {% endif %}
+      </dd>
+    </div>
+    {% endfor %}
+  </dl>
+  {% if not has_provenance %}
+  <p class="muted small">We haven't recorded where each of these came from yet.</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>Your files</h2>
+  <p class="muted">These are the downloadable files we found and described. If we missed some, or included some that
+    aren't really part of your data, please <a href="{{ feedback_url }}">let us know</a>.</p>
+  <table class="formats">
+    <thead><tr><th>Kind of file</th><th class="num">How many</th><th class="num">Total size</th></tr></thead>
+    <tbody>
+    {% for g in stats.formats %}
+      <tr>
+        <td>
+          <details>
+            <summary>{{ g.format }}</summary>
+            <ul class="examples">
+              {% for ex in g.examples %}
+              <li>{% if ex.url and ex.url.startswith('http') %}<a href="{{ ex.url }}">{{ ex.name }}</a>{% else %}{{ ex.name }}{% endif %}
+                {% if ex.size %}<span class="muted">· {{ ex.size }}</span>{% endif %}
+                {% if ex.inside %}<span class="muted">· inside an archive</span>{% endif %}
+                {% if ex.is_set %}<span class="muted">· a group of files{% if ex.pattern %} ({{ ex.pattern|display }}){% endif %}</span>{% endif %}</li>
+              {% endfor %}
+              {% if g.count > g.examples|length %}<li class="muted">…and {{ (g.count - g.examples|length)|thousands }} more</li>{% endif %}
+            </ul>
+          </details>
+        </td>
+        <td class="num">{{ g.count|thousands }}</td>
+        <td class="num">{{ g.size_display or "—" }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{% if stats.table_count %}
+<section class="card">
+  <h2>Your tables</h2>
+  <p class="muted">For files that hold tables, we listed the columns, so people know what's inside before they
+    download. We found {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }} with
+    {{ stats.column_count|thousands }} columns in total. Here are a few:</p>
+  <div class="tables">
+    {% for t in stats.tables %}
+    <details class="table-card">
+      <summary><strong>{{ t.name }}</strong> <span class="muted">· {{ t.columns|length + t.more_columns }} columns</span></summary>
+      {% if t.description %}<p class="small">{{ t.description }}</p>{% endif %}
+      <p class="columns">{% for c in t.columns %}<code>{{ c }}</code> {% endfor %}{% if t.more_columns %}<span class="muted">…and {{ t.more_columns }} more</span>{% endif %}</p>
+    </details>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="card">
+  <h2>What we checked</h2>
+  <p class="muted">We run automatic checks on every croissant. Here's what they found, most important first.
+    {% if results.links.checked %}We also tried {{ results.links.checked }} of your {{ results.links.total|thousands }} download
+    links, and {{ results.links.broken }} didn't work.{% endif %}</p>
+  {% if not results.groups %}
+    <p class="all-good">Everything we check looks good. 🎉</p>
+  {% endif %}
+  <ul class="findings">
+    {% for g in results.groups %}
+    <li class="finding finding-{{ g.severity }}">
+      <div class="finding-head">
+        <span class="sev sev-{{ g.severity }}">{{ severity_words[g.severity] }}</span>
+        <strong>{{ g.title }}</strong>{% if g.count > 1 %} <span class="muted">({{ g.count|thousands }} places)</span>{% endif %}
+      </div>
+      <p>{{ g.message }}</p>
+      {% if g.fixable %}<p class="small">We can fix this automatically. Nothing for you to do.</p>{% endif %}
+      <details class="technical">
+        <summary>Technical details</summary>
+        <ul>
+          {% for ex in g.examples %}<li>{% if ex.path %}<code>{{ ex.path }}</code>: {% endif %}{{ ex.technical }}</li>{% endfor %}
+          {% if g.count > g.examples|length %}<li>…and {{ (g.count - g.examples|length)|thousands }} more</li>{% endif %}
+        </ul>
+      </details>
+    </li>
+    {% endfor %}
+  </ul>
+  <p class="small muted">Last checked {{ results.checked_at[:10] }}.</p>
+</section>
+
+<section class="card card-accent">
+  <h2>Spotted something wrong?</h2>
+  <p>Tell us in a short form: just fix the parts you know, and leave the rest blank. We'll update your croissant and
+    show you the change before it goes live. You'll need a free GitHub account.</p>
+  <a class="button" href="{{ feedback_url }}">Suggest a correction</a>
+</section>
+
+<section class="card">
+  <h2>What do I do with my croissant?</h2>
+  <ul class="plain">
+    <li><strong>Nothing, if you like.</strong> It's already published at
+      <a href="{{ croissant_url }}"><code>{{ croissant_url }}</code></a>, and you can point people to it.</li>
+    <li><strong>Put it next to your downloads.</strong> Save the file on your own site, for example as
+      <code>croissant.json</code> on your downloads page, so it stays with your data.</li>
+    <li><strong>Mention it on your website.</strong> Croissant builds on the same <a href="https://schema.org/Dataset">schema.org</a>
+      vocabulary that dataset search engines read. Linking to it, or embedding it on your homepage, helps them find you.</li>
+  </ul>
+  <details class="technical">
+    <summary>For the technically curious</summary>
+    <p class="small">The file is JSON-LD following the <a href="https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html">MLCommons Croissant 1.1 specification</a>.
+      It was drafted by an automated pipeline, then checked with the official <code>mlcroissant</code> validator and the
+      checks listed above. You can <a href="croissant.json">view the raw file</a> or
+      <a href="https://github.com/{{ repo }}/tree/main/kbs/{{ kb.slug }}">see its history on GitHub</a>.</p>
+  </details>
+</section>
+{% endblock %}

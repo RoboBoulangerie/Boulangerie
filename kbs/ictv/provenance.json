@@ -1,0 +1,128 @@
+[
+  {
+    "path": "citeAs",
+    "value": "Lefkowitz, E., Hendrickson, R., &amp; International Committee on Taxonomy of Viruses. (2026). <i>ICTV Master Species List (MSL)</i> [Dataset]. International Committee on Taxonomy of Viruses (ICTV). https://doi.org/10.5281/ZENODO.19154110",
+    "url": "https://doi.org/10.5281/zenodo.19154110",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conditionsOfAccess",
+    "value": "Access to Zenodo’s content is open to all, for non-military purposes only.",
+    "url": "https://about.zenodo.org/terms/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[0].name",
+    "value": "International Committee on Taxonomy of Viruses",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "datePublished",
+    "value": "2026-03-20",
+    "url": "https://zenodo.org/api/records/19154110",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "The ICTV is charged with developing, refining, and maintaining the official, universal  taxonomy of all viruses. The goal is to classify and name all known viruses into a single taxonomy that reflects their evolutionary relationships.",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "isLiveDataset",
+    "value": "false",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "Viruses",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "Virology",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "Taxonomy",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "Evolution",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "Virus Taxonomy: A Community Knowledgebase Supporting Virus Research",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "publisher.name",
+    "value": "International Committee on Taxonomy of Viruses (ICTV)",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "sameAs[0]",
+    "value": "https://ictv.global",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "sameAs[1]",
+    "value": "https://doi.org/10.5281/zenodo.15042255",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "sameAs[2]",
+    "value": "https://doi.org/10.5281/zenodo.15042309",
+    "url": "https://zenodo.org/api/communities/ictv",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://zenodo.org/communities/ictv/",
+    "url": "https://zenodo.org/communities/ictv/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  }
+]

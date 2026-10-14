@@ -1,0 +1,4 @@
+[
+  {"path": "description", "value": "Tiny KB collects <small> facts about genes & diseases.", "url": "https://example.org/about", "confidence": 0.9, "source": "dashboard"},
+  {"path": "name", "value": "Tiny KB", "url": "https://example.org/", "confidence": 1.0, "source": "dashboard"}
+]

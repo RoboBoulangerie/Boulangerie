@@ -1,0 +1,450 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "citeAs": "Baron JA, Johnson CMS, Schor MA, Olley D, Nickel L, Felix V, Bello SM, Greene C, Lichenstein R, Bisordi K, Koka R, Bearer C, Macatangay R, Ada N, Ballenger K, Bliss E, Colliver L, Dobbins G, Heitzig H, Dixon S, Semesky P, Garth J, Fairchild M, Gaskin P, Zahid S, Castillo R, Edwards S, Widjaja A, Usui Y, Lynch E, Clarkson M, Detwiler T, Schriml LM (2026). The DO-KB knowledgebase 2026 update: expanding programmatic and language access. Nucleic Acids Research, 54(D1):D1425-D1436. doi: 10.1093/nar/gkaf1213. PMID:41296549.",
+  "conditionsOfAccess": "The Creative Commons Public Domain Dedication CC0 1.0 Universal license allows for the copying, modification and distribution of the Disease Ontology content without asking permission.",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "creator": {
+    "@type": "sc:Organization",
+    "name": "Disease Ontology"
+  },
+  "dateModified": "2026-05-30",
+  "dct:provenance": "The configured downloads page and related authoritative pages were crawled without using GitHub or any other public repository. The production OWL/OBO files, monthly releases, imports, subsets, reports, and translation PURLs advertised by the source ultimately resolve to GitHub; they were not downloaded or represented because repository sourcing was prohibited for this run. The source's first-party SPARQL documentation identifies doid.owl and doid-merged.owl as queryable graphs and describes retrieval of customized datasets. Complete subject-predicate-object CSV exports of both graphs were therefore downloaded directly from the authoritative DO-KB SPARQL endpoint. The downloaded graph exports contain 305,919 and 331,086 data rows, respectively, and identify version 2026-05-30 in their contents. All 24 same-site PDFs directly linked as DO project publications, tutorials, and curation documentation were also represented; newsletters and unrelated third-party materials were excluded. For each CSV, the exact in-band header subject,predicate,object was observed. Datatype inference sampled only the first four data lines after the header (five lines total) and conservatively assigns Text because RDF terms and literals may vary throughout each graph. No archives were downloaded. No location-oriented columns exist in the represented record sets, so no GeoCoordinates hierarchy is supported.",
+  "description": "Discover disease knowledge, search the DO's OWL and OBO etiology-based disease classification English and Spanish DAGs.",
+  "distribution": [
+    {
+      "@id": "file_doid_csv",
+      "@type": "cr:FileObject",
+      "contentSize": "37354678",
+      "contentUrl": "https://sparql.disease-ontology.org/?query=SELECT+%3fsubject+%3fpredicate+%3fobject+FROM+%3chttp%3a%2f%2fpurl.obolibrary.org%2fobo%2fdoid.owl%3e+WHERE+%7b+%3fsubject+%3fpredicate+%3fobject+%7d",
+      "description": "Complete triple export of the DO's primary release graph, doid.owl, retrieved from the DO-KB SPARQL endpoint.",
+      "encodingFormat": "text/csv",
+      "name": "doid.csv",
+      "sha256": "e4935054f787e80eb9eb1c18e168c85f4037f111b0378ee637b1f13dfc231e0c"
+    },
+    {
+      "@id": "file_doid_merged_csv",
+      "@type": "cr:FileObject",
+      "contentSize": "40510728",
+      "contentUrl": "https://sparql.disease-ontology.org/?query=SELECT+%3fsubject+%3fpredicate+%3fobject+FROM+%3chttp%3a%2f%2fpurl.obolibrary.org%2fobo%2fdoid%2fdoid-merged.owl%3e+WHERE+%7b+%3fsubject+%3fpredicate+%3fobject+%7d",
+      "description": "Complete triple export of the DO's merged graph, including DO and imported classes, retrieved from the DO-KB SPARQL endpoint.",
+      "encodingFormat": "text/csv",
+      "name": "doid-merged.csv",
+      "sha256": "49d092750fee920d6d09756480b27e6e260d655940fb25231f90206340e563f4"
+    },
+    {
+      "@id": "file_document_01",
+      "@type": "cr:FileObject",
+      "contentSize": "871327",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/2026NAR_gkaf1213.pdf",
+      "description": "The DO-KB knowledgebase 2026 update: expanding programmatic and language access.",
+      "encodingFormat": "application/pdf",
+      "name": "2026NAR_gkaf1213.pdf",
+      "sha256": "199e0dc35a56f77fa6797c0d34369eaa3f7af423c26184ac9da8272edd3e068f"
+    },
+    {
+      "@id": "file_document_02",
+      "@type": "cr:FileObject",
+      "contentSize": "1446213",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/2024NAR_gkad1051.pdf",
+      "description": "The DO-KB Knowledgebase: a 20-year journey developing the disease open science ecosystem.",
+      "encodingFormat": "application/pdf",
+      "name": "2024NAR_gkad1051.pdf",
+      "sha256": "ce05006ccf672d99b0a4f08c52b96c0db1cb923759af57bce32f62caba312485"
+    },
+    {
+      "@id": "file_document_03",
+      "@type": "cr:FileObject",
+      "contentSize": "2832706",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Schriml2023-complex.pdf",
+      "description": "Modeling the enigma of complex disease etiology.",
+      "encodingFormat": "application/pdf",
+      "name": "Schriml2023-complex.pdf",
+      "sha256": "0d32b0dbc8013cf6f9630ddfe96b651b9672ce24b827b6f59cf82ba2a2c25085"
+    },
+    {
+      "@id": "file_document_04",
+      "@type": "cr:FileObject",
+      "contentSize": "1966399",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Baron2023_baad007.pdf",
+      "description": "Assessing resource use: a case study with the Human Disease Ontology.",
+      "encodingFormat": "application/pdf",
+      "name": "Baron2023_baad007.pdf",
+      "sha256": "f6e5e5dd1e2cd7c780da5021c100876ff3c8951774fe39b706b0f45b7037bbcf"
+    },
+    {
+      "@id": "file_document_05",
+      "@type": "cr:FileObject",
+      "contentSize": "1582749",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Schriml2021.pdf",
+      "description": "The Human Disease Ontology 2022 update.",
+      "encodingFormat": "application/pdf",
+      "name": "Schriml2021.pdf",
+      "sha256": "c470292a57bb330fc5c87477898390b2bb1cb263a3210e55747dec05cc59a186"
+    },
+    {
+      "@id": "file_document_06",
+      "@type": "cr:FileObject",
+      "contentSize": "2250544",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Schriml2018.pdf",
+      "description": "Human Disease Ontology 2018 update: Classification, content and workflow expansion.",
+      "encodingFormat": "application/pdf",
+      "name": "Schriml2018.pdf",
+      "sha256": "7ce96a8fcc5bcfc64a7bf38f31b27b001f346827d5503c7935fe365bd3eb4990"
+    },
+    {
+      "@id": "file_document_07",
+      "@type": "cr:FileObject",
+      "contentSize": "382148",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Bello2018.full.pdf",
+      "description": "Disease Ontology: Improving and unifying disease annotations across species.",
+      "encodingFormat": "application/pdf",
+      "name": "Bello2018.full.pdf",
+      "sha256": "aad131cd144361ac91468574d7493b3c6f78584cd639088b4ad253133bd75514"
+    },
+    {
+      "@id": "file_document_08",
+      "@type": "cr:FileObject",
+      "contentSize": "678356",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Schriml2015.pdf",
+      "description": "The Disease Ontology: Fostering interoperability between biological and clinical human disease-related data.",
+      "encodingFormat": "application/pdf",
+      "name": "Schriml2015.pdf",
+      "sha256": "5a5cf59c8b1a75157a28f1220b98b72b91b69cbeea102beb6b88087d9afb3459"
+    },
+    {
+      "@id": "file_document_09",
+      "@type": "cr:FileObject",
+      "contentSize": "1292572",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Wu2015.pdf",
+      "description": "Generating a focused view of disease ontology cancer terms for pan-cancer data integration and analysis.",
+      "encodingFormat": "application/pdf",
+      "name": "Wu2015.pdf",
+      "sha256": "a51abe485acbede2911b8cbf9fecbed6cb05707531a97c88ae9bc8c26cd9b6ad"
+    },
+    {
+      "@id": "file_document_10",
+      "@type": "cr:FileObject",
+      "contentSize": "848799",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Kibbe2015.pdf",
+      "description": "Disease Ontology 2015 update: An expanded and updated database of human diseases for linking biomedical knowledge through disease data.",
+      "encodingFormat": "application/pdf",
+      "name": "Kibbe2015.pdf",
+      "sha256": "1cb1bb96cc7c744e21f8bc2633145ce595d111b5d3843a7b17a0122a04e31447"
+    },
+    {
+      "@id": "file_document_11",
+      "@type": "cr:FileObject",
+      "contentSize": "2056130",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Schriml2012.pdf",
+      "description": "Disease Ontology: A backbone for disease semantic integration.",
+      "encodingFormat": "application/pdf",
+      "name": "Schriml2012.pdf",
+      "sha256": "009854a56a30762577a5731ac102dba32d9c90cbe7dcb720457dbc18ae46bc20"
+    },
+    {
+      "@id": "file_document_12",
+      "@type": "cr:FileObject",
+      "contentSize": "809447",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Osborne2009.pdf",
+      "description": "Annotating the human genome with Disease Ontology.",
+      "encodingFormat": "application/pdf",
+      "name": "Osborne2009.pdf",
+      "sha256": "44657dbd76f5922dcf16e008ecfc87583d34b341562f8f11fd47a99dea1bf86e"
+    },
+    {
+      "@id": "file_document_13",
+      "@type": "cr:FileObject",
+      "contentSize": "361644",
+      "contentUrl": "https://disease-ontology.org/media/publication-pdfs/Du2009.pdf",
+      "description": "From disease ontology to disease-ontology lite: Statistical methods to adapt a general-purpose ontology for the test of gene-ontology associations.",
+      "encodingFormat": "application/pdf",
+      "name": "Du2009.pdf",
+      "sha256": "d2c049dea54b8aa5a5c0b2b68482960a8a65b3f4867a1084ce2b61f85d644af6"
+    },
+    {
+      "@id": "file_document_14",
+      "@type": "cr:FileObject",
+      "contentSize": "757699",
+      "contentUrl": "https://disease-ontology.org/media/images/tutorial/DO_Background_Tutorial_08_2019b.pdf",
+      "description": "Human Disease Ontology Background",
+      "encodingFormat": "application/pdf",
+      "name": "DO_Background_Tutorial_08_2019b.pdf",
+      "sha256": "2827eae7cd2bbca4b174f53365608b42588b886821177f40cb13c18295daad2f"
+    },
+    {
+      "@id": "file_document_15",
+      "@type": "cr:FileObject",
+      "contentSize": "3117421",
+      "contentUrl": "https://disease-ontology.org/media/images/tutorial/DO_Website_Tutorial_08_2019b.pdf",
+      "description": "Human Disease Ontology Website Navigation",
+      "encodingFormat": "application/pdf",
+      "name": "DO_Website_Tutorial_08_2019b.pdf",
+      "sha256": "5637381115907fdbaa3a6c43804c7f0f706974f892da68c3a99da19d74d1a4ec"
+    },
+    {
+      "@id": "file_document_16",
+      "@type": "cr:FileObject",
+      "contentSize": "471030",
+      "contentUrl": "https://disease-ontology.org/media/images/tutorial/DO_Tutorial_Trees.pdf",
+      "description": "Human Disease Ontology OBO & OWL Trees",
+      "encodingFormat": "application/pdf",
+      "name": "DO_Tutorial_Trees.pdf",
+      "sha256": "e283bc39421b60ffb077622f054fdc4a29940d288727e30b6fe516505ed4d407"
+    },
+    {
+      "@id": "file_document_17",
+      "@type": "cr:FileObject",
+      "contentSize": "924068",
+      "contentUrl": "https://disease-ontology.org/media/images/tutorial/DO-KB_SPARQL_tutorial.pdf",
+      "description": "DO-KB SPARQL tutorial",
+      "encodingFormat": "application/pdf",
+      "name": "DO-KB_SPARQL_tutorial.pdf",
+      "sha256": "ba6f0196e657b04703a41a70536c7ebaaa9b406100ff842b3d09481fda287b26"
+    },
+    {
+      "@id": "file_document_18",
+      "@type": "cr:FileObject",
+      "contentSize": "1399473",
+      "contentUrl": "https://disease-ontology.org/media/images/tutorial/DO-KB_Faceted_Search_tutorial.pdf",
+      "description": "DO-KB Faceted Search tutorial",
+      "encodingFormat": "application/pdf",
+      "name": "DO-KB_Faceted_Search_tutorial.pdf",
+      "sha256": "25c0df4a2bd850d5b813c2ce436cb5d61e0b172d315614e97e983398bbbe2e79"
+    },
+    {
+      "@id": "file_document_19",
+      "@type": "cr:FileObject",
+      "contentSize": "79358",
+      "contentUrl": "https://disease-ontology.org/media/curation/DO_Style_Guide_v2019.pdf",
+      "description": "DO Style Guide",
+      "encodingFormat": "application/pdf",
+      "name": "DO_Style_Guide_v2019.pdf",
+      "sha256": "c6f4793f70309c6d9cdbc056af3bbe3b4664c709d7747e0e3ace1039a92111b5"
+    },
+    {
+      "@id": "file_document_20",
+      "@type": "cr:FileObject",
+      "contentSize": "88151",
+      "contentUrl": "https://disease-ontology.org/media/curation/Design_patterns_Inheritance.pdf",
+      "description": "Design Patterns for Method of Inheritance",
+      "encodingFormat": "application/pdf",
+      "name": "Design_patterns_Inheritance.pdf",
+      "sha256": "e780abfb99f720e718d23e7a8d4e89d9698514b305c4753ac37c95dd951685ca"
+    },
+    {
+      "@id": "file_document_21",
+      "@type": "cr:FileObject",
+      "contentSize": "43234",
+      "contentUrl": "https://disease-ontology.org/media/curation/DO_merges_FAQ.pdf",
+      "description": "DO merges FAQ",
+      "encodingFormat": "application/pdf",
+      "name": "DO_merges_FAQ.pdf",
+      "sha256": "c8fa7b968d69361bc674107b8544368eca1c3051868090eccd0d8997c5205cca"
+    },
+    {
+      "@id": "file_document_22",
+      "@type": "cr:FileObject",
+      "contentSize": "140600",
+      "contentUrl": "https://disease-ontology.org/media/curation/DO_Cancer_Nomenclature_Definitions.pdf",
+      "description": "DO Cancer Nomenclature Definitions",
+      "encodingFormat": "application/pdf",
+      "name": "DO_Cancer_Nomenclature_Definitions.pdf",
+      "sha256": "257466ba6e0ec15bd82983344fa4a3ccc2e605fc50851b7755300778d8dae137"
+    },
+    {
+      "@id": "file_document_23",
+      "@type": "cr:FileObject",
+      "contentSize": "61868",
+      "contentUrl": "https://disease-ontology.org/media/curation/DO_Ticket_Review_Steps.pdf",
+      "description": "DO Ticket Review Steps",
+      "encodingFormat": "application/pdf",
+      "name": "DO_Ticket_Review_Steps.pdf",
+      "sha256": "a17126c4399f7123ef5b88b3a5c04027b509c2727e3de82268f4e751db9a6fff"
+    },
+    {
+      "@id": "file_document_24",
+      "@type": "cr:FileObject",
+      "contentSize": "517417",
+      "contentUrl": "https://disease-ontology.org/media/images/DO_ROBOT.pdf",
+      "description": "ROBOT in the DO project",
+      "encodingFormat": "application/pdf",
+      "name": "DO_ROBOT.pdf",
+      "sha256": "6dd00f070be36eb4af3c5240dad0646af2c192cc43f1cf6b482379905ab6137b"
+    }
+  ],
+  "isAccessibleForFree": true,
+  "isLiveDataset": true,
+  "keywords": [
+    "human disease",
+    "ontology",
+    "etiology",
+    "biomedical data integration",
+    "OWL",
+    "OBO",
+    "DO-KB"
+  ],
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "name": "Disease Ontology",
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "University of Maryland School of Medicine, Institute for Genome Sciences"
+  },
+  "recordSet": [
+    {
+      "@id": "recordset_doid_triples",
+      "@type": "cr:RecordSet",
+      "description": "Subject-predicate-object records exported from the doid.owl graph.",
+      "field": [
+        {
+          "@id": "field_recordset_doid_triples_subject",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "RDF subject in the exported graph triple.",
+          "name": "subject",
+          "source": {
+            "extract": {
+              "column": "subject"
+            },
+            "fileObject": {
+              "@id": "file_doid_csv"
+            }
+          }
+        },
+        {
+          "@id": "field_recordset_doid_triples_predicate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "RDF predicate in the exported graph triple.",
+          "name": "predicate",
+          "source": {
+            "extract": {
+              "column": "predicate"
+            },
+            "fileObject": {
+              "@id": "file_doid_csv"
+            }
+          }
+        },
+        {
+          "@id": "field_recordset_doid_triples_object",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "RDF object in the exported graph triple.",
+          "name": "object",
+          "source": {
+            "extract": {
+              "column": "object"
+            },
+            "fileObject": {
+              "@id": "file_doid_csv"
+            }
+          }
+        }
+      ],
+      "name": "RDF triples from doid.csv"
+    },
+    {
+      "@id": "recordset_doid_merged_triples",
+      "@type": "cr:RecordSet",
+      "description": "Subject-predicate-object records exported from the doid-merged.owl graph.",
+      "field": [
+        {
+          "@id": "field_recordset_doid_merged_triples_subject",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "RDF subject in the exported graph triple.",
+          "name": "subject",
+          "source": {
+            "extract": {
+              "column": "subject"
+            },
+            "fileObject": {
+              "@id": "file_doid_merged_csv"
+            }
+          }
+        },
+        {
+          "@id": "field_recordset_doid_merged_triples_predicate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "RDF predicate in the exported graph triple.",
+          "name": "predicate",
+          "source": {
+            "extract": {
+              "column": "predicate"
+            },
+            "fileObject": {
+              "@id": "file_doid_merged_csv"
+            }
+          }
+        },
+        {
+          "@id": "field_recordset_doid_merged_triples_object",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "RDF object in the exported graph triple.",
+          "name": "object",
+          "source": {
+            "extract": {
+              "column": "object"
+            },
+            "fileObject": {
+              "@id": "file_doid_merged_csv"
+            }
+          }
+        }
+      ],
+      "name": "RDF triples from doid-merged.csv"
+    }
+  ],
+  "url": "https://disease-ontology.org/",
+  "version": "2026-05-30"
+}

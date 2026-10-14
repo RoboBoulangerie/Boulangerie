@@ -1,0 +1,6 @@
+name = "Alliance of Genome Resources"
+title = "Alliance Central: A platform for sustainable development of next generation genome knowledgebases"
+homepage = "https://www.alliancegenome.org/"
+grant_number = "HG010859"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

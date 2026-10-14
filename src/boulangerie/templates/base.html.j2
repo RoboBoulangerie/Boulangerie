@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Boulangerie{% endblock %}</title>
+  <meta name="description" content="{% block description %}Pick up the Croissant metadata we baked for your biomedical knowledge base.{% endblock %}">
+  <link rel="stylesheet" href="{{ root }}static/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥐</text></svg>">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="{{ root }}index.html"><span class="brand-mark" aria-hidden="true">🥐</span> Boulangerie</a>
+      <nav>
+        <a href="{{ root }}index.html">All croissants</a>
+        <a href="{{ root }}about/index.html">What is a croissant?</a>
+        <a href="https://github.com/{{ repo }}">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Boulangerie is run by the <a href="https://renci.org">Renaissance Computing Institute (RENCI)</a> at UNC-Chapel Hill.
+        Croissants are drafted automatically, then checked by people, including you.
+        Questions? <a href="https://github.com/{{ repo }}/issues">Open an issue</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

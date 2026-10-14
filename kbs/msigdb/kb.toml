@@ -1,0 +1,6 @@
+name = "MSigDB"
+title = "The Molecular Signatures Database: A knowledgebase for gene set based analysis of genomic data"
+homepage = "https://www.gsea-msigdb.org/gsea/msigdb/"
+grant_number = "CA295532"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

@@ -1,0 +1,4361 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "description": {
+      "@container": "@language"
+    },
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "name": {
+      "@container": "@language"
+    },
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "citeAs": "Lefkowitz, E., Hendrickson, R., &amp; International Committee on Taxonomy of Viruses. (2026). <i>ICTV Master Species List (MSL)</i> [Dataset]. International Committee on Taxonomy of Viruses (ICTV). https://doi.org/10.5281/ZENODO.19154110",
+  "conditionsOfAccess": "Access to Zenodo’s content is open to all, for non-military purposes only.",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "creator": [
+    {
+      "@type": "sc:Organization",
+      "name": "International Committee on Taxonomy of Viruses"
+    }
+  ],
+  "datePublished": "2026-03-20",
+  "dct:provenance": "Authoritative discovery used the configured Zenodo ICTV community dataset listing and public Zenodo REST API. The listing returned 2 latest dataset records across 1 page; their version endpoints exposed 7 public dataset versions and 7 files, all downloaded and checksum-verified. The crawl was limited to records classified by Zenodo as Dataset in the ICTV community, all pagination links returned by the API, and every public version/file under those records; software records, GitHub links, HTML pages, and non-dataset community records were excluded. XLSX files are spreadsheet packages, not dataset archives for archive-member distribution modeling; worksheet XML was inspected in place and no OOXML implementation parts were promoted as data files. Each RecordSet corresponds to a worksheet with a detectable header in the first five rows. Header tokens were preserved exactly, and datatype samples never exceeded the first five worksheet rows. The community-level name is the exact NIH award title exposed by the Zenodo community API; the description is the exact Zenodo community description, including its source spacing. citeAs is the exact APA citation response returned by DOI content negotiation for the latest Master Species List record, including the response's HTML markup and entity spelling. The canonical CC BY 4.0 URL was verified on the Creative Commons deed; each Zenodo dataset record reports license id cc-by-4.0. conditionsOfAccess is quoted verbatim from Zenodo Terms of Use v1.3. No coherent country/state/city combination or latitude/longitude pair was found in the sampled worksheet headers, so no GeoCoordinates hierarchy was added. ICTV_Master_Species_List_2024_MSL40.v1.xlsx worksheet 'Version': this is a narrative release-information sheet, not a record table; no RecordSet was generated. ICTV_Master_Species_List_2024_MSL40.v1.xlsx worksheet 'MSL': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2024_MSL40.v1.xlsx worksheet 'Column Definitions': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2024_MSL40.v1.xlsx worksheet 'Taxa Renamed or Abolished': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2024_MSL40.v1.xlsx worksheet 'Taxon Counts': Header tokens were read exactly from worksheet row 2. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v1.20250307.xlsx worksheet 'Version': this is a narrative release-information sheet, not a record table; no RecordSet was generated. VMR_MSL40.v1.20250307.xlsx worksheet 'VMR MSL40': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v1.20250307.xlsx worksheet 'Column definitions': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v1.20250307.xlsx worksheet 'Column Values': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2024_MSL40.v2.xlsx worksheet 'Version': this is a narrative release-information sheet, not a record table; no RecordSet was generated. ICTV_Master_Species_List_2024_MSL40.v2.xlsx worksheet 'MSL': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2024_MSL40.v2.xlsx worksheet 'Column Definitions': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2024_MSL40.v2.xlsx worksheet 'Taxa Renamed or Abolished': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2024_MSL40.v2.xlsx worksheet 'Taxon Counts': Header tokens were read exactly from worksheet row 2. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v2.20251013.xlsx worksheet 'Version': this is a narrative release-information sheet, not a record table; no RecordSet was generated. VMR_MSL40.v2.20251013.xlsx worksheet 'VMR MSL40': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v2.20251013.xlsx worksheet 'Column definitions': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v2.20251013.xlsx worksheet 'Column Values': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v2.20260223.xlsx worksheet 'Version': this is a narrative release-information sheet, not a record table; no RecordSet was generated. VMR_MSL40.v2.20260223.xlsx worksheet 'VMR MSL40': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v2.20260223.xlsx worksheet 'Column definitions': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL40.v2.20260223.xlsx worksheet 'Column Values': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2025_MSL41.v1.xlsx worksheet 'Version': this is a narrative release-information sheet, not a record table; no RecordSet was generated. ICTV_Master_Species_List_2025_MSL41.v1.xlsx worksheet 'MSL': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2025_MSL41.v1.xlsx worksheet 'Column Definitions': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2025_MSL41.v1.xlsx worksheet 'Taxa Renamed or Abolished': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. ICTV_Master_Species_List_2025_MSL41.v1.xlsx worksheet 'Taxon Counts': Header tokens were read exactly from worksheet row 2. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL41.v1.20260320.xlsx worksheet 'Version': this is a narrative release-information sheet, not a record table; no RecordSet was generated. VMR_MSL41.v1.20260320.xlsx worksheet 'VMR MSL41': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL41.v1.20260320.xlsx worksheet 'Column definitions': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit. VMR_MSL41.v1.20260320.xlsx worksheet 'Column Values': Header tokens were read exactly from worksheet row 1. Datatypes used no more than four post-header rows within the five-row sample limit.",
+  "description": "The ICTV is charged with developing, refining, and maintaining the official, universal  taxonomy of all viruses. The goal is to classify and name all known viruses into a single taxonomy that reflects their evolutionary relationships.",
+  "distribution": [
+    {
+      "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx",
+      "@type": "cr:FileObject",
+      "contentSize": "1667214 B",
+      "contentUrl": "https://zenodo.org/api/records/15042256/files/ICTV_Master_Species_List_2024_MSL40.v1.xlsx/content",
+      "description": "ICTV dataset file from Zenodo record 15042256: ICTV Master Species List 2024 MSL40.v1",
+      "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "md5": "9723f6cc90345c2ebf3c46c13bcd77a9",
+      "name": "ICTV_Master_Species_List_2024_MSL40.v1.xlsx"
+    },
+    {
+      "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx",
+      "@type": "cr:FileObject",
+      "contentSize": "3350574 B",
+      "contentUrl": "https://zenodo.org/api/records/15042310/files/VMR_MSL40.v1.20250307.xlsx/content",
+      "description": "ICTV dataset file from Zenodo record 15042310: ICTV 2024 Virus Metadata Resource (VMR)",
+      "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "md5": "ad79b9401d8b17eb9afbf1ab32e822ba",
+      "name": "VMR_MSL40.v1.20250307.xlsx"
+    },
+    {
+      "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx",
+      "@type": "cr:FileObject",
+      "contentSize": "1661312 B",
+      "contentUrl": "https://zenodo.org/api/records/16955220/files/ICTV_Master_Species_List_2024_MSL40.v2.xlsx/content",
+      "description": "ICTV dataset file from Zenodo record 16955220: ICTV Master Species List (MSL)",
+      "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "md5": "13a257fcc3fcb8481d4efdf986968bd1",
+      "name": "ICTV_Master_Species_List_2024_MSL40.v2.xlsx"
+    },
+    {
+      "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx",
+      "@type": "cr:FileObject",
+      "contentSize": "3502891 B",
+      "contentUrl": "https://zenodo.org/api/records/17489005/files/VMR_MSL40.v2.20251013.xlsx/content",
+      "description": "ICTV dataset file from Zenodo record 17489005: ICTV 2024 Virus Metadata Resource (VMR)",
+      "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "md5": "f3c6a14faca89347791400bff6420a4f",
+      "name": "VMR_MSL40.v2.20251013.xlsx"
+    },
+    {
+      "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx",
+      "@type": "cr:FileObject",
+      "contentSize": "3579868 B",
+      "contentUrl": "https://zenodo.org/api/records/18808244/files/VMR_MSL40.v2.20260223.xlsx/content",
+      "description": "ICTV dataset file from Zenodo record 18808244: ICTV Virus Metadata Resource (VMR)",
+      "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "md5": "b459c11328a262d8aacc183b637f817f",
+      "name": "VMR_MSL40.v2.20260223.xlsx"
+    },
+    {
+      "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx",
+      "@type": "cr:FileObject",
+      "contentSize": "1803176 B",
+      "contentUrl": "https://zenodo.org/api/records/19154110/files/ICTV_Master_Species_List_2025_MSL41.v1.xlsx/content",
+      "description": "ICTV dataset file from Zenodo record 19154110: ICTV Master Species List (MSL)",
+      "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "md5": "b86b2ea2a0fc310dfad3ea00ee707474",
+      "name": "ICTV_Master_Species_List_2025_MSL41.v1.xlsx"
+    },
+    {
+      "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx",
+      "@type": "cr:FileObject",
+      "contentSize": "3839416 B",
+      "contentUrl": "https://zenodo.org/api/records/19154144/files/VMR_MSL41.v1.20260320.xlsx/content",
+      "description": "ICTV dataset file from Zenodo record 19154144: ICTV Virus Metadata Resource (VMR)",
+      "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "md5": "bc6d9330ec565dcac0439d2e9a6bf46a",
+      "name": "VMR_MSL41.v1.20260320.xlsx"
+    }
+  ],
+  "isLiveDataset": false,
+  "keywords": [
+    "Viruses",
+    "Virology",
+    "Taxonomy",
+    "Evolution"
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "name": "Virus Taxonomy: A Community Knowledgebase Supporting Virus Research",
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "International Committee on Taxonomy of Viruses (ICTV)"
+  },
+  "recordSet": [
+    {
+      "@id": "record_15042256_msl",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'MSL' from ICTV_Master_Species_List_2024_MSL40.v1.xlsx; source range A1:U16216. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_15042256_msl/sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Sort' in worksheet 'MSL'.",
+          "name": "Sort",
+          "source": {
+            "extract": {
+              "column": "Sort"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/realm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Realm' in worksheet 'MSL'.",
+          "name": "Realm",
+          "source": {
+            "extract": {
+              "column": "Realm"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/subrealm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subrealm' in worksheet 'MSL'.",
+          "name": "Subrealm",
+          "source": {
+            "extract": {
+              "column": "Subrealm"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/kingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Kingdom' in worksheet 'MSL'.",
+          "name": "Kingdom",
+          "source": {
+            "extract": {
+              "column": "Kingdom"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/subkingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subkingdom' in worksheet 'MSL'.",
+          "name": "Subkingdom",
+          "source": {
+            "extract": {
+              "column": "Subkingdom"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/phylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Phylum' in worksheet 'MSL'.",
+          "name": "Phylum",
+          "source": {
+            "extract": {
+              "column": "Phylum"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/subphylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subphylum' in worksheet 'MSL'.",
+          "name": "Subphylum",
+          "source": {
+            "extract": {
+              "column": "Subphylum"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/class",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Class' in worksheet 'MSL'.",
+          "name": "Class",
+          "source": {
+            "extract": {
+              "column": "Class"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/subclass",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subclass' in worksheet 'MSL'.",
+          "name": "Subclass",
+          "source": {
+            "extract": {
+              "column": "Subclass"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/order",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Order' in worksheet 'MSL'.",
+          "name": "Order",
+          "source": {
+            "extract": {
+              "column": "Order"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/suborder",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Suborder' in worksheet 'MSL'.",
+          "name": "Suborder",
+          "source": {
+            "extract": {
+              "column": "Suborder"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/family",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Family' in worksheet 'MSL'.",
+          "name": "Family",
+          "source": {
+            "extract": {
+              "column": "Family"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/subfamily",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subfamily' in worksheet 'MSL'.",
+          "name": "Subfamily",
+          "source": {
+            "extract": {
+              "column": "Subfamily"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/genus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genus' in worksheet 'MSL'.",
+          "name": "Genus",
+          "source": {
+            "extract": {
+              "column": "Genus"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/subgenus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subgenus' in worksheet 'MSL'.",
+          "name": "Subgenus",
+          "source": {
+            "extract": {
+              "column": "Subgenus"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/species",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Species' in worksheet 'MSL'.",
+          "name": "Species",
+          "source": {
+            "extract": {
+              "column": "Species"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/ictv_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICTV_ID' in worksheet 'MSL'.",
+          "name": "ICTV_ID",
+          "source": {
+            "extract": {
+              "column": "ICTV_ID"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'MSL'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Last Change' in worksheet 'MSL'.",
+          "name": "Last Change",
+          "source": {
+            "extract": {
+              "column": "Last Change"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/msl_of_last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL of Last Change' in worksheet 'MSL'.",
+          "name": "MSL of Last Change",
+          "source": {
+            "extract": {
+              "column": "MSL of Last Change"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_msl/proposal_for_last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Proposal for Last Change ' in worksheet 'MSL'.",
+          "name": "Proposal for Last Change ",
+          "source": {
+            "extract": {
+              "column": "Proposal for Last Change "
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2024_MSL40.v1.xlsx — MSL"
+    },
+    {
+      "@id": "record_15042256_column_definitions",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column Definitions' from ICTV_Master_Species_List_2024_MSL40.v1.xlsx; source range A1:B23. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_15042256_column_definitions/spreadsheet_column_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Spreadsheet Column Name' in worksheet 'Column Definitions'.",
+          "name": "Spreadsheet Column Name",
+          "source": {
+            "extract": {
+              "column": "Spreadsheet Column Name"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_column_definitions/definition",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Definition' in worksheet 'Column Definitions'.",
+          "name": "Definition",
+          "source": {
+            "extract": {
+              "column": "Definition"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2024_MSL40.v1.xlsx — Column Definitions"
+    },
+    {
+      "@id": "record_15042256_taxa_renamed_or_abolished",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Taxa Renamed or Abolished' from ICTV_Master_Species_List_2024_MSL40.v1.xlsx; source range A1:F4497. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_15042256_taxa_renamed_or_abolished/icvd_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICVD_ID' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "ICVD_ID",
+          "source": {
+            "extract": {
+              "column": "ICVD_ID"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxa_renamed_or_abolished/rank",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Rank' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Rank",
+          "source": {
+            "extract": {
+              "column": "Rank"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxa_renamed_or_abolished/change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Change' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Change",
+          "source": {
+            "extract": {
+              "column": "Change"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxa_renamed_or_abolished/old_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Old Name' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Old Name",
+          "source": {
+            "extract": {
+              "column": "Old Name"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxa_renamed_or_abolished/new_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'New Name' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "New Name",
+          "source": {
+            "extract": {
+              "column": "New Name"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxa_renamed_or_abolished/proposal",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'proposal' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "proposal",
+          "source": {
+            "extract": {
+              "column": "proposal"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2024_MSL40.v1.xlsx — Taxa Renamed or Abolished"
+    },
+    {
+      "@id": "record_15042256_taxon_counts",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Taxon Counts' from ICTV_Master_Species_List_2024_MSL40.v1.xlsx; source range B1:N22. Header tokens were read exactly from worksheet row 2.",
+      "field": [
+        {
+          "@id": "record_15042256_taxon_counts/rank",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Rank' in worksheet 'Taxon Counts'.",
+          "name": "Rank",
+          "source": {
+            "extract": {
+              "column": "Rank"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/msl39_total",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL39 Total' in worksheet 'Taxon Counts'.",
+          "name": "MSL39 Total",
+          "source": {
+            "extract": {
+              "column": "MSL39 Total"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/new",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'New' in worksheet 'Taxon Counts'.",
+          "name": "New",
+          "source": {
+            "extract": {
+              "column": "New"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/newly_promoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Newly Promoted' in worksheet 'Taxon Counts'.",
+          "name": "Newly Promoted",
+          "source": {
+            "extract": {
+              "column": "Newly Promoted"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/newly_demoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Newly Demoted' in worksheet 'Taxon Counts'.",
+          "name": "Newly Demoted",
+          "source": {
+            "extract": {
+              "column": "Newly Demoted"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/new_splits",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'New Splits' in worksheet 'Taxon Counts'.",
+          "name": "New Splits",
+          "source": {
+            "extract": {
+              "column": "New Splits"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/abolished",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Abolished' in worksheet 'Taxon Counts'.",
+          "name": "Abolished",
+          "source": {
+            "extract": {
+              "column": "Abolished"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/merged",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Merged' in worksheet 'Taxon Counts'.",
+          "name": "Merged",
+          "source": {
+            "extract": {
+              "column": "Merged"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/promoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Promoted' in worksheet 'Taxon Counts'.",
+          "name": "Promoted",
+          "source": {
+            "extract": {
+              "column": "Promoted"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/demoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Demoted' in worksheet 'Taxon Counts'.",
+          "name": "Demoted",
+          "source": {
+            "extract": {
+              "column": "Demoted"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/moved",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Moved' in worksheet 'Taxon Counts'.",
+          "name": "Moved",
+          "source": {
+            "extract": {
+              "column": "Moved"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/renamed",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Renamed' in worksheet 'Taxon Counts'.",
+          "name": "Renamed",
+          "source": {
+            "extract": {
+              "column": "Renamed"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042256_taxon_counts/msl_34_total",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL.34 Total' in worksheet 'Taxon Counts'.",
+          "name": "MSL.34 Total",
+          "source": {
+            "extract": {
+              "column": "MSL.34 Total"
+            },
+            "fileObject": {
+              "@id": "file_15042256_ictv_master_species_list_2024_msl40_v1_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2024_MSL40.v1.xlsx — Taxon Counts"
+    },
+    {
+      "@id": "record_15042310_vmr_msl40",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'VMR MSL40' from VMR_MSL40.v1.20250307.xlsx; source range A1:AB17919. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_15042310_vmr_msl40/isolate_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Isolate ID' in worksheet 'VMR MSL40'.",
+          "name": "Isolate ID",
+          "source": {
+            "extract": {
+              "column": "Isolate ID"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/species_sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Species Sort' in worksheet 'VMR MSL40'.",
+          "name": "Species Sort",
+          "source": {
+            "extract": {
+              "column": "Species Sort"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/isolate_sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Isolate Sort' in worksheet 'VMR MSL40'.",
+          "name": "Isolate Sort",
+          "source": {
+            "extract": {
+              "column": "Isolate Sort"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/realm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Realm' in worksheet 'VMR MSL40'.",
+          "name": "Realm",
+          "source": {
+            "extract": {
+              "column": "Realm"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/subrealm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subrealm' in worksheet 'VMR MSL40'.",
+          "name": "Subrealm",
+          "source": {
+            "extract": {
+              "column": "Subrealm"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/kingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Kingdom' in worksheet 'VMR MSL40'.",
+          "name": "Kingdom",
+          "source": {
+            "extract": {
+              "column": "Kingdom"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/subkingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subkingdom' in worksheet 'VMR MSL40'.",
+          "name": "Subkingdom",
+          "source": {
+            "extract": {
+              "column": "Subkingdom"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/phylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Phylum' in worksheet 'VMR MSL40'.",
+          "name": "Phylum",
+          "source": {
+            "extract": {
+              "column": "Phylum"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/subphylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subphylum' in worksheet 'VMR MSL40'.",
+          "name": "Subphylum",
+          "source": {
+            "extract": {
+              "column": "Subphylum"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/class",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Class' in worksheet 'VMR MSL40'.",
+          "name": "Class",
+          "source": {
+            "extract": {
+              "column": "Class"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/subclass",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subclass' in worksheet 'VMR MSL40'.",
+          "name": "Subclass",
+          "source": {
+            "extract": {
+              "column": "Subclass"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/order",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Order' in worksheet 'VMR MSL40'.",
+          "name": "Order",
+          "source": {
+            "extract": {
+              "column": "Order"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/suborder",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Suborder' in worksheet 'VMR MSL40'.",
+          "name": "Suborder",
+          "source": {
+            "extract": {
+              "column": "Suborder"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/family",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Family' in worksheet 'VMR MSL40'.",
+          "name": "Family",
+          "source": {
+            "extract": {
+              "column": "Family"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/subfamily",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subfamily' in worksheet 'VMR MSL40'.",
+          "name": "Subfamily",
+          "source": {
+            "extract": {
+              "column": "Subfamily"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/genus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genus' in worksheet 'VMR MSL40'.",
+          "name": "Genus",
+          "source": {
+            "extract": {
+              "column": "Genus"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/subgenus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subgenus' in worksheet 'VMR MSL40'.",
+          "name": "Subgenus",
+          "source": {
+            "extract": {
+              "column": "Subgenus"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/species",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Species' in worksheet 'VMR MSL40'.",
+          "name": "Species",
+          "source": {
+            "extract": {
+              "column": "Species"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/ictv_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICTV_ID' in worksheet 'VMR MSL40'.",
+          "name": "ICTV_ID",
+          "source": {
+            "extract": {
+              "column": "ICTV_ID"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/exemplar_or_additional_isolate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Exemplar or additional isolate' in worksheet 'VMR MSL40'.",
+          "name": "Exemplar or additional isolate",
+          "source": {
+            "extract": {
+              "column": "Exemplar or additional isolate"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/virus_name_s",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus name(s)' in worksheet 'VMR MSL40'.",
+          "name": "Virus name(s)",
+          "source": {
+            "extract": {
+              "column": "Virus name(s)"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/virus_name_abbreviation_s",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus name abbreviation(s)' in worksheet 'VMR MSL40'.",
+          "name": "Virus name abbreviation(s)",
+          "source": {
+            "extract": {
+              "column": "Virus name abbreviation(s)"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/virus_isolate_designation",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus isolate designation' in worksheet 'VMR MSL40'.",
+          "name": "Virus isolate designation",
+          "source": {
+            "extract": {
+              "column": "Virus isolate designation"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/virus_genbank_accession",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus GENBANK accession' in worksheet 'VMR MSL40'.",
+          "name": "Virus GENBANK accession",
+          "source": {
+            "extract": {
+              "column": "Virus GENBANK accession"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/genome_coverage",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome coverage' in worksheet 'VMR MSL40'.",
+          "name": "Genome coverage",
+          "source": {
+            "extract": {
+              "column": "Genome coverage"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'VMR MSL40'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/host_source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Host source' in worksheet 'VMR MSL40'.",
+          "name": "Host source",
+          "source": {
+            "extract": {
+              "column": "Host source"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_vmr_msl40/accessions_link",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Accessions Link' in worksheet 'VMR MSL40'.",
+          "name": "Accessions Link",
+          "source": {
+            "extract": {
+              "column": "Accessions Link"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v1.20250307.xlsx — VMR MSL40"
+    },
+    {
+      "@id": "record_15042310_column_definitions",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column definitions' from VMR_MSL40.v1.20250307.xlsx; source range A1:D30. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_15042310_column_definitions/column",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Column' in worksheet 'Column definitions'.",
+          "name": "Column",
+          "source": {
+            "extract": {
+              "column": "Column"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_column_definitions/heading",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Heading' in worksheet 'Column definitions'.",
+          "name": "Heading",
+          "source": {
+            "extract": {
+              "column": "Heading"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_column_definitions/definition",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Definition' in worksheet 'Column definitions'.",
+          "name": "Definition",
+          "source": {
+            "extract": {
+              "column": "Definition"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v1.20250307.xlsx — Column definitions"
+    },
+    {
+      "@id": "record_15042310_column_values",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column Values' from VMR_MSL40.v1.20250307.xlsx; source range A1:D23. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_15042310_column_values/exemplar_or_additional_isolate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Exemplar or additional isolate' in worksheet 'Column Values'.",
+          "name": "Exemplar or additional isolate",
+          "source": {
+            "extract": {
+              "column": "Exemplar or additional isolate"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_column_values/genome_coverage",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome coverage' in worksheet 'Column Values'.",
+          "name": "Genome coverage",
+          "source": {
+            "extract": {
+              "column": "Genome coverage"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_column_values/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'Column Values'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_15042310_column_values/host_source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Host source' in worksheet 'Column Values'.",
+          "name": "Host source",
+          "source": {
+            "extract": {
+              "column": "Host source"
+            },
+            "fileObject": {
+              "@id": "file_15042310_vmr_msl40_v1_20250307_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v1.20250307.xlsx — Column Values"
+    },
+    {
+      "@id": "record_16955220_msl",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'MSL' from ICTV_Master_Species_List_2024_MSL40.v2.xlsx; source range A1:U16216. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_16955220_msl/sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Sort' in worksheet 'MSL'.",
+          "name": "Sort",
+          "source": {
+            "extract": {
+              "column": "Sort"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/realm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Realm' in worksheet 'MSL'.",
+          "name": "Realm",
+          "source": {
+            "extract": {
+              "column": "Realm"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/subrealm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subrealm' in worksheet 'MSL'.",
+          "name": "Subrealm",
+          "source": {
+            "extract": {
+              "column": "Subrealm"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/kingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Kingdom' in worksheet 'MSL'.",
+          "name": "Kingdom",
+          "source": {
+            "extract": {
+              "column": "Kingdom"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/subkingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subkingdom' in worksheet 'MSL'.",
+          "name": "Subkingdom",
+          "source": {
+            "extract": {
+              "column": "Subkingdom"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/phylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Phylum' in worksheet 'MSL'.",
+          "name": "Phylum",
+          "source": {
+            "extract": {
+              "column": "Phylum"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/subphylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subphylum' in worksheet 'MSL'.",
+          "name": "Subphylum",
+          "source": {
+            "extract": {
+              "column": "Subphylum"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/class",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Class' in worksheet 'MSL'.",
+          "name": "Class",
+          "source": {
+            "extract": {
+              "column": "Class"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/subclass",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subclass' in worksheet 'MSL'.",
+          "name": "Subclass",
+          "source": {
+            "extract": {
+              "column": "Subclass"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/order",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Order' in worksheet 'MSL'.",
+          "name": "Order",
+          "source": {
+            "extract": {
+              "column": "Order"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/suborder",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Suborder' in worksheet 'MSL'.",
+          "name": "Suborder",
+          "source": {
+            "extract": {
+              "column": "Suborder"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/family",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Family' in worksheet 'MSL'.",
+          "name": "Family",
+          "source": {
+            "extract": {
+              "column": "Family"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/subfamily",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subfamily' in worksheet 'MSL'.",
+          "name": "Subfamily",
+          "source": {
+            "extract": {
+              "column": "Subfamily"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/genus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genus' in worksheet 'MSL'.",
+          "name": "Genus",
+          "source": {
+            "extract": {
+              "column": "Genus"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/subgenus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subgenus' in worksheet 'MSL'.",
+          "name": "Subgenus",
+          "source": {
+            "extract": {
+              "column": "Subgenus"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/species",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Species' in worksheet 'MSL'.",
+          "name": "Species",
+          "source": {
+            "extract": {
+              "column": "Species"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/ictv_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICTV_ID' in worksheet 'MSL'.",
+          "name": "ICTV_ID",
+          "source": {
+            "extract": {
+              "column": "ICTV_ID"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'MSL'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Last Change' in worksheet 'MSL'.",
+          "name": "Last Change",
+          "source": {
+            "extract": {
+              "column": "Last Change"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/msl_of_last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL of Last Change' in worksheet 'MSL'.",
+          "name": "MSL of Last Change",
+          "source": {
+            "extract": {
+              "column": "MSL of Last Change"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_msl/proposal_for_last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Proposal for Last Change ' in worksheet 'MSL'.",
+          "name": "Proposal for Last Change ",
+          "source": {
+            "extract": {
+              "column": "Proposal for Last Change "
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2024_MSL40.v2.xlsx — MSL"
+    },
+    {
+      "@id": "record_16955220_column_definitions",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column Definitions' from ICTV_Master_Species_List_2024_MSL40.v2.xlsx; source range A1:B23. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_16955220_column_definitions/spreadsheet_column_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Spreadsheet Column Name' in worksheet 'Column Definitions'.",
+          "name": "Spreadsheet Column Name",
+          "source": {
+            "extract": {
+              "column": "Spreadsheet Column Name"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_column_definitions/definition",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Definition' in worksheet 'Column Definitions'.",
+          "name": "Definition",
+          "source": {
+            "extract": {
+              "column": "Definition"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2024_MSL40.v2.xlsx — Column Definitions"
+    },
+    {
+      "@id": "record_16955220_taxa_renamed_or_abolished",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Taxa Renamed or Abolished' from ICTV_Master_Species_List_2024_MSL40.v2.xlsx; source range A1:F4496. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_16955220_taxa_renamed_or_abolished/icvd_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICVD_ID' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "ICVD_ID",
+          "source": {
+            "extract": {
+              "column": "ICVD_ID"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxa_renamed_or_abolished/rank",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Rank' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Rank",
+          "source": {
+            "extract": {
+              "column": "Rank"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxa_renamed_or_abolished/change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Change' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Change",
+          "source": {
+            "extract": {
+              "column": "Change"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxa_renamed_or_abolished/old_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Old Name' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Old Name",
+          "source": {
+            "extract": {
+              "column": "Old Name"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxa_renamed_or_abolished/new_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'New Name' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "New Name",
+          "source": {
+            "extract": {
+              "column": "New Name"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxa_renamed_or_abolished/proposal",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'proposal' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "proposal",
+          "source": {
+            "extract": {
+              "column": "proposal"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2024_MSL40.v2.xlsx — Taxa Renamed or Abolished"
+    },
+    {
+      "@id": "record_16955220_taxon_counts",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Taxon Counts' from ICTV_Master_Species_List_2024_MSL40.v2.xlsx; source range A1:O37. Header tokens were read exactly from worksheet row 2.",
+      "field": [
+        {
+          "@id": "record_16955220_taxon_counts/rank",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Rank' in worksheet 'Taxon Counts'.",
+          "name": "Rank",
+          "source": {
+            "extract": {
+              "column": "Rank"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/msl39_total",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL39 Total' in worksheet 'Taxon Counts'.",
+          "name": "MSL39 Total",
+          "source": {
+            "extract": {
+              "column": "MSL39 Total"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/new",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'New' in worksheet 'Taxon Counts'.",
+          "name": "New",
+          "source": {
+            "extract": {
+              "column": "New"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/newly_promoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Newly Promoted' in worksheet 'Taxon Counts'.",
+          "name": "Newly Promoted",
+          "source": {
+            "extract": {
+              "column": "Newly Promoted"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/newly_demoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Newly Demoted' in worksheet 'Taxon Counts'.",
+          "name": "Newly Demoted",
+          "source": {
+            "extract": {
+              "column": "Newly Demoted"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/new_splits",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'New Splits' in worksheet 'Taxon Counts'.",
+          "name": "New Splits",
+          "source": {
+            "extract": {
+              "column": "New Splits"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/abolished",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Abolished' in worksheet 'Taxon Counts'.",
+          "name": "Abolished",
+          "source": {
+            "extract": {
+              "column": "Abolished"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/merged",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Merged' in worksheet 'Taxon Counts'.",
+          "name": "Merged",
+          "source": {
+            "extract": {
+              "column": "Merged"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/promoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Promoted' in worksheet 'Taxon Counts'.",
+          "name": "Promoted",
+          "source": {
+            "extract": {
+              "column": "Promoted"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/demoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Demoted' in worksheet 'Taxon Counts'.",
+          "name": "Demoted",
+          "source": {
+            "extract": {
+              "column": "Demoted"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/moved",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Moved' in worksheet 'Taxon Counts'.",
+          "name": "Moved",
+          "source": {
+            "extract": {
+              "column": "Moved"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/renamed",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Renamed' in worksheet 'Taxon Counts'.",
+          "name": "Renamed",
+          "source": {
+            "extract": {
+              "column": "Renamed"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/msl_40v2total",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL.40v2Total' in worksheet 'Taxon Counts'.",
+          "name": "MSL.40v2Total",
+          "source": {
+            "extract": {
+              "column": "MSL.40v2Total"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_16955220_taxon_counts/msl40v2_vs_msl40v1",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL40v2 vs MSL40v1' in worksheet 'Taxon Counts'.",
+          "name": "MSL40v2 vs MSL40v1",
+          "source": {
+            "extract": {
+              "column": "MSL40v2 vs MSL40v1"
+            },
+            "fileObject": {
+              "@id": "file_16955220_ictv_master_species_list_2024_msl40_v2_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2024_MSL40.v2.xlsx — Taxon Counts"
+    },
+    {
+      "@id": "record_17489005_vmr_msl40",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'VMR MSL40' from VMR_MSL40.v2.20251013.xlsx; source range A1:AB17926. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_17489005_vmr_msl40/isolate_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Isolate ID' in worksheet 'VMR MSL40'.",
+          "name": "Isolate ID",
+          "source": {
+            "extract": {
+              "column": "Isolate ID"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/species_sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Species Sort' in worksheet 'VMR MSL40'.",
+          "name": "Species Sort",
+          "source": {
+            "extract": {
+              "column": "Species Sort"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/isolate_sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Isolate Sort' in worksheet 'VMR MSL40'.",
+          "name": "Isolate Sort",
+          "source": {
+            "extract": {
+              "column": "Isolate Sort"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/realm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Realm' in worksheet 'VMR MSL40'.",
+          "name": "Realm",
+          "source": {
+            "extract": {
+              "column": "Realm"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/subrealm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subrealm' in worksheet 'VMR MSL40'.",
+          "name": "Subrealm",
+          "source": {
+            "extract": {
+              "column": "Subrealm"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/kingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Kingdom' in worksheet 'VMR MSL40'.",
+          "name": "Kingdom",
+          "source": {
+            "extract": {
+              "column": "Kingdom"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/subkingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subkingdom' in worksheet 'VMR MSL40'.",
+          "name": "Subkingdom",
+          "source": {
+            "extract": {
+              "column": "Subkingdom"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/phylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Phylum' in worksheet 'VMR MSL40'.",
+          "name": "Phylum",
+          "source": {
+            "extract": {
+              "column": "Phylum"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/subphylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subphylum' in worksheet 'VMR MSL40'.",
+          "name": "Subphylum",
+          "source": {
+            "extract": {
+              "column": "Subphylum"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/class",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Class' in worksheet 'VMR MSL40'.",
+          "name": "Class",
+          "source": {
+            "extract": {
+              "column": "Class"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/subclass",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subclass' in worksheet 'VMR MSL40'.",
+          "name": "Subclass",
+          "source": {
+            "extract": {
+              "column": "Subclass"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/order",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Order' in worksheet 'VMR MSL40'.",
+          "name": "Order",
+          "source": {
+            "extract": {
+              "column": "Order"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/suborder",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Suborder' in worksheet 'VMR MSL40'.",
+          "name": "Suborder",
+          "source": {
+            "extract": {
+              "column": "Suborder"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/family",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Family' in worksheet 'VMR MSL40'.",
+          "name": "Family",
+          "source": {
+            "extract": {
+              "column": "Family"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/subfamily",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subfamily' in worksheet 'VMR MSL40'.",
+          "name": "Subfamily",
+          "source": {
+            "extract": {
+              "column": "Subfamily"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/genus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genus' in worksheet 'VMR MSL40'.",
+          "name": "Genus",
+          "source": {
+            "extract": {
+              "column": "Genus"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/subgenus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subgenus' in worksheet 'VMR MSL40'.",
+          "name": "Subgenus",
+          "source": {
+            "extract": {
+              "column": "Subgenus"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/species",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Species' in worksheet 'VMR MSL40'.",
+          "name": "Species",
+          "source": {
+            "extract": {
+              "column": "Species"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/ictv_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICTV_ID' in worksheet 'VMR MSL40'.",
+          "name": "ICTV_ID",
+          "source": {
+            "extract": {
+              "column": "ICTV_ID"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/exemplar_or_additional_isolate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Exemplar or additional isolate' in worksheet 'VMR MSL40'.",
+          "name": "Exemplar or additional isolate",
+          "source": {
+            "extract": {
+              "column": "Exemplar or additional isolate"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/virus_name_s",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus name(s)' in worksheet 'VMR MSL40'.",
+          "name": "Virus name(s)",
+          "source": {
+            "extract": {
+              "column": "Virus name(s)"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/virus_name_abbreviation_s",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus name abbreviation(s)' in worksheet 'VMR MSL40'.",
+          "name": "Virus name abbreviation(s)",
+          "source": {
+            "extract": {
+              "column": "Virus name abbreviation(s)"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/virus_isolate_designation",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus isolate designation' in worksheet 'VMR MSL40'.",
+          "name": "Virus isolate designation",
+          "source": {
+            "extract": {
+              "column": "Virus isolate designation"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/virus_genbank_accession",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus GENBANK accession' in worksheet 'VMR MSL40'.",
+          "name": "Virus GENBANK accession",
+          "source": {
+            "extract": {
+              "column": "Virus GENBANK accession"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/genome_coverage",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome coverage' in worksheet 'VMR MSL40'.",
+          "name": "Genome coverage",
+          "source": {
+            "extract": {
+              "column": "Genome coverage"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'VMR MSL40'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/host_source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Host source' in worksheet 'VMR MSL40'.",
+          "name": "Host source",
+          "source": {
+            "extract": {
+              "column": "Host source"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_vmr_msl40/accessions_link",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Accessions Link' in worksheet 'VMR MSL40'.",
+          "name": "Accessions Link",
+          "source": {
+            "extract": {
+              "column": "Accessions Link"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v2.20251013.xlsx — VMR MSL40"
+    },
+    {
+      "@id": "record_17489005_column_definitions",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column definitions' from VMR_MSL40.v2.20251013.xlsx; source range A1:D30. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_17489005_column_definitions/column",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Column' in worksheet 'Column definitions'.",
+          "name": "Column",
+          "source": {
+            "extract": {
+              "column": "Column"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_column_definitions/heading",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Heading' in worksheet 'Column definitions'.",
+          "name": "Heading",
+          "source": {
+            "extract": {
+              "column": "Heading"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_column_definitions/definition",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Definition' in worksheet 'Column definitions'.",
+          "name": "Definition",
+          "source": {
+            "extract": {
+              "column": "Definition"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v2.20251013.xlsx — Column definitions"
+    },
+    {
+      "@id": "record_17489005_column_values",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column Values' from VMR_MSL40.v2.20251013.xlsx; source range A1:D24. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_17489005_column_values/exemplar_or_additional_isolate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Exemplar or additional isolate' in worksheet 'Column Values'.",
+          "name": "Exemplar or additional isolate",
+          "source": {
+            "extract": {
+              "column": "Exemplar or additional isolate"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_column_values/genome_coverage",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome coverage' in worksheet 'Column Values'.",
+          "name": "Genome coverage",
+          "source": {
+            "extract": {
+              "column": "Genome coverage"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_column_values/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'Column Values'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_17489005_column_values/host_source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Host source' in worksheet 'Column Values'.",
+          "name": "Host source",
+          "source": {
+            "extract": {
+              "column": "Host source"
+            },
+            "fileObject": {
+              "@id": "file_17489005_vmr_msl40_v2_20251013_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v2.20251013.xlsx — Column Values"
+    },
+    {
+      "@id": "record_18808244_vmr_msl40",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'VMR MSL40' from VMR_MSL40.v2.20260223.xlsx; source range A1:AH17931. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_18808244_vmr_msl40/isolate_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Isolate ID' in worksheet 'VMR MSL40'.",
+          "name": "Isolate ID",
+          "source": {
+            "extract": {
+              "column": "Isolate ID"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/species_sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Species Sort' in worksheet 'VMR MSL40'.",
+          "name": "Species Sort",
+          "source": {
+            "extract": {
+              "column": "Species Sort"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/isolate_sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Isolate Sort' in worksheet 'VMR MSL40'.",
+          "name": "Isolate Sort",
+          "source": {
+            "extract": {
+              "column": "Isolate Sort"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/realm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Realm' in worksheet 'VMR MSL40'.",
+          "name": "Realm",
+          "source": {
+            "extract": {
+              "column": "Realm"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/subrealm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subrealm' in worksheet 'VMR MSL40'.",
+          "name": "Subrealm",
+          "source": {
+            "extract": {
+              "column": "Subrealm"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/kingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Kingdom' in worksheet 'VMR MSL40'.",
+          "name": "Kingdom",
+          "source": {
+            "extract": {
+              "column": "Kingdom"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/subkingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subkingdom' in worksheet 'VMR MSL40'.",
+          "name": "Subkingdom",
+          "source": {
+            "extract": {
+              "column": "Subkingdom"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/phylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Phylum' in worksheet 'VMR MSL40'.",
+          "name": "Phylum",
+          "source": {
+            "extract": {
+              "column": "Phylum"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/subphylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subphylum' in worksheet 'VMR MSL40'.",
+          "name": "Subphylum",
+          "source": {
+            "extract": {
+              "column": "Subphylum"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/class",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Class' in worksheet 'VMR MSL40'.",
+          "name": "Class",
+          "source": {
+            "extract": {
+              "column": "Class"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/subclass",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subclass' in worksheet 'VMR MSL40'.",
+          "name": "Subclass",
+          "source": {
+            "extract": {
+              "column": "Subclass"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/order",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Order' in worksheet 'VMR MSL40'.",
+          "name": "Order",
+          "source": {
+            "extract": {
+              "column": "Order"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/suborder",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Suborder' in worksheet 'VMR MSL40'.",
+          "name": "Suborder",
+          "source": {
+            "extract": {
+              "column": "Suborder"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/family",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Family' in worksheet 'VMR MSL40'.",
+          "name": "Family",
+          "source": {
+            "extract": {
+              "column": "Family"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/subfamily",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subfamily' in worksheet 'VMR MSL40'.",
+          "name": "Subfamily",
+          "source": {
+            "extract": {
+              "column": "Subfamily"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/genus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genus' in worksheet 'VMR MSL40'.",
+          "name": "Genus",
+          "source": {
+            "extract": {
+              "column": "Genus"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/subgenus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subgenus' in worksheet 'VMR MSL40'.",
+          "name": "Subgenus",
+          "source": {
+            "extract": {
+              "column": "Subgenus"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/species",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Species' in worksheet 'VMR MSL40'.",
+          "name": "Species",
+          "source": {
+            "extract": {
+              "column": "Species"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/ictv_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICTV_ID' in worksheet 'VMR MSL40'.",
+          "name": "ICTV_ID",
+          "source": {
+            "extract": {
+              "column": "ICTV_ID"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/exemplar_or_additional_isolate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Exemplar or additional isolate' in worksheet 'VMR MSL40'.",
+          "name": "Exemplar or additional isolate",
+          "source": {
+            "extract": {
+              "column": "Exemplar or additional isolate"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/virus_name_s",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus name(s)' in worksheet 'VMR MSL40'.",
+          "name": "Virus name(s)",
+          "source": {
+            "extract": {
+              "column": "Virus name(s)"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/virus_name_abbreviation_s",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus name abbreviation(s)' in worksheet 'VMR MSL40'.",
+          "name": "Virus name abbreviation(s)",
+          "source": {
+            "extract": {
+              "column": "Virus name abbreviation(s)"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/virus_isolate_designation",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus isolate designation' in worksheet 'VMR MSL40'.",
+          "name": "Virus isolate designation",
+          "source": {
+            "extract": {
+              "column": "Virus isolate designation"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/virus_genbank_accession",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus GENBANK accession' in worksheet 'VMR MSL40'.",
+          "name": "Virus GENBANK accession",
+          "source": {
+            "extract": {
+              "column": "Virus GENBANK accession"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/genome_coverage",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome coverage' in worksheet 'VMR MSL40'.",
+          "name": "Genome coverage",
+          "source": {
+            "extract": {
+              "column": "Genome coverage"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'VMR MSL40'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/host_source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Host source' in worksheet 'VMR MSL40'.",
+          "name": "Host source",
+          "source": {
+            "extract": {
+              "column": "Host source"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_vmr_msl40/accessions_link",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Accessions Link' in worksheet 'VMR MSL40'.",
+          "name": "Accessions Link",
+          "source": {
+            "extract": {
+              "column": "Accessions Link"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v2.20260223.xlsx — VMR MSL40"
+    },
+    {
+      "@id": "record_18808244_column_definitions",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column definitions' from VMR_MSL40.v2.20260223.xlsx; source range A1:D30. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_18808244_column_definitions/column",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Column' in worksheet 'Column definitions'.",
+          "name": "Column",
+          "source": {
+            "extract": {
+              "column": "Column"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_column_definitions/heading",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Heading' in worksheet 'Column definitions'.",
+          "name": "Heading",
+          "source": {
+            "extract": {
+              "column": "Heading"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_column_definitions/definition",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Definition' in worksheet 'Column definitions'.",
+          "name": "Definition",
+          "source": {
+            "extract": {
+              "column": "Definition"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v2.20260223.xlsx — Column definitions"
+    },
+    {
+      "@id": "record_18808244_column_values",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column Values' from VMR_MSL40.v2.20260223.xlsx; source range A1:D28. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_18808244_column_values/exemplar_or_additional_isolate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Exemplar or additional isolate' in worksheet 'Column Values'.",
+          "name": "Exemplar or additional isolate",
+          "source": {
+            "extract": {
+              "column": "Exemplar or additional isolate"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_column_values/genome_coverage",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome coverage' in worksheet 'Column Values'.",
+          "name": "Genome coverage",
+          "source": {
+            "extract": {
+              "column": "Genome coverage"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_column_values/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'Column Values'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_18808244_column_values/host_source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Host source' in worksheet 'Column Values'.",
+          "name": "Host source",
+          "source": {
+            "extract": {
+              "column": "Host source"
+            },
+            "fileObject": {
+              "@id": "file_18808244_vmr_msl40_v2_20260223_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL40.v2.20260223.xlsx — Column Values"
+    },
+    {
+      "@id": "record_19154110_msl",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'MSL' from ICTV_Master_Species_List_2025_MSL41.v1.xlsx; source range A1:U17555. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_19154110_msl/sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Sort' in worksheet 'MSL'.",
+          "name": "Sort",
+          "source": {
+            "extract": {
+              "column": "Sort"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/realm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Realm' in worksheet 'MSL'.",
+          "name": "Realm",
+          "source": {
+            "extract": {
+              "column": "Realm"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/subrealm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subrealm' in worksheet 'MSL'.",
+          "name": "Subrealm",
+          "source": {
+            "extract": {
+              "column": "Subrealm"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/kingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Kingdom' in worksheet 'MSL'.",
+          "name": "Kingdom",
+          "source": {
+            "extract": {
+              "column": "Kingdom"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/subkingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subkingdom' in worksheet 'MSL'.",
+          "name": "Subkingdom",
+          "source": {
+            "extract": {
+              "column": "Subkingdom"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/phylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Phylum' in worksheet 'MSL'.",
+          "name": "Phylum",
+          "source": {
+            "extract": {
+              "column": "Phylum"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/subphylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subphylum' in worksheet 'MSL'.",
+          "name": "Subphylum",
+          "source": {
+            "extract": {
+              "column": "Subphylum"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/class",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Class' in worksheet 'MSL'.",
+          "name": "Class",
+          "source": {
+            "extract": {
+              "column": "Class"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/subclass",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subclass' in worksheet 'MSL'.",
+          "name": "Subclass",
+          "source": {
+            "extract": {
+              "column": "Subclass"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/order",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Order' in worksheet 'MSL'.",
+          "name": "Order",
+          "source": {
+            "extract": {
+              "column": "Order"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/suborder",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Suborder' in worksheet 'MSL'.",
+          "name": "Suborder",
+          "source": {
+            "extract": {
+              "column": "Suborder"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/family",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Family' in worksheet 'MSL'.",
+          "name": "Family",
+          "source": {
+            "extract": {
+              "column": "Family"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/subfamily",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subfamily' in worksheet 'MSL'.",
+          "name": "Subfamily",
+          "source": {
+            "extract": {
+              "column": "Subfamily"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/genus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genus' in worksheet 'MSL'.",
+          "name": "Genus",
+          "source": {
+            "extract": {
+              "column": "Genus"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/subgenus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subgenus' in worksheet 'MSL'.",
+          "name": "Subgenus",
+          "source": {
+            "extract": {
+              "column": "Subgenus"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/species",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Species' in worksheet 'MSL'.",
+          "name": "Species",
+          "source": {
+            "extract": {
+              "column": "Species"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/ictv_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICTV_ID' in worksheet 'MSL'.",
+          "name": "ICTV_ID",
+          "source": {
+            "extract": {
+              "column": "ICTV_ID"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'MSL'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Last Change' in worksheet 'MSL'.",
+          "name": "Last Change",
+          "source": {
+            "extract": {
+              "column": "Last Change"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/msl_of_last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL of Last Change' in worksheet 'MSL'.",
+          "name": "MSL of Last Change",
+          "source": {
+            "extract": {
+              "column": "MSL of Last Change"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_msl/proposal_for_last_change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Proposal for Last Change ' in worksheet 'MSL'.",
+          "name": "Proposal for Last Change ",
+          "source": {
+            "extract": {
+              "column": "Proposal for Last Change "
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2025_MSL41.v1.xlsx — MSL"
+    },
+    {
+      "@id": "record_19154110_column_definitions",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column Definitions' from ICTV_Master_Species_List_2025_MSL41.v1.xlsx; source range A1:B23. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_19154110_column_definitions/spreadsheet_column_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Spreadsheet Column Name' in worksheet 'Column Definitions'.",
+          "name": "Spreadsheet Column Name",
+          "source": {
+            "extract": {
+              "column": "Spreadsheet Column Name"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_column_definitions/definition",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Definition' in worksheet 'Column Definitions'.",
+          "name": "Definition",
+          "source": {
+            "extract": {
+              "column": "Definition"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2025_MSL41.v1.xlsx — Column Definitions"
+    },
+    {
+      "@id": "record_19154110_taxa_renamed_or_abolished",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Taxa Renamed or Abolished' from ICTV_Master_Species_List_2025_MSL41.v1.xlsx; source range A1:F4496. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_19154110_taxa_renamed_or_abolished/icvd_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICVD_ID' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "ICVD_ID",
+          "source": {
+            "extract": {
+              "column": "ICVD_ID"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxa_renamed_or_abolished/rank",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Rank' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Rank",
+          "source": {
+            "extract": {
+              "column": "Rank"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxa_renamed_or_abolished/change",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Change' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Change",
+          "source": {
+            "extract": {
+              "column": "Change"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxa_renamed_or_abolished/old_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Old Name' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "Old Name",
+          "source": {
+            "extract": {
+              "column": "Old Name"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxa_renamed_or_abolished/new_name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'New Name' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "New Name",
+          "source": {
+            "extract": {
+              "column": "New Name"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxa_renamed_or_abolished/proposal",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'proposal' in worksheet 'Taxa Renamed or Abolished'.",
+          "name": "proposal",
+          "source": {
+            "extract": {
+              "column": "proposal"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2025_MSL41.v1.xlsx — Taxa Renamed or Abolished"
+    },
+    {
+      "@id": "record_19154110_taxon_counts",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Taxon Counts' from ICTV_Master_Species_List_2025_MSL41.v1.xlsx; source range A1:N18. Header tokens were read exactly from worksheet row 2.",
+      "field": [
+        {
+          "@id": "record_19154110_taxon_counts/rank",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Rank' in worksheet 'Taxon Counts'.",
+          "name": "Rank",
+          "source": {
+            "extract": {
+              "column": "Rank"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/msl40_total",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL40 Total' in worksheet 'Taxon Counts'.",
+          "name": "MSL40 Total",
+          "source": {
+            "extract": {
+              "column": "MSL40 Total"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/new",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'New' in worksheet 'Taxon Counts'.",
+          "name": "New",
+          "source": {
+            "extract": {
+              "column": "New"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/newly_promoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Newly Promoted' in worksheet 'Taxon Counts'.",
+          "name": "Newly Promoted",
+          "source": {
+            "extract": {
+              "column": "Newly Promoted"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/newly_demoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Newly Demoted' in worksheet 'Taxon Counts'.",
+          "name": "Newly Demoted",
+          "source": {
+            "extract": {
+              "column": "Newly Demoted"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/new_splits",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'New Splits' in worksheet 'Taxon Counts'.",
+          "name": "New Splits",
+          "source": {
+            "extract": {
+              "column": "New Splits"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/abolished",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Abolished' in worksheet 'Taxon Counts'.",
+          "name": "Abolished",
+          "source": {
+            "extract": {
+              "column": "Abolished"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/merged",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Merged' in worksheet 'Taxon Counts'.",
+          "name": "Merged",
+          "source": {
+            "extract": {
+              "column": "Merged"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/promoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Promoted' in worksheet 'Taxon Counts'.",
+          "name": "Promoted",
+          "source": {
+            "extract": {
+              "column": "Promoted"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/demoted",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Demoted' in worksheet 'Taxon Counts'.",
+          "name": "Demoted",
+          "source": {
+            "extract": {
+              "column": "Demoted"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/moved",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Moved' in worksheet 'Taxon Counts'.",
+          "name": "Moved",
+          "source": {
+            "extract": {
+              "column": "Moved"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/renamed",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Renamed' in worksheet 'Taxon Counts'.",
+          "name": "Renamed",
+          "source": {
+            "extract": {
+              "column": "Renamed"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154110_taxon_counts/msl_41_total",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'MSL.41 Total' in worksheet 'Taxon Counts'.",
+          "name": "MSL.41 Total",
+          "source": {
+            "extract": {
+              "column": "MSL.41 Total"
+            },
+            "fileObject": {
+              "@id": "file_19154110_ictv_master_species_list_2025_msl41_v1_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "ICTV_Master_Species_List_2025_MSL41.v1.xlsx — Taxon Counts"
+    },
+    {
+      "@id": "record_19154144_vmr_msl41",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'VMR MSL41' from VMR_MSL41.v1.20260320.xlsx; source range A1:AH19272. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_19154144_vmr_msl41/isolate_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Isolate ID' in worksheet 'VMR MSL41'.",
+          "name": "Isolate ID",
+          "source": {
+            "extract": {
+              "column": "Isolate ID"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/species_sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Species Sort' in worksheet 'VMR MSL41'.",
+          "name": "Species Sort",
+          "source": {
+            "extract": {
+              "column": "Species Sort"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/isolate_sort",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Observed spreadsheet column 'Isolate Sort' in worksheet 'VMR MSL41'.",
+          "name": "Isolate Sort",
+          "source": {
+            "extract": {
+              "column": "Isolate Sort"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/realm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Realm' in worksheet 'VMR MSL41'.",
+          "name": "Realm",
+          "source": {
+            "extract": {
+              "column": "Realm"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/subrealm",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subrealm' in worksheet 'VMR MSL41'.",
+          "name": "Subrealm",
+          "source": {
+            "extract": {
+              "column": "Subrealm"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/kingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Kingdom' in worksheet 'VMR MSL41'.",
+          "name": "Kingdom",
+          "source": {
+            "extract": {
+              "column": "Kingdom"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/subkingdom",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subkingdom' in worksheet 'VMR MSL41'.",
+          "name": "Subkingdom",
+          "source": {
+            "extract": {
+              "column": "Subkingdom"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/phylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Phylum' in worksheet 'VMR MSL41'.",
+          "name": "Phylum",
+          "source": {
+            "extract": {
+              "column": "Phylum"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/subphylum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subphylum' in worksheet 'VMR MSL41'.",
+          "name": "Subphylum",
+          "source": {
+            "extract": {
+              "column": "Subphylum"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/class",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Class' in worksheet 'VMR MSL41'.",
+          "name": "Class",
+          "source": {
+            "extract": {
+              "column": "Class"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/subclass",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subclass' in worksheet 'VMR MSL41'.",
+          "name": "Subclass",
+          "source": {
+            "extract": {
+              "column": "Subclass"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/order",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Order' in worksheet 'VMR MSL41'.",
+          "name": "Order",
+          "source": {
+            "extract": {
+              "column": "Order"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/suborder",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Suborder' in worksheet 'VMR MSL41'.",
+          "name": "Suborder",
+          "source": {
+            "extract": {
+              "column": "Suborder"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/family",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Family' in worksheet 'VMR MSL41'.",
+          "name": "Family",
+          "source": {
+            "extract": {
+              "column": "Family"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/subfamily",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subfamily' in worksheet 'VMR MSL41'.",
+          "name": "Subfamily",
+          "source": {
+            "extract": {
+              "column": "Subfamily"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/genus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genus' in worksheet 'VMR MSL41'.",
+          "name": "Genus",
+          "source": {
+            "extract": {
+              "column": "Genus"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/subgenus",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Subgenus' in worksheet 'VMR MSL41'.",
+          "name": "Subgenus",
+          "source": {
+            "extract": {
+              "column": "Subgenus"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/species",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Species' in worksheet 'VMR MSL41'.",
+          "name": "Species",
+          "source": {
+            "extract": {
+              "column": "Species"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/ictv_id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'ICTV_ID' in worksheet 'VMR MSL41'.",
+          "name": "ICTV_ID",
+          "source": {
+            "extract": {
+              "column": "ICTV_ID"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/exemplar_or_additional_isolate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Exemplar or additional isolate' in worksheet 'VMR MSL41'.",
+          "name": "Exemplar or additional isolate",
+          "source": {
+            "extract": {
+              "column": "Exemplar or additional isolate"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/virus_name_s",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus name(s)' in worksheet 'VMR MSL41'.",
+          "name": "Virus name(s)",
+          "source": {
+            "extract": {
+              "column": "Virus name(s)"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/virus_name_abbreviation_s",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus name abbreviation(s)' in worksheet 'VMR MSL41'.",
+          "name": "Virus name abbreviation(s)",
+          "source": {
+            "extract": {
+              "column": "Virus name abbreviation(s)"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/virus_isolate_designation",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus isolate designation' in worksheet 'VMR MSL41'.",
+          "name": "Virus isolate designation",
+          "source": {
+            "extract": {
+              "column": "Virus isolate designation"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/virus_genbank_accession",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Virus GENBANK accession' in worksheet 'VMR MSL41'.",
+          "name": "Virus GENBANK accession",
+          "source": {
+            "extract": {
+              "column": "Virus GENBANK accession"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/genome_coverage",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome coverage' in worksheet 'VMR MSL41'.",
+          "name": "Genome coverage",
+          "source": {
+            "extract": {
+              "column": "Genome coverage"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'VMR MSL41'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/host_source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Host source' in worksheet 'VMR MSL41'.",
+          "name": "Host source",
+          "source": {
+            "extract": {
+              "column": "Host source"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_vmr_msl41/accessions_link",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Accessions Link' in worksheet 'VMR MSL41'.",
+          "name": "Accessions Link",
+          "source": {
+            "extract": {
+              "column": "Accessions Link"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL41.v1.20260320.xlsx — VMR MSL41"
+    },
+    {
+      "@id": "record_19154144_column_definitions",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column definitions' from VMR_MSL41.v1.20260320.xlsx; source range A1:D20. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_19154144_column_definitions/column",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Column' in worksheet 'Column definitions'.",
+          "name": "Column",
+          "source": {
+            "extract": {
+              "column": "Column"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_column_definitions/heading",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Heading' in worksheet 'Column definitions'.",
+          "name": "Heading",
+          "source": {
+            "extract": {
+              "column": "Heading"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_column_definitions/definition",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Definition' in worksheet 'Column definitions'.",
+          "name": "Definition",
+          "source": {
+            "extract": {
+              "column": "Definition"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL41.v1.20260320.xlsx — Column definitions"
+    },
+    {
+      "@id": "record_19154144_column_values",
+      "@type": "cr:RecordSet",
+      "description": "Worksheet 'Column Values' from VMR_MSL41.v1.20260320.xlsx; source range A1:D28. Header tokens were read exactly from worksheet row 1.",
+      "field": [
+        {
+          "@id": "record_19154144_column_values/exemplar_or_additional_isolate",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Exemplar or additional isolate' in worksheet 'Column Values'.",
+          "name": "Exemplar or additional isolate",
+          "source": {
+            "extract": {
+              "column": "Exemplar or additional isolate"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_column_values/genome_coverage",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome coverage' in worksheet 'Column Values'.",
+          "name": "Genome coverage",
+          "source": {
+            "extract": {
+              "column": "Genome coverage"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_column_values/genome",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Genome' in worksheet 'Column Values'.",
+          "name": "Genome",
+          "source": {
+            "extract": {
+              "column": "Genome"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        },
+        {
+          "@id": "record_19154144_column_values/host_source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Observed spreadsheet column 'Host source' in worksheet 'Column Values'.",
+          "name": "Host source",
+          "source": {
+            "extract": {
+              "column": "Host source"
+            },
+            "fileObject": {
+              "@id": "file_19154144_vmr_msl41_v1_20260320_xlsx"
+            }
+          }
+        }
+      ],
+      "name": "VMR_MSL41.v1.20260320.xlsx — Column Values"
+    }
+  ],
+  "sameAs": [
+    "https://ictv.global",
+    "https://doi.org/10.5281/zenodo.15042255",
+    "https://doi.org/10.5281/zenodo.15042309"
+  ],
+  "url": "https://zenodo.org/communities/ictv/"
+}

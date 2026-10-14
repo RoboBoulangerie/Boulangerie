@@ -1,0 +1,6 @@
+name = "Disease Ontology"
+title = "The Human Disease Ontology: An integrated, mechanistic knowledge resource for biomedical research."
+homepage = "https://disease-ontology.org/"
+grant_number = "HG012557"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

@@ -1,0 +1,38 @@
+# When someone submits the correction form, turn their answers into a pull request.
+#
+# The issue body is read from the event file by Python, never interpolated into
+# shell, so untrusted text in the form can't run commands.
+name: Correction to pull request
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: feedback-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  feedback:
+    if: contains(github.event.issue.labels.*.name, 'feedback')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Configure git
+        run: |
+          git config user.name "boulangerie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Prepare the change
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: uv run boulangerie feedback --base "${{ github.event.repository.default_branch }}"

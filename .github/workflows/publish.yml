@@ -1,0 +1,69 @@
+# Check every croissant, update the per-KB check issues, and publish the site.
+name: Check and publish
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1"  # Mondays: re-check source pages and download links
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  check-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+
+      # Results are keyed on the croissant's hash, so the slow official validator
+      # only re-runs for croissants that changed.
+      - uses: actions/cache/restore@v4
+        with:
+          path: results
+          key: results-${{ github.run_id }}
+          restore-keys: results-
+
+      - name: Check croissants
+        run: uv run boulangerie check --online --mlcroissant changed
+
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: results
+          key: results-${{ github.run_id }}
+
+      - name: Update check issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: uv run boulangerie sync-issues
+
+      - name: Build site
+        run: uv run boulangerie build-site --out _site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: check-and-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

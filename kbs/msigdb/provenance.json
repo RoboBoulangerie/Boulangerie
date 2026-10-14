@@ -1,0 +1,128 @@
+[
+  {
+    "path": "citeAs",
+    "value": "To cite your use of the Molecular Signatures Database (MSigDB), a joint project of UC San Diego and Broad Institute, please reference Subramanian, Tamayo, et al. (2005, PNAS) and one or more of the following as appropriate: Liberzon, et al. (2011, Bioinformatics), Liberzon, et al. (2015, Cell Systems), and also the source for the gene set as listed on the gene set page.  If you use Mouse MSigDB, please also cite Castanza, et al. (2023, Nature Methods).",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conditionsOfAccess",
+    "value": "Please register to download the GSEA software and the MSigDB gene sets, and to use our web tools. After registering, you can log in at any time using your email address. Registration is free. Its only purpose is to help us track usage for reports to our funding agencies.",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[0].name",
+    "value": "UC San Diego",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 0.96,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[1].name",
+    "value": "Broad Institute",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 0.96,
+    "source": "dashboard"
+  },
+  {
+    "path": "datePublished",
+    "value": "2026-01",
+    "url": "https://docs.gsea-msigdb.org/MSigDB/Release_Notes/MSigDB_2026.1.Hs/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "The Molecular Signatures Database (MSigDB) is a resource of tens of thousands of annotated gene sets for use with GSEA software, divided into Human and Mouse collections.",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "isLiveDataset",
+    "value": "false",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "gene sets",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "gene set enrichment analysis",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "molecular signatures",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "human",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[4]",
+    "value": "mouse",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb_license_terms.jsp",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "Molecular Signatures Database",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "publisher.name",
+    "value": "Broad Institute",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 0.96,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "url": "https://www.gsea-msigdb.org/gsea/msigdb/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "version",
+    "value": "2026.1",
+    "url": "https://docs.gsea-msigdb.org/MSigDB/Release_Notes/MSigDB_2026.1.Hs/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  }
+]

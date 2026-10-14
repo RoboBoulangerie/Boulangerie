@@ -1,0 +1,55 @@
+{% extends "base.html.j2" %}
+{% block title %}Boulangerie: Croissant metadata for biomedical knowledge bases{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>We've baked a croissant for your data.</h1>
+  <p class="lede">A <strong>croissant</strong> is a small file that describes your knowledge base: what it is, what files
+    it has, and how people may use it. It's written in a standard format, so search engines, data catalogs and
+    AI tools can find your data and load it correctly.</p>
+  <p class="lede">We drafted one for each resource below. Please take a look, tell us what we got wrong, and
+    take it home.</p>
+  <ol class="steps">
+    <li><span class="step-num">1</span><div><strong>Find your resource</strong><br>Pick it from the list below.</div></li>
+    <li><span class="step-num">2</span><div><strong>Check what we said</strong><br>Everything is in plain language. No Croissant knowledge needed.</div></li>
+    <li><span class="step-num">3</span><div><strong>Tell us, or take it</strong><br>Send corrections in a short form, or download your croissant.</div></li>
+  </ol>
+  <p><a class="text-link" href="about/index.html">New to Croissant? Start here →</a></p>
+</section>
+
+<section>
+  <div class="list-header">
+    <h2>Croissants ready for pickup</h2>
+    <label class="search"><span class="visually-hidden">Filter</span>
+      <input id="filter" type="search" placeholder="Find your resource…" autocomplete="off">
+    </label>
+  </div>
+  <ul class="kb-grid" id="kb-grid">
+    {% for c in cards %}
+    <li class="kb-card" data-name="{{ c.kb.name|lower }} {{ c.kb.title|lower }}">
+      <a href="kb/{{ c.kb.slug }}/index.html">
+        <span class="status status-{{ c.status }}">{{ status_labels[c.status] }}</span>
+        <h3>{{ c.kb.name }}</h3>
+        <p class="kb-desc">{{ c.description|truncate(160) }}</p>
+        <p class="kb-meta">{{ c.file_count|thousands }} file{{ "" if c.file_count == 1 else "s" }} described</p>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  <p id="no-match" class="muted" hidden>No resources match that search. Don't see yours? <a href="https://github.com/{{ repo }}/issues/new">Ask us to bake one</a>.</p>
+</section>
+<script>
+  (function () {
+    var input = document.getElementById('filter');
+    var cards = document.querySelectorAll('#kb-grid .kb-card');
+    var none = document.getElementById('no-match');
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase(), shown = 0;
+      cards.forEach(function (c) {
+        var hit = !q || c.dataset.name.indexOf(q) !== -1;
+        c.hidden = !hit; if (hit) shown++;
+      });
+      none.hidden = shown !== 0;
+    });
+  })();
+</script>
+{% endblock %}

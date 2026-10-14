@@ -1,0 +1,135 @@
+[
+  {
+    "path": "citeAs",
+    "value": "Bizon C, Cox S, Balhoff J, Kebede Y, Wang P, Morton K, Fecho K, Tropsha A. ROBOKOP KG and KGB: integrated knowledge graphs from federated sources. J Chem Inf Model 2019 Dec 23;59(12):4968–4973. doi: 10.1021/acs.jcim.9b00683. https://pubmed.ncbi.nlm.nih.gov/31769676/.",
+    "url": "https://robokop.renci.org/citations",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conditionsOfAccess",
+    "value": "The ROBOKOP website (‘ROBOKOP’) has been designed to provide you with access to biomedical exploration and inference tools developed by RENCI and CoVar LLC (hereafter referred to as the ‘ROBOKOP team’). The ROBOKOP team authorizes you to access and use ROBOKOP under the conditions set forth below.",
+    "url": "https://robokop.renci.org/termsofservice",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator.name",
+    "value": "Renaissance Computing Institute (RENCI)",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator.url",
+    "value": "https://renci.org",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "ROBOKOP is an open-source biomedical knowledge graph that integrates and semantically harmonizes important knowledge sources.",
+    "url": "https://robokop.renci.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "isAccessibleForFree",
+    "value": "true",
+    "url": "https://robokop.renci.org/license",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "knowledge graph",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "biomedical",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "drug discovery",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "translational research",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[4]",
+    "value": "gene",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[5]",
+    "value": "disease",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[6]",
+    "value": "drug",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[7]",
+    "value": "phenotype",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[8]",
+    "value": "pathway",
+    "url": "https://robokop-graph-registry.apps.renci.org/graph_metadata/RobokopKG/f10f782cda309e98",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "https://opensource.org/license/mit/",
+    "url": "https://robokop.renci.org/license",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "ROBOKOP",
+    "url": "https://robokop.renci.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://robokop.renci.org/",
+    "url": "https://robokop.renci.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  }
+]

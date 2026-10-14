@@ -1,0 +1,401 @@
+[
+  {
+    "path": "citeAs",
+    "value": "@Article{Zheng2026,\nauthor=\"Zheng, Jie\nand Lin, Asiyah Yu\nand Huffman, Anthony\nand Masci, Anna Maria\nand Racz, Rebecca\nand Wu, Guanming\nand Roan, Kallan\nand Ong, Edison\nand Sarntivijai, Sirarat\nand Hu, Joy\nand Asfaw, Eliyas\nand Kahn, Hayleigh\nand Li, Xingxian\nand Zhang, Xumeng\nand Monickaraj, Joshua\nand Kosar, Nilufer\nand Li, Jianfu\nand Manuel, Warren\nand Abeysinghe, Rashmie\nand Rehana, Hasin\nand Bansal, Benu\nand Pan, Yuanyi\nand Guo, Jinjing\nand He, Virginia\nand Song, Justin\nand Seleznev, Andrey I.\nand Hur, Katelyn\nand He, Anna\nand Davydov, Alexander\nand Yang, Qi\nand Ostropolets, Anna\nand Vita, Randi\nand Peters, Bjoern\nand Ruttenberg, Alan\nand Diehl, Alexander D.\nand Hoyt, Charles Tapley\nand Roncaglia, Paola\nand Huntley, Rachael P.\nand Scheuermann, Richard H.\nand Courtot, Melanie\nand Todd, Thomas\nand Sayers, Samantha\nand Chen, Fang\nand Li, Xinna\nand Yeh, Feng-Yu\nand Xiang, Zuoshuang\nand Ozgur, Arzucan\nand Whetzel, Patricia L.\nand Musen, Mark A.\nand Mungall, Christopher J.\nand Leitner, Wolfgang W.\nand Cui, Licong\nand Colby, Lesley A.\nand Mobley, Harry L. T.\nand Athey, Brian D.\nand Omenn, Gilbert S.\nand Cowell, Lindsay G.\nand Tao, Cui\nand Hur, Junguk\nand Smith, Barry\nand He, Yongqun\",\ntitle=\"VO: The Vaccine Ontology\",\njournal=\"Scientific Data\",\nyear=\"2026\",\nmonth=\"Apr\",\nday=\"30\",\nvolume=\"13\",\nnumber=\"1\",\npages=\"994\",\nabstract=\"Vaccines are widely used in both research and clinical settings. To facilitate FAIR data practices, we urgently need to standardize vaccine representation, integrate information across diverse vaccine types, and support computer-assisted reasoning. Accordingly, we have since 2007 developed the community-based Vaccine Ontology (VO), which aligns with the Basic Formal Ontology and adheres to OBO Foundry principles. VO ontologically models vaccines, vaccine components, vaccine immune responses, vaccine investigation studies and other vaccine-related topics. VO represents more than 10,000 vaccines targeting 289 infectious pathogens and cancers in humans and over 30 nonhuman animal species. VO provides mappings to external resources such as RxNorm, CVX, FDA, and USDA. VO facilitates vaccine standardization in resources such as the VIOLIN vaccine database, ImmPort, and the Vaccine Adjuvant Compendium (VAC). VO enables semantic queries on vaccine data. It has been shown to enhance the analysis of experimental and clinical vaccine datasets, as well as vaccine-related literature mining. Overall, VO standardizes vaccine modeling and representation and greatly supports vaccine AI research in the Semantic Web era.\",\nissn=\"2052-4463\",\ndoi=\"10.1038/s41597-026-07298-w\",\nurl=\"https://doi.org/10.1038/s41597-026-07298-w\"\n}",
+    "url": "https://citation-needed.springer.com/v2/references/10.1038/s41597-026-07298-w?format=bibtex&flavour=citation",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "conditionsOfAccess",
+    "value": "The most recent release version of the VO document (OWL DL format) is always available here for download:",
+    "url": "https://violinet.org/vaccineontology/vo_download.php",
+    "confidence": 0.96,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[0].name",
+    "value": "Alan Ruttenburg",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[10].name",
+    "value": "Jason Hu",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[11].name",
+    "value": "Jie Zheng",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[12].name",
+    "value": "Josh Monickaraj",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[13].name",
+    "value": "Kallan Roan",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[14].name",
+    "value": "Khadeejah Khan",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[15].name",
+    "value": "Le Liu",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[16].name",
+    "value": "Lindsay Cowell",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[17].name",
+    "value": "Melanie Courtot",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[18].name",
+    "value": "Ningxian Fan",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[19].name",
+    "value": "Omar Tibi",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[1].name",
+    "value": "Alexander D. Diehl",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[20].name",
+    "value": "Philip Huang",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[21].name",
+    "value": "Randi Vita",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[22].name",
+    "value": "Rebecca Racz",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[23].name",
+    "value": "Richard H. Scheuermann",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[24].name",
+    "value": "Rohit Goru",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[25].name",
+    "value": "Ronak Sutariya",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[26].name",
+    "value": "Samantha G. Sayers (SGS)",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[27].name",
+    "value": "Taiyu Lin",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[28].name",
+    "value": "Thomas Todd",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[29].name",
+    "value": "Xingxian Li",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[2].name",
+    "value": "Amogh Madireddi",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[30].name",
+    "value": "Yongqun \"Oliver\" He (YH)",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[31].name",
+    "value": "Yu Lin (YL)",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[32].name",
+    "value": "Yuanyi (Penny) Pan",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[33].name",
+    "value": "Yuping Zheng",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[34].name",
+    "value": "Zuoshuang \"Allen\" Xiang",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[3].name",
+    "value": "Anna Maria Masci",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[4].name",
+    "value": "Anthony Huffman",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[5].name",
+    "value": "Barry Smith",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[6].name",
+    "value": "Bjoern Peters",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[7].name",
+    "value": "Edison Ong",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[8].name",
+    "value": "Ellen Zhang",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[9].name",
+    "value": "Hong Yu",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "dateModified",
+    "value": "2026-06-12",
+    "url": "https://github.com/vaccineontology/VO/releases/tag/v2026-06-12",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "datePublished",
+    "value": "2026-06-12",
+    "url": "https://github.com/vaccineontology/VO/releases/tag/v2026-06-12",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "To ensure consistent representation of vaccine knowledge and to support automated reasoning, a community-based effort to develop the Vaccine Ontology (VO) has been initiated. This international collaborative VO development effort has been joined by many institutes and disciplines around the world. The Vaccine Ontology is also being used in a variety of applications by many user groups in academia and industry.",
+    "url": "https://violinet.org/vaccineontology/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "identifier",
+    "value": "http://purl.obolibrary.org/obo/vo.owl",
+    "url": "https://raw.githubusercontent.com/vaccineontology/VO/refs/heads/master/vo.owl",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "FAIR",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42062309/",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "Semantic Web",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42062309/",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "VO",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42062309/",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "Vaccine Ontology",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42062309/",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[4]",
+    "value": "ontology",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42062309/",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[5]",
+    "value": "vaccination",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42062309/",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[6]",
+    "value": "vaccine",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42062309/",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://obofoundry.org/ontology/vo.html",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "Vaccine Ontology",
+    "url": "https://violinet.org/vaccineontology/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "sameAs[0]",
+    "value": "https://obofoundry.org/ontology/vo.html",
+    "url": "https://obofoundry.org/ontology/vo.html",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "sameAs[1]",
+    "value": "https://ontobee.org/ontology/VO",
+    "url": "https://obofoundry.org/ontology/vo.html",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "sameAs[2]",
+    "value": "https://bioportal.bioontology.org/ontologies/VO",
+    "url": "https://obofoundry.org/ontology/vo.html",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "sameAs[3]",
+    "value": "https://github.com/vaccineontology/VO",
+    "url": "https://obofoundry.org/ontology/vo.html",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://violinet.org/vaccineontology/",
+    "url": "https://violinet.org/vaccineontology/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "version",
+    "value": "2026-06-12",
+    "url": "https://github.com/vaccineontology/VO/releases/tag/v2026-06-12",
+    "confidence": 1.0,
+    "source": "dashboard"
+  }
+]

@@ -1,0 +1,50 @@
+{% extends "base.html.j2" %}
+{% block title %}What is a croissant? · Boulangerie{% endblock %}
+{% block content %}
+<article class="prose">
+  <h1>What is a croissant?</h1>
+  <p class="lede">A croissant is a small file that describes a dataset, a bit like the label on a jar. It says what's
+    inside, where it came from, and how you're allowed to use it.</p>
+
+  <h2>Why it matters</h2>
+  <p>More and more research uses data from many places at once, often pulled in by software or AI tools rather than
+    downloaded by hand. Those tools need a reliable way to answer simple questions:</p>
+  <ul>
+    <li>What is this resource, and who made it?</li>
+    <li>Can I reuse it, and how should I cite it?</li>
+    <li>What files are there, and what's in each one?</li>
+  </ul>
+  <p>A croissant answers these in a standard format, so your data is easier to find, gets used correctly, and gets cited properly.</p>
+
+  <h2>Where does the name come from?</h2>
+  <p><a href="https://mlcommons.org/croissant/">Croissant</a> is an open standard from MLCommons, a consortium of
+    companies and universities working on machine learning. It builds on <a href="https://schema.org/Dataset">schema.org</a>,
+    the vocabulary search engines already use to understand web pages.</p>
+
+  <h2>What's in one?</h2>
+  <dl class="layers">
+    <dt>About your resource</dt><dd>Name, description, homepage, license, how to cite you, and any access rules.</dd>
+    <dt>Your files</dt><dd>Each downloadable file: where it is, what kind of file it is, and how big it is.</dd>
+    <dt>Your tables</dt><dd>For files that hold tables, the names of the columns and the kind of value in each.</dd>
+  </dl>
+
+  <h2>Who made my croissant?</h2>
+  <p>We drafted every croissant here automatically by reading each resource's public website and downloads. That
+    means we may have got things wrong or missed things, which is why we're asking you to look. You know your
+    resource best.</p>
+
+  <h2>Do I have to do anything?</h2>
+  <p>No. But if you have five minutes, please:</p>
+  <ol>
+    <li>Find your resource on the <a href="{{ root }}index.html">list of croissants</a>.</li>
+    <li>Read the "What your croissant says about you" section.</li>
+    <li>If anything is wrong or missing, especially the license or how to cite you, use <strong>Suggest a correction</strong>.</li>
+  </ol>
+  <p>Your suggestion becomes a proposed change that you can see before it's published. You'll need a free GitHub
+    account to send it.</p>
+
+  <h2>Is this official?</h2>
+  <p>The croissant format is an official MLCommons standard. The croissants on this site are drafts made by RENCI to
+    help biomedical knowledge bases get started. Once you're happy with yours, it's yours to publish and keep up to date.</p>
+</article>
+{% endblock %}

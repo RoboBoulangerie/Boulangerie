@@ -1,0 +1,6 @@
+name = "ICTV"
+title = "Virus Taxonomy: A Community Knowledgebase Supporting Virus Research"
+homepage = "https://zenodo.org/communities/ictv/"
+grant_number = "AI162625"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

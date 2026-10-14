@@ -1,0 +1,142 @@
+[
+  {
+    "path": "citeAs",
+    "value": "Baron JA, Johnson CMS, Schor MA, Olley D, Nickel L, Felix V, Bello SM, Greene C, Lichenstein R, Bisordi K, Koka R, Bearer C, Macatangay R, Ada N, Ballenger K, Bliss E, Colliver L, Dobbins G, Heitzig H, Dixon S, Semesky P, Garth J, Fairchild M, Gaskin P, Zahid S, Castillo R, Edwards S, Widjaja A, Usui Y, Lynch E, Clarkson M, Detwiler T, Schriml LM (2026). The DO-KB knowledgebase 2026 update: expanding programmatic and language access. Nucleic Acids Research, 54(D1):D1425-D1436. doi: 10.1093/nar/gkaf1213. PMID:41296549.",
+    "url": "https://disease-ontology.org/resources/citing-do",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conditionsOfAccess",
+    "value": "The Creative Commons Public Domain Dedication CC0 1.0 Universal license allows for the copying, modification and distribution of the Disease Ontology content without asking permission.",
+    "url": "https://disease-ontology.org/resources/citing-do",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator.name",
+    "value": "Disease Ontology",
+    "url": "https://disease-ontology.org/about",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "dateModified",
+    "value": "2026-05-30",
+    "url": "https://disease-ontology.org/do-kb/sparql_help",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "Discover disease knowledge, search the DO's OWL and OBO etiology-based disease classification English and Spanish DAGs.",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "isAccessibleForFree",
+    "value": "true",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "isLiveDataset",
+    "value": "true",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "human disease",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "ontology",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "etiology",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "biomedical data integration",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[4]",
+    "value": "OWL",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[5]",
+    "value": "OBO",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[6]",
+    "value": "DO-KB",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "url": "https://disease-ontology.org/resources/citing-do",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "Disease Ontology",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "publisher.name",
+    "value": "University of Maryland School of Medicine, Institute for Genome Sciences",
+    "url": "https://disease-ontology.org/about",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://disease-ontology.org/",
+    "url": "https://disease-ontology.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "version",
+    "value": "2026-05-30",
+    "url": "https://disease-ontology.org/do-kb/sparql_help",
+    "confidence": 0.99,
+    "source": "dashboard"
+  }
+]

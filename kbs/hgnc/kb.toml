@@ -1,0 +1,6 @@
+name = "HGNC"
+title = "The Nomenclature of Human and Vertebrate Genes"
+homepage = "https://www.genenames.org/"
+grant_number = "HG003345"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

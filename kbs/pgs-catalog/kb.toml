@@ -1,0 +1,6 @@
+name = "PGS Catalog"
+title = "Strengthening community knowledge bases for genetic association studies and polygenic scores, the GWAS and PGS Catalogs"
+homepage = "https://www.pgscatalog.org/"
+grant_number = "HG012542"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

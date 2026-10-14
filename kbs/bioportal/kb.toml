@@ -1,0 +1,6 @@
+name = "BioPortal"
+title = "BioPortal: An Expansive Knowledgebase of Biomedical Entities and Relations"
+homepage = "https://bioportal.bioontology.org/ontologies"
+grant_number = "GM143402"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

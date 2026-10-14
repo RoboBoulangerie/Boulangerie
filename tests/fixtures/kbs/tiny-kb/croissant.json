@@ -1,0 +1,85 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {"@id": "cr:data", "@type": "@json"},
+    "dataType": {"@id": "cr:dataType", "@type": "@vocab"},
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {"@id": "cr:examples", "@type": "@json"},
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "name": "Tiny KB",
+  "description": "Tiny KB collects <small> facts about genes & diseases.",
+  "url": "https://example.org/",
+  "license": "Not Found",
+  "distribution": [
+    {
+      "@id": "file-genes-tsv",
+      "@type": "cr:FileObject",
+      "name": "genes.tsv",
+      "contentUrl": "https://example.org/downloads/genes.tsv",
+      "encodingFormat": "text/csv",
+      "contentSize": "1.5 MB",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "@id": "file-readme",
+      "@type": "cr:FileObject",
+      "name": "README.pdf",
+      "contentUrl": "https://example.org/downloads/README.pdf",
+      "encodingFormat": "application/pdf",
+      "contentSize": "2048 B"
+    }
+  ],
+  "recordSet": [
+    {
+      "@id": "genes",
+      "@type": "cr:RecordSet",
+      "name": "genes",
+      "field": [
+        {
+          "@id": "genes/symbol",
+          "@type": "cr:Field",
+          "name": "symbol",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "file-genes-tsv"}, "extract": {"column": "symbol"}}
+        },
+        {
+          "@id": "genes/where",
+          "@type": "cr:Field",
+          "name": "where",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "file-missing"}, "extract": {"column": "where"}}
+        }
+      ]
+    }
+  ]
+}

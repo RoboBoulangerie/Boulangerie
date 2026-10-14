@@ -1,0 +1,29 @@
+# Open a pull request per croissant for the mechanical fixes the checks know how to make.
+name: Automatic fixes
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --frozen
+      - name: Configure git
+        run: |
+          git config user.name "boulangerie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Open fix pull requests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: uv run boulangerie autofix --open-prs --base "${{ github.event.repository.default_branch }}"

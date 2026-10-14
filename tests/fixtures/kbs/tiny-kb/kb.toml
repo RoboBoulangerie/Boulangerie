@@ -1,0 +1,5 @@
+name = "Tiny KB"
+title = "A tiny knowledge base used in tests"
+homepage = "https://example.org/"
+grant_number = "XX000000"
+maintainers = ["octocat"]

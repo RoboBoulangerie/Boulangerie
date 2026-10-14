@@ -1,0 +1,6 @@
+name = "UniProt"
+title = "UniProt: A Protein Sequence and Function Resource for Biomedical Science"
+homepage = "https://www.uniprot.org/"
+grant_number = "HG007822"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

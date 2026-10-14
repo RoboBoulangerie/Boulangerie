@@ -1,0 +1,6 @@
+name = "VIOLIN"
+title = "VIOLIN 2.0: Vaccine Information and Ontology LInked kNowledgebase"
+homepage = "https://violinet.org/vaccineontology/"
+grant_number = "AI171008"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

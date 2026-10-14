@@ -1,0 +1,135 @@
+[
+  {
+    "path": "citeAs",
+    "value": "The UniProt Consortium\nUniProt: the Universal Protein Knowledgebase in 2025\nNucleic Acids Res. 53:D609–D617 (2025)",
+    "url": "https://rest.uniprot.org/help/publications",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conditionsOfAccess",
+    "value": "The mission of UniProt is to provide the scientific community with a comprehensive, high-quality and freely accessible resource of protein sequence and functional information.",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "datePublished",
+    "value": "2026-06-10",
+    "url": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/relnotes.txt",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "The Universal Protein Resource (UniProt) is a comprehensive resource for protein sequence and annotation data.",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "isAccessibleForFree",
+    "value": "true",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "protein sequence",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "protein annotation",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "UniProtKB",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "UniRef",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[4]",
+    "value": "UniParc",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[5]",
+    "value": "proteomics",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[6]",
+    "value": "knowledgebase",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.9,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://rest.uniprot.org/help/license",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "UniProt",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "publisher.name",
+    "value": "UniProt Consortium",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "publisher.url",
+    "value": "https://www.uniprot.org/",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://www.uniprot.org/",
+    "url": "https://rest.uniprot.org/help/about",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "version",
+    "value": "2026_02",
+    "url": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/relnotes.txt",
+    "confidence": 1.0,
+    "source": "dashboard"
+  }
+]

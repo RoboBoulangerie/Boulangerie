@@ -1,0 +1,6 @@
+name = "FlyBase"
+title = "FlyBase: A Drosophila Genomic and Genetic Database"
+homepage = "https://flybase.org/"
+grant_number = "HG013300"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

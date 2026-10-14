@@ -1,0 +1,572 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "recordSet": "cr:recordSet",
+    "sc": "https://schema.org/",
+    "source": "cr:source"
+  },
+  "@type": "sc:Dataset",
+  "conditionsOfAccess": "Limited Data Sets (LDS) will be available in the future via a secure cloud environment for a fee. Biospecimens are not available for request at this time. The following requirements must be met before CADRE data will be shared: The Third-Party Investigator must briefly present the research concept to the Steering Committee. The Publications and Steering Committees must approve the investigator's analysis proposal. The Third-Party Site must sign an FDP Data Transfer and Use Agreement (DTUA) with UW-Madison.",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "dct:provenance": "Metadata was generated only from the supplied CADRE crawl rooted at https://cadre.med.wisc.edu/data/, its saved authoritative homepage/About/Data/Research/REDCap intake evidence, and the eight downloaded assets recorded in crawl_manifest.json. The dataset name is the exact full name shown by the authoritative CADRE REDCap intake form. The description is quoted exactly from the saved CADRE homepage. The conditionsOfAccess value quotes the authoritative REDCap intake text exactly; it states that Limited Data Sets (LDS) will be available in the future through a secure cloud environment for a fee, that biospecimens are currently unavailable for request, and that Steering Committee presentation, committee approval, and an FDP Data Transfer and Use Agreement with UW-Madison precede data sharing. No participant-level data was publicly downloadable in the supplied crawl; the public record-bearing assets are data dictionaries or element lists rather than participant records. No source-specific license statement was found after checking the saved homepage, About, Data, Research, and REDCap intake evidence, so license is the literal string Not Found and no license was inferred from general institutional copyright or privacy material. No preferred repository citation was found, so citeAs is omitted rather than invented. No dataset version was established by the source, so version is omitted. No formal author-supplied keyword metadata was found, so keywords are omitted rather than synthesized from descriptive prose. All three CSV schemas were derived from their in-band first-row headers; no leading comments or schema preamble were present in the sampled first five lines, and exact header spelling, case, spaces, punctuation, and underscores were preserved. Datatypes were inferred from no more than the first five lines. CADRE_Ancillary_Data_Elements_2025_10_08.csv and CADRE_Core_Data_Elements_2025_10_07.csv have unambiguous comma-separated headers. CADRE_Core_Data_Elements_2025_10_07.csv is a historical 2025-10-07 core-elements artifact; the current Data page exposes the later 21May26 workbook, so the historical CSV may be superseded, but it is retained because it was a distinct publicly downloadable asset in the crawl. test_elements.csv is an apparent test artifact because its authoritative WordPress media title and caption are test_elements. Although its .csv URL and declared media type support text/csv, its observed rows are tab-delimited. Its header contains Field_01 followed by two identical Field_03 tokens; only the unambiguous Field_01 column is emitted because either duplicate Field_03 selector would not uniquely identify an actual column. The XLSX workbook was inspected as a spreadsheet, not modeled as a generic ZIP archive. It contains two data-bearing worksheets: CREW01 Data Dictionary with header row Category, Data element (Name), Description, Response options, Units (UCUM), Response Type/Format, Source Type (Original or Derived?), Element Record Count, Subject(s), Cohort ID; and CREW02 CANOE ECHO Variables with header row data_source, category_or_form, data_element, description, response_options, data_type, notes, participating_cohorts, manuscript_delivered. Both record sets preserve those exact header tokens. XLSX field sources identify the workbook FileObject and exact columns; Croissant 1.1 column extraction has no standard worksheet-name selector, so worksheet identity is recorded in each RecordSet name, @id, and description. The notes column was present but empty in the five-line datatype sample and therefore uses the conservative Text fallback. No same-table source headers form a coherent geographic hierarchy, so no additive GeoCoordinates field was forced. The four PDFs are public case-report-form documentation and are represented in distribution without RecordSets. Every one of the eight relevant downloaded distribution assets in the supplied manifest is included with its distinct verified final URL; saved HTML, API, sitemap, robots, and REDCap evidence files are excluded from distribution. Crawl completeness is limited to the public assets captured by the supplied crawl manifest; inaccessible, restricted, future cloud-hosted LDS data, and assets not discoverable by that crawl cannot be represented.",
+  "description": "The Children’s Allergy and Asthma Data Repository (CADRE) is a centralized resource created to address a critical gap in asthma research: identifying the risk factors and biological mechanisms that lead to childhood asthma. By uniting data from various cohorts, CADRE empowers researchers to uncover insights that individual studies alone cannot provide.",
+  "distribution": [
+    {
+      "@id": "file-test-elements-csv",
+      "@type": "cr:FileObject",
+      "contentSize": "67 B",
+      "contentUrl": "https://cadre.med.wisc.edu/wp-content/uploads/sites/212/2025/12/test_elements.csv",
+      "description": "test_elements",
+      "encodingFormat": "text/csv",
+      "name": "test_elements.csv",
+      "sha256": "9df6ae8a422e0e98649ddc5acd08b665c4bd2776fd17137404fa5a0dc2d64df0"
+    },
+    {
+      "@id": "file-cadre-ancillary-data-elements-2025-10-08-csv",
+      "@type": "cr:FileObject",
+      "contentSize": "119529 B",
+      "contentUrl": "https://cadre.med.wisc.edu/wp-content/uploads/sites/212/2026/01/CADRE_Ancillary_Data_Elements_2025_10_08.csv",
+      "description": "CADRE Ancillary Data Elements Downloadable Spreadsheet",
+      "encodingFormat": "text/csv",
+      "name": "CADRE_Ancillary_Data_Elements_2025_10_08.csv",
+      "sha256": "a42a353bda0cdf00154db759be9a57345d7825f2c525b3d345372a812e18ca0c"
+    },
+    {
+      "@id": "file-cadre-core-data-elements-2025-10-07-csv",
+      "@type": "cr:FileObject",
+      "contentSize": "22361 B",
+      "contentUrl": "https://cadre.med.wisc.edu/wp-content/uploads/sites/212/2026/01/CADRE_Core_Data_Elements_2025_10_07.csv",
+      "description": "CADRE Core Data Elements",
+      "encodingFormat": "text/csv",
+      "name": "CADRE_Core_Data_Elements_2025_10_07.csv",
+      "sha256": "d094cf39ff79bf8e653e1f81af84d715def0168a51d18c5b182a50018fa8b722"
+    },
+    {
+      "@id": "file-crew02-airways-adolescence-crf-v1-0-pdf",
+      "@type": "cr:FileObject",
+      "contentSize": "157850 B",
+      "contentUrl": "https://cadre.med.wisc.edu/wp-content/uploads/sites/212/2026/04/CREW02_Airways_Adolescence_CRF_v1_0.pdf",
+      "description": "CREW02_Airways_Adolescence_CRF_v1_0",
+      "encodingFormat": "application/pdf",
+      "name": "CREW02_Airways_Adolescence_CRF_v1_0.pdf",
+      "sha256": "14e1ac09b7785c6311b1e4cd289f92c1e54eea8ad726c5f47081037a77eac3d7"
+    },
+    {
+      "@id": "file-crew02-airways-early-childhood-crf-v1-0-pdf",
+      "@type": "cr:FileObject",
+      "contentSize": "156580 B",
+      "contentUrl": "https://cadre.med.wisc.edu/wp-content/uploads/sites/212/2026/04/CREW02_Airways_Early_Childhood_CRF_v1_0.pdf",
+      "description": "CREW02_Airways_Early_Childhood_CRF_v1_0",
+      "encodingFormat": "application/pdf",
+      "name": "CREW02_Airways_Early_Childhood_CRF_v1_0.pdf",
+      "sha256": "842ee8832892767d1017968c83ff394f295f131cdace2b7aeaa53bb04d960be8"
+    },
+    {
+      "@id": "file-crew02-airways-middle-childhood-crf-v1-0-pdf",
+      "@type": "cr:FileObject",
+      "contentSize": "155077 B",
+      "contentUrl": "https://cadre.med.wisc.edu/wp-content/uploads/sites/212/2026/04/CREW02_Airways_Middle_Childhood_CRF_v1_0.pdf",
+      "description": "CREW02_Airways_Middle_Childhood_CRF_v1_0",
+      "encodingFormat": "application/pdf",
+      "name": "CREW02_Airways_Middle_Childhood_CRF_v1_0.pdf",
+      "sha256": "ece8adc534eac9fc566a8b4824c987957240b1203589129b32eb6f63216f3e53"
+    },
+    {
+      "@id": "file-crew02-airways-outcomes-crf-v3-0-pdf",
+      "@type": "cr:FileObject",
+      "contentSize": "328025 B",
+      "contentUrl": "https://cadre.med.wisc.edu/wp-content/uploads/sites/212/2026/04/CREW02_Airways_Outcomes_CRF_v3_0.pdf",
+      "description": "CREW02_Airways_Outcomes_CRF_v3_0",
+      "encodingFormat": "application/pdf",
+      "name": "CREW02_Airways_Outcomes_CRF_v3_0.pdf",
+      "sha256": "6f6537174fba11147d06b546ab1c7f17212f32da285e909de9bbd4e275233122"
+    },
+    {
+      "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx",
+      "@type": "cr:FileObject",
+      "contentSize": "48776 B",
+      "contentUrl": "https://cadre.med.wisc.edu/wp-content/uploads/sites/212/2026/06/CADRE-Data-Dictionary-Core-Variables_21May26.xlsx",
+      "description": "CADRE Data Dictionary Core Variables_21May26",
+      "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "name": "CADRE-Data-Dictionary-Core-Variables_21May26.xlsx",
+      "sha256": "fbef4ac37b513ecd3c93df071c401e400507be06ba1cc9a3a9ba4502b53222bf"
+    }
+  ],
+  "license": "Not Found",
+  "name": "Children's Allergy and Asthma Data Repository (CADRE)",
+  "recordSet": [
+    {
+      "@id": "recordset-test-elements-csv",
+      "@type": "cr:RecordSet",
+      "description": "Rows from the apparent test artifact test_elements.csv; only its unambiguous header token is modeled.",
+      "field": [
+        {
+          "@id": "recordset-test-elements-csv/field-01",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Field_01.",
+          "name": "Field_01",
+          "source": {
+            "extract": {
+              "column": "Field_01"
+            },
+            "fileObject": {
+              "@id": "file-test-elements-csv"
+            }
+          }
+        }
+      ],
+      "name": "Records from test_elements.csv"
+    },
+    {
+      "@id": "recordset-cadre-ancillary-data-elements-2025-10-08-csv",
+      "@type": "cr:RecordSet",
+      "description": "Rows in the CADRE ancillary data-elements list; field names preserve the exact in-band header tokens.",
+      "field": [
+        {
+          "@id": "recordset-cadre-ancillary-data-elements-2025-10-08-csv/dataset",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Dataset.",
+          "name": "Dataset",
+          "source": {
+            "extract": {
+              "column": "Dataset"
+            },
+            "fileObject": {
+              "@id": "file-cadre-ancillary-data-elements-2025-10-08-csv"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-ancillary-data-elements-2025-10-08-csv/dataset-ordinal",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Source column Dataset ordinal.",
+          "name": "Dataset ordinal",
+          "source": {
+            "extract": {
+              "column": "Dataset ordinal"
+            },
+            "fileObject": {
+              "@id": "file-cadre-ancillary-data-elements-2025-10-08-csv"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-ancillary-data-elements-2025-10-08-csv/data-element",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Data element.",
+          "name": "Data element",
+          "source": {
+            "extract": {
+              "column": "Data element"
+            },
+            "fileObject": {
+              "@id": "file-cadre-ancillary-data-elements-2025-10-08-csv"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-ancillary-data-elements-2025-10-08-csv/description",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Description.",
+          "name": "Description",
+          "source": {
+            "extract": {
+              "column": "Description"
+            },
+            "fileObject": {
+              "@id": "file-cadre-ancillary-data-elements-2025-10-08-csv"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-ancillary-data-elements-2025-10-08-csv/response-options",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Response options.",
+          "name": "Response options",
+          "source": {
+            "extract": {
+              "column": "Response options"
+            },
+            "fileObject": {
+              "@id": "file-cadre-ancillary-data-elements-2025-10-08-csv"
+            }
+          }
+        }
+      ],
+      "name": "Records from CADRE_Ancillary_Data_Elements_2025_10_08.csv"
+    },
+    {
+      "@id": "recordset-cadre-core-data-elements-2025-10-07-csv",
+      "@type": "cr:RecordSet",
+      "description": "Rows in the historical CADRE core data-elements list; field names preserve the exact in-band header tokens.",
+      "field": [
+        {
+          "@id": "recordset-cadre-core-data-elements-2025-10-07-csv/data-element",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Data element.",
+          "name": "Data element",
+          "source": {
+            "extract": {
+              "column": "Data element"
+            },
+            "fileObject": {
+              "@id": "file-cadre-core-data-elements-2025-10-07-csv"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-data-elements-2025-10-07-csv/description",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Description.",
+          "name": "Description",
+          "source": {
+            "extract": {
+              "column": "Description"
+            },
+            "fileObject": {
+              "@id": "file-cadre-core-data-elements-2025-10-07-csv"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-data-elements-2025-10-07-csv/response-options",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Response options.",
+          "name": "Response options",
+          "source": {
+            "extract": {
+              "column": "Response options"
+            },
+            "fileObject": {
+              "@id": "file-cadre-core-data-elements-2025-10-07-csv"
+            }
+          }
+        }
+      ],
+      "name": "Records from CADRE_Core_Data_Elements_2025_10_07.csv"
+    },
+    {
+      "@id": "recordset-cadre-core-workbook-crew01-data-dictionary",
+      "@type": "cr:RecordSet",
+      "description": "Rows in worksheet CREW01 Data Dictionary of CADRE-Data-Dictionary-Core-Variables_21May26.xlsx; field names preserve the exact worksheet header tokens.",
+      "field": [
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/category",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Category.",
+          "name": "Category",
+          "source": {
+            "extract": {
+              "column": "Category"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/data-element-name",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Data element (Name).",
+          "name": "Data element (Name)",
+          "source": {
+            "extract": {
+              "column": "Data element (Name)"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/description",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Description.",
+          "name": "Description",
+          "source": {
+            "extract": {
+              "column": "Description"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/response-options",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Response options.",
+          "name": "Response options",
+          "source": {
+            "extract": {
+              "column": "Response options"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/units-ucum",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Units (UCUM).",
+          "name": "Units (UCUM)",
+          "source": {
+            "extract": {
+              "column": "Units (UCUM)"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/response-type-format",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Response Type/Format.",
+          "name": "Response Type/Format",
+          "source": {
+            "extract": {
+              "column": "Response Type/Format"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/source-type-original-or-derived",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Source Type (Original or Derived?).",
+          "name": "Source Type (Original or Derived?)",
+          "source": {
+            "extract": {
+              "column": "Source Type (Original or Derived?)"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/element-record-count",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Source column Element Record Count.",
+          "name": "Element Record Count",
+          "source": {
+            "extract": {
+              "column": "Element Record Count"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/subjects",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Subject(s).",
+          "name": "Subject(s)",
+          "source": {
+            "extract": {
+              "column": "Subject(s)"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew01-data-dictionary/cohort-id",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column Cohort ID.",
+          "name": "Cohort ID",
+          "source": {
+            "extract": {
+              "column": "Cohort ID"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        }
+      ],
+      "name": "CADRE Data Dictionary Core Variables_21May26 — CREW01 Data Dictionary"
+    },
+    {
+      "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables",
+      "@type": "cr:RecordSet",
+      "description": "Rows in worksheet CREW02 CANOE ECHO Variables of CADRE-Data-Dictionary-Core-Variables_21May26.xlsx; field names preserve the exact worksheet header tokens.",
+      "field": [
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/data-source",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column data_source.",
+          "name": "data_source",
+          "source": {
+            "extract": {
+              "column": "data_source"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/category-or-form",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column category_or_form.",
+          "name": "category_or_form",
+          "source": {
+            "extract": {
+              "column": "category_or_form"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/data-element",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column data_element.",
+          "name": "data_element",
+          "source": {
+            "extract": {
+              "column": "data_element"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/description",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column description.",
+          "name": "description",
+          "source": {
+            "extract": {
+              "column": "description"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/response-options",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column response_options.",
+          "name": "response_options",
+          "source": {
+            "extract": {
+              "column": "response_options"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/data-type",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column data_type.",
+          "name": "data_type",
+          "source": {
+            "extract": {
+              "column": "data_type"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/notes",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column notes.",
+          "name": "notes",
+          "source": {
+            "extract": {
+              "column": "notes"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/participating-cohorts",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source column participating_cohorts.",
+          "name": "participating_cohorts",
+          "source": {
+            "extract": {
+              "column": "participating_cohorts"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        },
+        {
+          "@id": "recordset-cadre-core-workbook-crew02-canoe-echo-variables/manuscript-delivered",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Source column manuscript_delivered.",
+          "name": "manuscript_delivered",
+          "source": {
+            "extract": {
+              "column": "manuscript_delivered"
+            },
+            "fileObject": {
+              "@id": "file-cadre-data-dictionary-core-variables-21may26-xlsx"
+            }
+          }
+        }
+      ],
+      "name": "CADRE Data Dictionary Core Variables_21May26 — CREW02 CANOE ECHO Variables"
+    }
+  ],
+  "url": "https://cadre.med.wisc.edu/"
+}

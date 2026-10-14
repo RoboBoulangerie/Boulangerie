@@ -1,0 +1,142 @@
+[
+  {
+    "path": "citeAs",
+    "value": "Hamilton, et al. (2011) The PhenX Toolkit: Get the Most From Your Measures. American Journal of Epidemiology, 174(3), 253-60.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21749974/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "conditionsOfAccess",
+    "value": "The PhenX Toolkit database and supporting documentation is released free of charge under the Creative Commons attribution license, the full terms of which can be found at http://creativecommons.org/licenses/by/4.0/legalcode.",
+    "url": "https://www.phenxtoolkit.org/resources/download",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "datePublished",
+    "value": "2026-06-18",
+    "url": "https://www.phenxtoolkit.org/about/releases/157",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "The PhenX (consensus measures for Phenotypes and eXposures) Toolkit is a web-based catalog of recommended measurement protocols of phenotypes and exposures suitable for inclusion in genomic, clinical, and translational research studies with human participants.",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "isAccessibleForFree",
+    "value": "true",
+    "url": "https://www.phenxtoolkit.org/resources/download",
+    "confidence": 0.97,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "PhenX",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "PhenX Toolkit",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "GWA",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "GWA Study",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[4]",
+    "value": "GWA Study Measures",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[5]",
+    "value": "genomics",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[6]",
+    "value": "genome-wide association studies",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[7]",
+    "value": "RTI International",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[8]",
+    "value": "NHGRI",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[9]",
+    "value": "RTI - Research Computing Division",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "PhenX Toolkit",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://www.phenxtoolkit.org/",
+    "url": "https://www.phenxtoolkit.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "version",
+    "value": "49.2",
+    "url": "https://www.phenxtoolkit.org/about/releases/157",
+    "confidence": 1.0,
+    "source": "dashboard"
+  }
+]

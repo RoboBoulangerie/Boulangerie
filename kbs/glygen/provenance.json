@@ -1,0 +1,128 @@
+[
+  {
+    "path": "citeAs",
+    "value": "TY  - JOUR\r\nTI  - GlyGen: Computational and Informatics Resources for Glycoscience\r\nAU  - York, William S.\r\nAU  - Mazumder, Raja\r\nAU  - Ranzinger, Rene\r\nAU  - Edwards, Nathan\r\nAU  - Kahsay, Robel\r\nAU  - Aoki-Kinoshita, Kiyoko F.\r\nAU  - Campbell, Matthew P.\r\nAU  - Cummings, Richard D.\r\nAU  - Feizi, Ten\r\nAU  - Martin, Maria\r\nAU  - Natale, Darren A.\r\nAU  - Packer, Nicolle H.\r\nAU  - Woods, Robert J.\r\nAU  - Agarwal, Gaurav\r\nAU  - Arpinar, Sena\r\nAU  - Bhat, Sanath\r\nAU  - Blake, Judith\r\nAU  - Castro, Leyla Jael Garcia\r\nAU  - Fochtman, Brian\r\nAU  - Gildersleeve, Jeffrey\r\nAU  - Goldman, Radoslav\r\nAU  - Holmes, Xavier\r\nAU  - Jain, Vinamra\r\nAU  - Kulkarni, Sujeet\r\nAU  - Mahadik, Rupali\r\nAU  - Mehta, Akul\r\nAU  - Mousavi, Reza\r\nAU  - Nakarakommula, Sandeep\r\nAU  - Navelkar, Rahi\r\nAU  - Pattabiraman, Nagarajan\r\nAU  - Pierce, Michael J.\r\nAU  - Ross, Karen\r\nAU  - Vasudev, Preethi\r\nAU  - Vora, Jeet\r\nAU  - Williamson, Tatiana\r\nAU  - Zhang, Wenjin\r\nT2  - Glycobiology\r\nDA  - 2020//01/28\r\nPY  - 2020\r\nDO  - 10.1093/glycob/cwz080\r\nDP  - PubMed\r\nVL  - 30\r\nIS  - 2\r\nSP  - 72\r\nEP  - 73\r\nJ2  - Glycobiology\r\nLA  - eng\r\nSN  - 1460-2423\r\nST  - GlyGen\r\nKW  - bioinformatics\r\nKW  - function\r\nKW  - glycoinformatics/database\r\nKW  - structure\r\nER  - \r\n\r\n",
+    "url": "https://www.glygen.org/downloads/citation/31616925.ris",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "conditionsOfAccess",
+    "value": "This means that you are free to copy, distribute, display and make commercial use of these databases in all legislations, provided you give us credit.",
+    "url": "https://glygen.org/license/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://data.glygen.org/",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator.name",
+    "value": "GlyGen",
+    "url": "https://www.glygen.org/about/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator.url",
+    "value": "https://www.glygen.org/",
+    "url": "https://www.glygen.org/about/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "GlyGen (gly-glycobiology; gen-information), is an advanced glycoinformatics resource developed to facilitate discovery in basic and translational glycobiology research along with enhancing the integration of multidisciplinary information from diverse resources. GlyGen includes knowledge about molecular, biophysical and functional properties of glycans, genes, proteins and lipids organized in pathways and ontologies, plus a rapidly growing body of biological big data related to mutation and expression. GlyGen adopts an innovative user driven approach for implementing, prioritizing and knowledge disseminating tools to address the questions and needs of glycobiology community.",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "glycoinformatics",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 0.93,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "glycobiology",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 0.93,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "glycans",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 0.93,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "genes",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 0.93,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[4]",
+    "value": "proteins",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 0.93,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[5]",
+    "value": "lipids",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 0.93,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[6]",
+    "value": "pathways",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 0.93,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[7]",
+    "value": "ontologies",
+    "url": "https://data.glygen.org/static/about",
+    "confidence": 0.93,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://glygen.org/license/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "GlyGen Datasets",
+    "url": "https://data.glygen.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://data.glygen.org/",
+    "url": "https://data.glygen.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "version",
+    "value": "2.11.1",
+    "url": "https://dsapi.glygen.org/dataset/init",
+    "confidence": 1.0,
+    "source": "dashboard"
+  }
+]

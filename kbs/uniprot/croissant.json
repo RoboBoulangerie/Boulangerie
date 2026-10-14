@@ -1,0 +1,1035 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "description": {
+      "@container": "@language"
+    },
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "name": {
+      "@container": "@language"
+    },
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "citeAs": "The UniProt Consortium\nUniProt: the Universal Protein Knowledgebase in 2025\nNucleic Acids Res. 53:D609–D617 (2025)",
+  "conditionsOfAccess": "The mission of UniProt is to provide the scientific community with a comprehensive, high-quality and freely accessible resource of protein sequence and functional information.",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "datePublished": "2026-06-10",
+  "dct:provenance": "Authoritative discovery began at the configured https://www.uniprot.org/help root on 2026-07-27. The JavaScript fallback page was supplemented only with first-party https://rest.uniprot.org/help/* JSON help documents and the official https://ftp.uniprot.org current-release tree; no GitHub or other public repository was used to resolve Croissant metadata or dataset assets. The official Downloads help page recommends FTP for complete datasets and enumerates UniProtKB complete data, taxonomic divisions, reference proteomes, pan proteomes, ID mapping, proteomics mapping, variants, genome tracks, embeddings, UniRef, UniParc, and RDF. These complete current families are represented as cr:FileSet collections with authoritative unique directory contentUrl values and inclusive member patterns; directly inspected sample/schema assets are additional checksum-backed cr:FileObject entries. A byte-for-byte local mirror was not reasonably possible because the current release includes individual files of 110–133 GB and hundreds of approximately 5.5 GB RDF/UniParc partitions. The eight per-residue embedding assets on the official EBI contrib host linked by the UniProt Downloads page are represented in a dedicated FileSet. Previous releases, geographic mirrors, and unbounded user-defined REST query outputs are excluded as duplicate, superseded, or non-finite holdings. The local evidence transfer downloaded 27 first-party files totaling 1,113,581 bytes. Release notes identify release 2026_02 dated 10-Jun-2026. TSV datatype inference sampled no more than five lines. Exact in-band headers were preserved for the bounded UniProtKB and proteomics tables. The two ID-mapping examples have no in-band header; their exact field labels and order were derived from the official leading README schema. The SARS-CoV-2 gzip file exposed only a descriptive preamble within the bounded initial sample, so no unsupported RecordSet was invented for it. XML, RDF/OWL, FASTA, HDF5, compressed bulk files, and recursively partitioned FileSets do not receive RecordSets because a reliable record extraction mapping was not established from the bounded local evidence. No archives were downloaded or represented: .gz assets are compressed single files, not archive containers. No source columns describe geographic places or coordinates, so a Schema.org GeoCoordinates hierarchy is not supported. Name, description, citation, license, and conditionsOfAccess are exact text from first-party live help documents. The access statement says the resource is freely accessible; the license disclaimer also warns that some data may be covered by patents or other rights.",
+  "description": "The Universal Protein Resource (UniProt) is a comprehensive resource for protein sequence and annotation data.",
+  "distribution": [
+    {
+      "@id": "fileset_uniprotkb_complete",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/",
+      "description": "Complete reviewed, unreviewed, and isoform sequence release files in all formats advertised on the official Downloads page.",
+      "encodingFormat": [
+        "application/gzip",
+        "application/xml",
+        "text/x-fasta",
+        "text/plain"
+      ],
+      "includes": [
+        "uniprot_sprot.xml.gz",
+        "uniprot_sprot.fasta.gz",
+        "uniprot_sprot.dat.gz",
+        "uniprot_trembl.xml.gz",
+        "uniprot_trembl.fasta.gz",
+        "uniprot_trembl.dat.gz",
+        "uniprot_sprot_varsplic.fasta.gz",
+        "uniprot.xsd",
+        "docs/**/*"
+      ],
+      "name": "UniProtKB complete current release"
+    },
+    {
+      "@id": "fileset_taxonomic_divisions",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/taxonomic_divisions/",
+      "description": "Complete current taxonomic-division collection.",
+      "encodingFormat": [
+        "application/gzip",
+        "text/plain"
+      ],
+      "includes": [
+        "**/*"
+      ],
+      "name": "UniProtKB taxonomic divisions"
+    },
+    {
+      "@id": "fileset_reference_proteomes",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/reference_proteomes/",
+      "description": "Complete current reference-proteome collection.",
+      "encodingFormat": [
+        "application/gzip",
+        "text/plain"
+      ],
+      "includes": [
+        "**/*"
+      ],
+      "name": "UniProtKB reference proteomes"
+    },
+    {
+      "@id": "fileset_pan_proteomes",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/pan_proteomes/",
+      "description": "Complete current pan-proteome collection.",
+      "encodingFormat": [
+        "application/gzip",
+        "text/plain"
+      ],
+      "includes": [
+        "**/*"
+      ],
+      "name": "UniProtKB pan proteomes"
+    },
+    {
+      "@id": "fileset_idmapping",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/",
+      "description": "Complete current ID-mapping collection, including by-organism tables.",
+      "encodingFormat": [
+        "application/gzip",
+        "text/tab-separated-values",
+        "text/plain"
+      ],
+      "includes": [
+        "**/*"
+      ],
+      "name": "UniProtKB ID mapping"
+    },
+    {
+      "@id": "fileset_proteomics_mapping",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomics_mapping/",
+      "description": "Complete current species-specific proteomics mapping collection.",
+      "encodingFormat": [
+        "text/tab-separated-values",
+        "text/plain"
+      ],
+      "includes": [
+        "**/*"
+      ],
+      "name": "UniProtKB proteomics mapping"
+    },
+    {
+      "@id": "fileset_variants",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/variants/",
+      "description": "Complete current species-specific amino-acid-altering variant collection.",
+      "encodingFormat": [
+        "application/gzip",
+        "text/plain"
+      ],
+      "includes": [
+        "**/*"
+      ],
+      "name": "UniProtKB variants"
+    },
+    {
+      "@id": "fileset_genome_tracks",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/genome_annotation_tracks/",
+      "description": "Complete current genome annotation track collection.",
+      "encodingFormat": [
+        "application/gzip",
+        "text/plain"
+      ],
+      "includes": [
+        "**/*"
+      ],
+      "name": "UniProtKB genome annotation tracks"
+    },
+    {
+      "@id": "fileset_embeddings",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/embeddings/",
+      "description": "Complete current per-protein embedding collection on the authoritative UniProt FTP host.",
+      "encodingFormat": "application/x-hdf5",
+      "includes": [
+        "**/*"
+      ],
+      "name": "UniProt protein embeddings"
+    },
+    {
+      "@id": "fileset_per_residue_embeddings",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.ebi.ac.uk/pub/contrib/UniProt/embeddings/current_release/",
+      "description": "Complete current per-residue embedding collection on the official EBI contrib download host linked by UniProt.",
+      "encodingFormat": "application/x-hdf5",
+      "includes": [
+        "uniprot_sprot/per-residue.h5",
+        "UP000006548_3702/per-residue.h5",
+        "UP000001940_6239/per-residue.h5",
+        "UP000000625_83333/per-residue.h5",
+        "UP000005640_9606/per-residue.h5",
+        "UP000000589_10090/per-residue.h5",
+        "UP000002494_10116/per-residue.h5",
+        "UP000464024_2697049/per-residue.h5"
+      ],
+      "name": "UniProt per-residue protein embeddings"
+    },
+    {
+      "@id": "fileset_uniref",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/uniref/",
+      "description": "Complete UniRef100, UniRef90, and UniRef50 XML, FASTA, and schema holdings.",
+      "encodingFormat": [
+        "application/gzip",
+        "application/xml",
+        "text/x-fasta"
+      ],
+      "includes": [
+        "uniref100/**/*",
+        "uniref90/**/*",
+        "uniref50/**/*"
+      ],
+      "name": "UniRef current release"
+    },
+    {
+      "@id": "fileset_uniparc",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/uniparc/",
+      "description": "Complete active FASTA and all-record XML holdings advertised by the official Downloads page.",
+      "encodingFormat": [
+        "application/gzip",
+        "application/xml",
+        "text/x-fasta"
+      ],
+      "includes": [
+        "fasta/active/**/*",
+        "xml/all/**/*",
+        "uniparc.xsd"
+      ],
+      "name": "UniParc current release"
+    },
+    {
+      "@id": "fileset_rdf",
+      "@type": "cr:FileSet",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/",
+      "description": "Complete current RDF distribution and UniProt OWL schema.",
+      "encodingFormat": [
+        "application/x-xz",
+        "application/rdf+xml"
+      ],
+      "includes": [
+        "*.rdf.xz",
+        "*.owl",
+        "*.owl.xz"
+      ],
+      "name": "UniProt RDF current release"
+    },
+    {
+      "@id": "file_uniprotkb_sample_tsv",
+      "@type": "cr:FileObject",
+      "contentSize": "755 B",
+      "contentUrl": "https://rest.uniprot.org/uniprotkb/search?query=reviewed:true&format=tsv&fields=accession,id,protein_name,gene_names,organism_name,organism_id,length&size=5",
+      "description": "Five-record bounded UniProtKB TSV export used to verify exact columns and datatype samples.",
+      "encodingFormat": "text/tab-separated-values",
+      "name": "search",
+      "sha256": "3b2b9ec014ecc730edd5ee9ba62c346e19515b4541acc3f061c9f24aaa7c277b"
+    },
+    {
+      "@id": "file_uniprotkb_sample_json",
+      "@type": "cr:FileObject",
+      "contentSize": "4822 B",
+      "contentUrl": "https://rest.uniprot.org/uniprotkb/search?query=reviewed:true&format=json&fields=accession,id,protein_name,gene_names,organism_name,organism_id,length&size=5",
+      "description": "Five-record bounded UniProtKB JSON export used to verify exact JSON property locations.",
+      "encodingFormat": "application/json",
+      "name": "search",
+      "sha256": "d02846e081ae4a4040ff08c0de14aae77b7bc95cadafa44e7df081f99b0eb127"
+    },
+    {
+      "@id": "file_proteomics_sample",
+      "@type": "cr:FileObject",
+      "contentSize": "684 B",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/proteomics_mapping/UP000001570_224308_nonUniquePeptides.tsv",
+      "description": "Complete small current proteomics mapping table for Bacillus subtilis subsp. subtilis str. 168.",
+      "encodingFormat": "text/tab-separated-values",
+      "name": "UP000001570_224308_nonUniquePeptides.tsv",
+      "sha256": "115717fb389d802e6d86e86cd05265c9f671efee7a8a42036029413a42871ab7"
+    },
+    {
+      "@id": "file_idmapping_example",
+      "@type": "cr:FileObject",
+      "contentSize": "267160 B",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping.dat.example",
+      "description": "Official first 10,000 lines of the current idmapping.dat table.",
+      "encodingFormat": "text/tab-separated-values",
+      "name": "idmapping.dat.example",
+      "sha256": "75f938ac3e0773cb26d1141571caa666057fcb3fdf4883e64cb21151d5c19cc8"
+    },
+    {
+      "@id": "file_idmapping_selected_example",
+      "@type": "cr:FileObject",
+      "contentSize": "361659 B",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping_selected.tab.example",
+      "description": "Official first 1,000 lines of the current selected ID-mapping table.",
+      "encodingFormat": "text/tab-separated-values",
+      "name": "idmapping_selected.tab.example",
+      "sha256": "9c26ddfddbaf7df87bdd7c09cfe18c46bf08263078cbc95a10fb2259dde78668"
+    },
+    {
+      "@id": "file_sars_cov_2_variation",
+      "@type": "cr:FileObject",
+      "contentSize": "21020 B",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/variants/sars_cov_2_variation.txt.gz",
+      "description": "Current SARS-CoV-2 amino-acid-altering variant table.",
+      "encodingFormat": "application/gzip",
+      "name": "sars_cov_2_variation.txt.gz",
+      "sha256": "3e0352be03fc648d08992f430eaa5cb5092e48d2627056d9ba6b6a08257eb8b4"
+    },
+    {
+      "@id": "file_uniprot_core_owl",
+      "@type": "cr:FileObject",
+      "contentSize": "276091 B",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/core.owl",
+      "description": "Current UniProt core ontology.",
+      "encodingFormat": "application/rdf+xml",
+      "name": "core.owl",
+      "sha256": "07227b654581d27919d4e8cd526686894422066024eb66373817e41b1b332f2f"
+    },
+    {
+      "@id": "file_uniprot_xsd",
+      "@type": "cr:FileObject",
+      "contentSize": "55045 B",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot.xsd",
+      "description": "Current UniProtKB XML schema.",
+      "encodingFormat": "application/xml",
+      "name": "uniprot.xsd",
+      "sha256": "1dad2448682ddee3ba1432b3c89f94b30197be57e7255d98d511ab344e5b7759"
+    },
+    {
+      "@id": "file_uniparc_xsd",
+      "@type": "cr:FileObject",
+      "contentSize": "3360 B",
+      "contentUrl": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/uniparc/uniparc.xsd",
+      "description": "Current UniParc XML schema.",
+      "encodingFormat": "application/xml",
+      "name": "uniparc.xsd",
+      "sha256": "6f5c3af375dadb20edb8b41af996624c3ebc77f8bbd9abe72aa00dd55f46c252"
+    }
+  ],
+  "isAccessibleForFree": true,
+  "keywords": [
+    "protein sequence",
+    "protein annotation",
+    "UniProtKB",
+    "UniRef",
+    "UniParc",
+    "proteomics",
+    "knowledgebase"
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "name": "UniProt",
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "UniProt Consortium",
+    "url": "https://www.uniprot.org/"
+  },
+  "recordSet": [
+    {
+      "@id": "recordset_uniprotkb_sample_tsv",
+      "@type": "cr:RecordSet",
+      "description": "Rows from the official five-record TSV export; all exact in-band header tokens are preserved.",
+      "field": [
+        {
+          "@id": "recordset_uniprotkb_sample_tsv/field/01",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property Entry.",
+          "name": "Entry",
+          "source": {
+            "extract": {
+              "column": "Entry"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_tsv"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_tsv/field/02",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property Entry Name.",
+          "name": "Entry Name",
+          "source": {
+            "extract": {
+              "column": "Entry Name"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_tsv"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_tsv/field/03",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property Protein names.",
+          "name": "Protein names",
+          "source": {
+            "extract": {
+              "column": "Protein names"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_tsv"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_tsv/field/04",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property Gene Names.",
+          "name": "Gene Names",
+          "source": {
+            "extract": {
+              "column": "Gene Names"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_tsv"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_tsv/field/05",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property Organism.",
+          "name": "Organism",
+          "source": {
+            "extract": {
+              "column": "Organism"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_tsv"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_tsv/field/06",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Source exact observed in-band header or property Organism (ID).",
+          "name": "Organism (ID)",
+          "source": {
+            "extract": {
+              "column": "Organism (ID)"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_tsv"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_tsv/field/07",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Source exact observed in-band header or property Length.",
+          "name": "Length",
+          "source": {
+            "extract": {
+              "column": "Length"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_tsv"
+            }
+          }
+        }
+      ],
+      "name": "UniProtKB bounded TSV records"
+    },
+    {
+      "@id": "recordset_proteomics_sample",
+      "@type": "cr:RecordSet",
+      "description": "Rows from the complete small proteomics TSV; all exact in-band header tokens are preserved.",
+      "field": [
+        {
+          "@id": "recordset_proteomics_sample/field/01",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property Peptide.",
+          "name": "Peptide",
+          "source": {
+            "extract": {
+              "column": "Peptide"
+            },
+            "fileObject": {
+              "@id": "file_proteomics_sample"
+            }
+          }
+        },
+        {
+          "@id": "recordset_proteomics_sample/field/02",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property POLife.",
+          "name": "POLife",
+          "source": {
+            "extract": {
+              "column": "POLife"
+            },
+            "fileObject": {
+              "@id": "file_proteomics_sample"
+            }
+          }
+        },
+        {
+          "@id": "recordset_proteomics_sample/field/03",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property GeneGroupSymbol.",
+          "name": "GeneGroupSymbol",
+          "source": {
+            "extract": {
+              "column": "GeneGroupSymbol"
+            },
+            "fileObject": {
+              "@id": "file_proteomics_sample"
+            }
+          }
+        },
+        {
+          "@id": "recordset_proteomics_sample/field/04",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property Accessions.",
+          "name": "Accessions",
+          "source": {
+            "extract": {
+              "column": "Accessions"
+            },
+            "fileObject": {
+              "@id": "file_proteomics_sample"
+            }
+          }
+        }
+      ],
+      "name": "UP000001570_224308 non-unique peptide records"
+    },
+    {
+      "@id": "recordset_idmapping_example",
+      "@type": "cr:RecordSet",
+      "description": "Rows from the official example; the file has no in-band header, so exact column labels come from its official README schema.",
+      "field": [
+        {
+          "@id": "recordset_idmapping_example/field/01",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column UniProtKB-AC.",
+          "name": "UniProtKB-AC",
+          "source": {
+            "extract": {
+              "column": "UniProtKB-AC"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_example/field/02",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column ID_type.",
+          "name": "ID_type",
+          "source": {
+            "extract": {
+              "column": "ID_type"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_example/field/03",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column ID.",
+          "name": "ID",
+          "source": {
+            "extract": {
+              "column": "ID"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_example"
+            }
+          }
+        }
+      ],
+      "name": "UniProt ID mapping example records"
+    },
+    {
+      "@id": "recordset_idmapping_selected_example",
+      "@type": "cr:RecordSet",
+      "description": "Rows from the official selected example; the file has no in-band header, so exact column labels and order come from its official README schema.",
+      "field": [
+        {
+          "@id": "recordset_idmapping_selected_example/field/01",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column UniProtKB-AC.",
+          "name": "UniProtKB-AC",
+          "source": {
+            "extract": {
+              "column": "UniProtKB-AC"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/02",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column UniProtKB-ID.",
+          "name": "UniProtKB-ID",
+          "source": {
+            "extract": {
+              "column": "UniProtKB-ID"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/03",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column GeneID (EntrezGene).",
+          "name": "GeneID (EntrezGene)",
+          "source": {
+            "extract": {
+              "column": "GeneID (EntrezGene)"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/04",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column RefSeq.",
+          "name": "RefSeq",
+          "source": {
+            "extract": {
+              "column": "RefSeq"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/05",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column GI.",
+          "name": "GI",
+          "source": {
+            "extract": {
+              "column": "GI"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/06",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column PDB.",
+          "name": "PDB",
+          "source": {
+            "extract": {
+              "column": "PDB"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/07",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column GO.",
+          "name": "GO",
+          "source": {
+            "extract": {
+              "column": "GO"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/08",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column UniRef100.",
+          "name": "UniRef100",
+          "source": {
+            "extract": {
+              "column": "UniRef100"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/09",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column UniRef90.",
+          "name": "UniRef90",
+          "source": {
+            "extract": {
+              "column": "UniRef90"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/10",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column UniRef50.",
+          "name": "UniRef50",
+          "source": {
+            "extract": {
+              "column": "UniRef50"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/11",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column UniParc.",
+          "name": "UniParc",
+          "source": {
+            "extract": {
+              "column": "UniParc"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/12",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column PIR.",
+          "name": "PIR",
+          "source": {
+            "extract": {
+              "column": "PIR"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/13",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column NCBI-taxon.",
+          "name": "NCBI-taxon",
+          "source": {
+            "extract": {
+              "column": "NCBI-taxon"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/14",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column MIM.",
+          "name": "MIM",
+          "source": {
+            "extract": {
+              "column": "MIM"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/15",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column UniGene.",
+          "name": "UniGene",
+          "source": {
+            "extract": {
+              "column": "UniGene"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/16",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column PubMed.",
+          "name": "PubMed",
+          "source": {
+            "extract": {
+              "column": "PubMed"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/17",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column EMBL.",
+          "name": "EMBL",
+          "source": {
+            "extract": {
+              "column": "EMBL"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/18",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column EMBL-CDS.",
+          "name": "EMBL-CDS",
+          "source": {
+            "extract": {
+              "column": "EMBL-CDS"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/19",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column Ensembl.",
+          "name": "Ensembl",
+          "source": {
+            "extract": {
+              "column": "Ensembl"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/20",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column Ensembl_TRS.",
+          "name": "Ensembl_TRS",
+          "source": {
+            "extract": {
+              "column": "Ensembl_TRS"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/21",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column Ensembl_PRO.",
+          "name": "Ensembl_PRO",
+          "source": {
+            "extract": {
+              "column": "Ensembl_PRO"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        },
+        {
+          "@id": "recordset_idmapping_selected_example/field/22",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source documented schema column Additional PubMed.",
+          "name": "Additional PubMed",
+          "source": {
+            "extract": {
+              "column": "Additional PubMed"
+            },
+            "fileObject": {
+              "@id": "file_idmapping_selected_example"
+            }
+          }
+        }
+      ],
+      "name": "UniProt selected ID mapping example records"
+    },
+    {
+      "@id": "recordset_uniprotkb_sample_json",
+      "@type": "cr:RecordSet",
+      "description": "Results from the official five-record JSON export; field names and JSONPath selectors preserve observed machine property names.",
+      "field": [
+        {
+          "@id": "recordset_uniprotkb_sample_json/field/01",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property primaryAccession.",
+          "name": "primaryAccession",
+          "source": {
+            "extract": {
+              "jsonPath": "$.results[*].primaryAccession"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_json"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_json/field/02",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property uniProtkbId.",
+          "name": "uniProtkbId",
+          "source": {
+            "extract": {
+              "jsonPath": "$.results[*].uniProtkbId"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_json"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_json/field/03",
+          "@type": "cr:Field",
+          "dataType": "sc:Text",
+          "description": "Source exact observed in-band header or property scientificName.",
+          "name": "scientificName",
+          "source": {
+            "extract": {
+              "jsonPath": "$.results[*].organism.scientificName"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_json"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_json/field/04",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Source exact observed in-band header or property taxonId.",
+          "name": "taxonId",
+          "source": {
+            "extract": {
+              "jsonPath": "$.results[*].organism.taxonId"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_json"
+            }
+          }
+        },
+        {
+          "@id": "recordset_uniprotkb_sample_json/field/05",
+          "@type": "cr:Field",
+          "dataType": "sc:Integer",
+          "description": "Source exact observed in-band header or property length.",
+          "name": "length",
+          "source": {
+            "extract": {
+              "jsonPath": "$.results[*].sequence.length"
+            },
+            "fileObject": {
+              "@id": "file_uniprotkb_sample_json"
+            }
+          }
+        }
+      ],
+      "name": "UniProtKB bounded JSON records"
+    }
+  ],
+  "url": "https://www.uniprot.org/",
+  "version": "2026_02"
+}

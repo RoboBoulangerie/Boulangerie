@@ -1,0 +1,6 @@
+name = "GlyGen"
+title = "GlyGen growth and evolution into a central resource for glycans and glycoconjugates"
+homepage = "https://data.glygen.org/"
+grant_number = "GM146616"
+# GitHub usernames of people at the KB who should be notified about checks and corrections.
+maintainers = []

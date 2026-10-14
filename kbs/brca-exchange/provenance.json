@@ -1,0 +1,163 @@
+[
+  {
+    "path": "citeAs",
+    "value": "Cline MS, Liao RG, Parsons MT, Paten B, Alquaddoomi F, Antoniou A, Baxter S, Brody L, Cook-Deegan R, Coffin A, Couch FJ, Craft B, Currie R, Dlott CC, Dolman L, den Dunnen JT, Dyke SOM, Domchek SM, Easton D, Fischmann Z, Foulkes WD, Garber J, Goldgar D, Goldman MJ, Goodhand P, Harrison S, Haussler D, Kato K, Knoppers B, Markello C, Nussbaum R, Offit K, Plon SE, Rashbass J, Rehm HL, Robson M, Rubinstein WS, Stoppa-Lyonnet D, Tavtigian S, Thorogood A, Zhang C, Zimmermann M, BRCA Challenge Authors, Burn J, Chanock S, Rätsch G, Spurdle AB. BRCA Challenge: BRCA Exchange as a global resource for variants in BRCA1 and BRCA2. PLoS Genet. 2018 Dec 26;14(12):e1007752. doi: 10.1371/journal.pgen.1007752.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30586411/",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "conformsTo",
+    "value": "http://mlcommons.org/croissant/1.1",
+    "url": "https://docs.mlcommons.org/croissant/docs/croissant-spec-1.1.html",
+    "confidence": null,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[0].name",
+    "value": "BRCA Challenge",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "creator[1].name",
+    "value": "ENIGMA consortium",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "dateModified",
+    "value": "2026-03-08",
+    "url": "https://brcaexchange.org/backend/data/releases",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "datePublished",
+    "value": "2016-10-06",
+    "url": "https://brcaexchange.org/backend/data/releases",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "description",
+    "value": "The BRCA Exchange is a curated data platform that provides information on variants of specific genes: BRCA1 and BRCA2. Rather than contributing new information about a variant, the BRCA Exchange becomes a single source that collects and organizes existing information.",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "isAccessibleForFree",
+    "value": "true",
+    "url": "https://brcaexchange.org/releases",
+    "confidence": 0.99,
+    "source": "dashboard"
+  },
+  {
+    "path": "isLiveDataset",
+    "value": "true",
+    "url": "https://brcaexchange.org/releases",
+    "confidence": 0.98,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[0]",
+    "value": "BRCA1",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[1]",
+    "value": "BRCA2",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[2]",
+    "value": "genetic variants",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[3]",
+    "value": "clinical interpretation",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[4]",
+    "value": "variant pathogenicity",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[5]",
+    "value": "cancer risk",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[6]",
+    "value": "ENIGMA",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[7]",
+    "value": "ClinVar",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "keywords[8]",
+    "value": "LOVD",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "license",
+    "value": "Not Found",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.35,
+    "source": "dashboard"
+  },
+  {
+    "path": "name",
+    "value": "BRCA Exchange",
+    "url": "https://brcaexchange.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "publisher.name",
+    "value": "BRCA Challenge",
+    "url": "https://brcaexchange.org/help",
+    "confidence": 0.95,
+    "source": "dashboard"
+  },
+  {
+    "path": "url",
+    "value": "https://brcaexchange.org/",
+    "url": "https://brcaexchange.org/",
+    "confidence": 1.0,
+    "source": "dashboard"
+  },
+  {
+    "path": "version",
+    "value": "70",
+    "url": "https://brcaexchange.org/backend/data/releases",
+    "confidence": 0.99,
+    "source": "dashboard"
+  }
+]
