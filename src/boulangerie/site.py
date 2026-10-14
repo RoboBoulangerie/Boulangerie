@@ -62,6 +62,8 @@ def describe_fields(croissant: dict, provenance: dict[str, dict], grounding: dic
             "confidence": source.get("confidence"),
             "verified": grounding.get(field) in VERIFIED,
             "unverified": grounding.get(field) in ("partial", "none"),
+            # We tried, but couldn't read the source page (JavaScript, bot wall, error) or had no source to check.
+            "unchecked": grounding.get(field) in ("unverified", "no_source"),
         })
     return rows
 

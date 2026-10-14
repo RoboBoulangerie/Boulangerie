@@ -52,6 +52,7 @@
           {% elif f.source_url %}
             {% if f.verified %}<span class="badge badge-good">✓ Matches the page we found it on</span>
             {% elif f.unverified %}<span class="badge badge-warn">Please double-check: this wording isn't on the page</span>
+            {% elif f.unchecked %}<span class="badge badge-neutral" title="The page is built with JavaScript, blocks automated visitors, or didn't load.">We couldn't re-check this automatically</span>
             {% endif %}
             Found on <a href="{{ f.source_url }}">{{ f.source_url|truncate(70) }}</a>
           {% endif %}
@@ -61,6 +62,8 @@
     </div>
     {% endfor %}
   </dl>
+  <p class="muted small">We automatically re-check the name, description, citation and access conditions against
+    the page each came from. Everything else here relies on you.</p>
   {% if not has_provenance %}
   <p class="muted small">We haven't recorded where each of these came from yet.</p>
   {% endif %}
