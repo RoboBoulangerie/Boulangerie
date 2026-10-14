@@ -134,6 +134,20 @@ issue and the page stay readable.
 - **One check issue per KB**, titled `Croissant check: <name>` and labelled `croissant-check` and `kb:<slug>`. It is
   updated in place, closed when there's nothing to fix or check, and reopened if problems come back.
   This serves as the GitHub "dashboard": filter issues by `croissant-check`.
+- **One short form per kind of feedback,** each linked from the place it applies to:
+
+  | Form | Linked from | What happens |
+  |---|---|---|
+  | Suggest corrections | "Suggest a correction" on the KB page and in check issues | Becomes a PR |
+  | Fix one detail | "Not right? Fix it" next to each value, and "Tell us" on missing ones | Becomes a PR; the "where is this stated" link is recorded as the value's source |
+  | Problem with a file | "Something wrong with this?" on a file | `needs-review` |
+  | Problem with a kind of table | The same link on a table kind | `needs-review` |
+  | Files we missed | The review page's questions | `needs-review` |
+  | Files that shouldn't be listed | The review page's questions | `needs-review` |
+  | A better download page | The review page's questions | `needs-review` |
+
+  The forms are defined once in `feedback.py`; `boulangerie write-forms` generates `.github/ISSUE_TEMPLATE/`,
+  and a test fails if the committed files drift. The bot tells which form an issue came from by its questions.
 - **Corrections go through a PR, never straight to `main`,** so a person reviews every change. Maintainers see
   exactly what will change before it's published.
 - **Security:** the issue body is read from the event file by Python and never interpolated into shell commands.

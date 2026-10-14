@@ -82,6 +82,13 @@ Collapse repeated archive members into FileSets (run after importing croissants,
 uv run boulangerie collapse-filesets --dry-run
 ```
 
+The issue forms in `.github/ISSUE_TEMPLATE/` are generated from `src/boulangerie/feedback.py`. After changing
+them there:
+
+```bash
+uv run boulangerie write-forms
+```
+
 ## One-time GitHub setup
 
 1. **Settings → Pages → Source:** GitHub Actions.

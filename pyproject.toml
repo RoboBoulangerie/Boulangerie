@@ -9,6 +9,7 @@ requires-python = ">=3.12"
 dependencies = [
     "jinja2>=3.1.6",
     "mlcroissant>=1.1.1",
+    "pyyaml>=6.0.3",
     "requests>=2.34.2",
 ]
 

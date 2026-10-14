@@ -6,7 +6,7 @@ from pathlib import Path
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from boulangerie import checks, config, report, review, summary
+from boulangerie import checks, config, feedback, report, review, summary
 from boulangerie.catalog import REPO_ROOT, KnowledgeBase, read_confidence, read_croissant, read_provenance
 from boulangerie.checks import Finding
 from boulangerie.online import MATCH_EXACT, MATCH_NORMALIZED
@@ -42,8 +42,9 @@ def source_for(provenance: dict[str, dict], field: str) -> dict:
     return provenance[parts[0]] if parts else {}
 
 
-def describe_fields(croissant: dict, provenance: dict[str, dict], grounding: dict[str, str], missing: dict[str, str]) -> list[dict]:
-    """``missing`` maps a missing field to the severity of that finding."""
+def describe_fields(croissant: dict, provenance: dict[str, dict], grounding: dict[str, str], missing: dict[str, str],
+                    fix_url=lambda label: "") -> list[dict]:
+    """``missing`` maps a missing field to the severity of that finding; ``fix_url(label)`` links to its form."""
     rows = []
     for field, label, explanation in summary.FIELD_EXPLANATIONS:
         value = croissant.get(field)
@@ -63,6 +64,7 @@ def describe_fields(croissant: dict, provenance: dict[str, dict], grounding: dic
             "from_maintainer": source.get("source") == "maintainer",
             "confidence": source.get("confidence"),
             "verified": grounding.get(field) in VERIFIED,
+            "fix_url": fix_url(label) if label in feedback.DETAILS else "",
             "unverified": grounding.get(field) in ("partial", "none"),
             # We tried, but couldn't read the source page (JavaScript, bot wall, error) or had no source to check.
             "unchecked": grounding.get(field) in ("unverified", "no_source"),
@@ -110,14 +112,16 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
             root="../../../",
             kb=kb,
             counts=review_data["counts"],
-            feedback_url=report.feedback_url(kb, config.REPO),
+            forms={key: report.feedback_url(kb, config.REPO, key) for key in
+                   ("file-problem", "table-problem", "missing-files", "extra-files", "download-page")},
         ), encoding="utf-8")
 
         page = env.get_template("kb.html.j2").render(
             root="../../",
             kb=kb,
             croissant=croissant,
-            fields=describe_fields(croissant, provenance, results.get("grounding", {}), missing),
+            fields=describe_fields(croissant, provenance, results.get("grounding", {}), missing,
+                                   fix_url=lambda label: report.feedback_url(kb, config.REPO, "fix-detail", detail=label)),
             stats=stats,
             results=results,
             download_size=summary.human_size(size),

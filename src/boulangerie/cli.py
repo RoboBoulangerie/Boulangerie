@@ -9,7 +9,7 @@ from pathlib import Path
 
 from boulangerie import checks, config, feedback, filesets, github, paths, provenance_import, report, site
 from boulangerie.catalog import (
-    KBS_DIR, KnowledgeBase, find_kb, load_catalog, load_kb, read_croissant, read_provenance,
+    KBS_DIR, REPO_ROOT, KnowledgeBase, find_kb, load_catalog, load_kb, read_croissant, read_provenance,
     slugify, write_confidence, write_croissant, write_provenance,
 )
 
@@ -163,10 +163,11 @@ def cmd_autofix(args) -> None:
 
 
 def cmd_feedback(args) -> None:
-    """Handle a feedback issue: apply the answers and open a PR for review."""
+    """Handle an issue from one of the forms: open a PR for changes, or hand notes to a person."""
     event = json.loads(Path(args.event).read_text(encoding="utf-8"))
     issue = event["issue"]
-    answers = feedback.parse_issue_form(issue["body"] or "")
+    form_key, answers = feedback.parse_issue_form(issue["body"] or "")
+    form = feedback.FORMS[form_key]
     if "kb" not in answers:
         github.comment(config.REPO, issue["number"], "Thanks! We couldn't tell which resource this is about, "
                        "so a person will take a look.")
@@ -178,18 +179,25 @@ def cmd_feedback(args) -> None:
                        f"`{answers['kb']}`, so a person will take a look.")
         return
 
+    requested = feedback.requested_changes(form_key, answers)
+    if not form.applies_changes or (not requested and "other" in answers):
+        # Notes about files, tables, a download page, ...: a person handles these.
+        github.add_labels(config.REPO, issue["number"], [github.NEEDS_HUMAN_LABEL])
+        github.comment(config.REPO, issue["number"], form.thanks)
+        return
+    if form_key == "fix-detail" and not requested:
+        github.add_labels(config.REPO, issue["number"], [github.NEEDS_HUMAN_LABEL])
+        github.comment(config.REPO, issue["number"], f"Thanks! We can't change \"{answers.get('detail', '')}\" "
+                       "automatically, so a member of our team will update it and follow up here.")
+        return
+
     croissant = read_croissant(kb)
     provenance = read_provenance(kb)
-    changes = feedback.apply_feedback(croissant, provenance, answers, issue["html_url"])
+    changes = feedback.apply_feedback(croissant, provenance, requested, issue["html_url"],
+                                      source_url=answers.get("source", ""))
     if not changes:
-        # Notes about files, tables or anything else need a person; there's nothing to commit.
-        if "other" in answers:
-            github.add_labels(config.REPO, issue["number"], [github.NEEDS_HUMAN_LABEL])
-            github.comment(config.REPO, issue["number"], "Thank you! A member of our team will read your notes and "
-                           "follow up here.")
-        else:
-            github.comment(config.REPO, issue["number"], "Thanks! Everything you sent already matches the "
-                           "croissant, so there's nothing to change.")
+        github.comment(config.REPO, issue["number"], "Thanks! Everything you sent already matches the "
+                       "croissant, so there's nothing to change.")
         return
     write_croissant(kb, croissant)
     write_provenance(kb, provenance)
@@ -208,6 +216,15 @@ def cmd_feedback(args) -> None:
     github.comment(config.REPO, issue["number"],
                    f"Thank you! We've prepared the change here: {url}\n\nA member of our team will review and "
                    "publish it. You'll see your croissant update on the site once it's merged.")
+
+
+def cmd_write_forms(args) -> None:
+    """Write the GitHub issue forms from feedback.FORMS."""
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    for form in feedback.FORMS.values():
+        (out / form.filename).write_text(form.to_yaml(), encoding="utf-8")
+        print(f"wrote {out / form.filename}")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -259,6 +276,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--open-prs", action="store_true")
     p.add_argument("--base", default="main")
     p.set_defaults(func=cmd_autofix)
+
+    p = sub.add_parser("write-forms", help="write the GitHub issue forms from feedback.FORMS")
+    p.add_argument("--out", default=str(REPO_ROOT / ".github" / "ISSUE_TEMPLATE"))
+    p.set_defaults(func=cmd_write_forms)
 
     p = sub.add_parser("feedback", help="turn a feedback issue into a PR (run from GitHub Actions)")
     p.add_argument("--event", default=os.environ.get("GITHUB_EVENT_PATH"))

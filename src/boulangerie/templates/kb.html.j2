@@ -35,10 +35,10 @@
       <dd>
         {% if f.missing %}
           {% if f.missing_severity == "note" %}
-          <p class="missing-note missing-optional">Not given. If you have one, <a href="{{ feedback_url }}">add it →</a></p>
+          <p class="missing-note missing-optional">Not given. If you have one, <a href="{{ f.fix_url or feedback_url }}">add it →</a></p>
           {% else %}
           <p class="missing-note">We couldn't find this on your website.
-            <a href="{{ feedback_url }}">Tell us →</a></p>
+            <a href="{{ f.fix_url or feedback_url }}">Tell us →</a></p>
           {% endif %}
         {% elif f.is_url %}
           <p class="field-value"><a href="{{ f.value }}">{{ f.value }}</a></p>
@@ -58,6 +58,7 @@
             {% endif %}
             Found on <a href="{{ f.source_url }}">{{ f.source_url|truncate(70) }}</a>
           {% endif %}
+          {% if f.fix_url %}· <a class="fix-link" href="{{ f.fix_url }}">Not right? Fix it</a>{% endif %}
         </p>
         {% endif %}
       </dd>

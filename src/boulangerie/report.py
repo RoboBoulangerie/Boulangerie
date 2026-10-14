@@ -9,7 +9,6 @@ import datetime
 import hashlib
 import json
 from pathlib import Path
-from urllib.parse import urlencode
 
 from boulangerie import checks, online
 from boulangerie.catalog import REPO_ROOT, KnowledgeBase, read_croissant, read_provenance
@@ -143,10 +142,10 @@ SEVERITY_WORDS = {PROBLEM: "Needs fixing", WARNING: "Worth checking", NOTE: "Nic
 ISSUE_MARKER = "<!-- boulangerie-check -->"
 
 
-def feedback_url(kb: KnowledgeBase, repo: str) -> str:
-    """Link to the correction form with the resource and title already filled in."""
-    query = urlencode({"template": "croissant-feedback.yml", "kb": kb.slug, "title": f"Correction for {kb.name}"})
-    return f"https://github.com/{repo}/issues/new?{query}"
+def feedback_url(kb: KnowledgeBase, repo: str, form: str = "croissant-feedback", **prefill: str) -> str:
+    """Link to one of the issue forms with the resource and title already filled in."""
+    from boulangerie.feedback import form_url
+    return form_url(repo, form, kb.slug, kb.name, **prefill)
 
 
 def render_markdown(kb: KnowledgeBase, results: dict, site_url: str, repo: str) -> str:

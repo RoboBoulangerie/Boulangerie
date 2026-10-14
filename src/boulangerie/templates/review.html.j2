@@ -9,11 +9,11 @@
   <p class="lede">Here is everything the {{ kb.name }} croissant describes: your files, laid out in the folders they
     live in, and the kinds of tables inside them. You know your data best, so you're the judge.</p>
   <div class="questions">
-    <a class="question" href="{{ feedback_url }}&amp;other={{ 'Files you missed (links or the page they are on): '|urlencode }}">
+    <a class="question" href="{{ forms['missing-files'] }}">
       <strong>Did we miss any files?</strong><span>Tell us where they are.</span></a>
-    <a class="question" href="{{ feedback_url }}&amp;other={{ 'Files that should not be listed: '|urlencode }}">
+    <a class="question" href="{{ forms['extra-files'] }}">
       <strong>Is anything here that shouldn't be?</strong><span>Old, internal or test files, for example.</span></a>
-    <a class="question" href="{{ feedback_url }}&amp;other={{ 'A better page to find our downloads: '|urlencode }}">
+    <a class="question" href="{{ forms['download-page'] }}">
       <strong>Is there a better download page?</strong><span>We'll start from there next time.</span></a>
   </div>
 </section>
@@ -42,7 +42,7 @@
 <script>
 (function () {
   var PAGE = 50, CHUNK = 100, FILE_LIST = 20;
-  var FEEDBACK = {{ feedback_url|tojson }};
+  var FILE_FORM = {{ forms['file-problem']|tojson }}, TABLE_FORM = {{ forms['table-problem']|tojson }};
   var KB_NAME = {{ kb.name|tojson }};
   var counts = {{ counts|tojson }};
   var state = { tab: location.hash === '#tables' ? 'tables' : 'files', q: '', lookOnly: false, page: 0 };
@@ -69,8 +69,8 @@
   var PLURALS = { 'kind of table': 'kinds of tables' };
   function plural(n, word) { return n.toLocaleString() + ' ' + (n === 1 ? word : (PLURALS[word] || word + 's')); }
   function lookBadge(n) { return n ? el('span', 'badge badge-warn', n === true ? 'Needs a look' : n.toLocaleString() + ' to look at') : null; }
-  function reportLink(what, label) {
-    var a = link(FEEDBACK + '&item=' + encodeURIComponent(what), label || 'Something wrong with this? Tell us →');
+  function reportLink(form, what, label) {
+    var a = link(form + '&item=' + encodeURIComponent(what), label || 'Something wrong with this? Tell us \u2192');
     a.className = 'text-link small';
     var p = el('p'); p.appendChild(a); return p;
   }
@@ -124,7 +124,7 @@
       body.appendChild(el('p', 'why', 'Why we flagged this: the pipeline that wrote your croissant wasn’t fully sure about it.'));
     }
     issuesAndDoubts(body, f.issues, f.unsure);
-    body.appendChild(reportLink(f.path + ' (' + f.id + ')'));
+    body.appendChild(reportLink(FILE_FORM, f.path));
     return body;
   }
   function issuesAndDoubts(body, issues, unsure) {
@@ -297,7 +297,7 @@
         }, PAGE);
         body.appendChild(ul);
       }
-      body.appendChild(reportLink('Tables: ' + fam.name, 'Something wrong with these tables? Tell us →'));
+      body.appendChild(reportLink(TABLE_FORM, fam.name, 'Something wrong with these tables? Tell us →'));
       d.appendChild(body);
     });
     li.appendChild(d);

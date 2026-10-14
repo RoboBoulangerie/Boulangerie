@@ -223,3 +223,4 @@ code { font-size: 0.88em; background: var(--butter); padding: 0.05em 0.35em; bor
 .families li { padding: 10px 0; border-top: 1px solid var(--line); }
 .families .columns { margin: 4px 0 0; line-height: 1.9; }
 .pager[hidden] { display: none; }
+.fix-link { white-space: nowrap; }
