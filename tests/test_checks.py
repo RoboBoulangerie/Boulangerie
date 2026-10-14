@@ -124,6 +124,7 @@ E1013 21:01:14.441725 8217362304 validate.py:55] Found the following 2 error(s) 
 Found the following 3 warning(s) during the validation:
   -  [Metadata(Tiny KB)] Property "http://mlcommons.org/croissant/citeAs" is recommended, but does not exist.
   -  [Metadata(Tiny KB)] Property "https://schema.org/version" is recommended, but does not exist.
+  -  [Metadata(Tiny KB)] WarningException("Version doesn't follow MAJOR.MINOR.PATCH: 2026-07-15. For more information refer to: https://semver.org/spec/v2.0.0.html")
   -  [Metadata(Tiny KB)] Something else entirely.
 I1013 21:01:14.441800 8217362304 validate.py:53] Done.
 """
@@ -135,7 +136,7 @@ def test_parse_mlcroissant_output():
     warnings = [f for f in findings if f.check == "mlcroissant_warning"]
     assert len(errors) == 2 and all(f.severity == PROBLEM for f in errors)
     assert "md5" in errors[0].technical
-    # "is recommended" warnings duplicate our own checks and are dropped.
+    # "is recommended" and semver warnings aren't useful to maintainers and are dropped.
     assert [f.technical for f in warnings] == ["[Metadata(Tiny KB)] Something else entirely."]
 
 

@@ -353,10 +353,18 @@ def sort_findings(findings: list[Finding]) -> list[Finding]:
 _MLC_SECTION = re.compile(r"Found the following \d+ (error|warning)\(s\)")
 _MLC_ITEM = re.compile(r"^\s+-\s+(.*)$")
 _MLC_LOG_LINE = re.compile(r"^[IWEF]\d{4} ")  # absl log prefix, e.g. "W1013 20:51:49.699622 ..."
+_MLC_IGNORED_WARNINGS = (
+    "is recommended, but does not exist",  # duplicates our own missing-field checks
+    "Version doesn't follow MAJOR.MINOR.PATCH",  # KBs use real release names like 2026-07-15; not theirs to change
+)
+
+
+def is_useful_mlcroissant_finding(f: Finding) -> bool:
+    return not (f.check == "mlcroissant_warning" and any(s in f.technical for s in _MLC_IGNORED_WARNINGS))
 
 
 def parse_mlcroissant_output(output: str) -> list[Finding]:
-    """Turn mlcroissant's log into findings. Its 'is recommended' warnings duplicate our own checks."""
+    """Turn mlcroissant's log into findings, dropping warnings that aren't useful to maintainers."""
     findings = []
     kind = None
     for line in output.splitlines():
@@ -370,7 +378,7 @@ def parse_mlcroissant_output(output: str) -> list[Finding]:
         item = _MLC_ITEM.match(line)
         if kind and item:
             text = item.group(1).strip()
-            if kind == "warning" and "is recommended, but does not exist" in text:
+            if kind == "warning" and any(s in text for s in _MLC_IGNORED_WARNINGS):
                 continue
             findings.append(Finding(
                 check="mlcroissant_error" if kind == "error" else "mlcroissant_warning",

@@ -73,10 +73,18 @@ def _sentences(text: str) -> list[str]:
     return [s for s in re.split(r"(?<=[.!?])\s+", text) if len(s) > 20]
 
 
-def looks_like_javascript_shell(text: str) -> bool:
-    """A page whose content is drawn by JavaScript gives us almost no text to compare against."""
+_BOT_WALL_PHRASES = ("verify you are a human", "captcha", "are you a robot", "checking your browser",
+                     "access denied", "just a moment")
+
+
+def unreadable_reason(text: str) -> str | None:
+    """Why a fetched page can't be compared against, or None if it looks like real content."""
     t = normalize(text)
-    return len(t) < 400 or "enable javascript" in t or "javascript is required" in t
+    if any(p in t for p in _BOT_WALL_PHRASES):
+        return "blocks automated visitors"
+    if len(t) < 400 or "enable javascript" in t or "javascript is required" in t:
+        return "is built with JavaScript, so our checker can't read its text"
+    return None
 
 
 def match_value(value: str, text: str) -> str:
@@ -145,18 +153,27 @@ def check_grounding(croissant: dict, provenance: dict[str, dict]) -> tuple[list[
             ))
             continue
         level = match_value(value, page)
-        if level == MATCH_NONE and looks_like_javascript_shell(page):
+        reason = unreadable_reason(page) if level == MATCH_NONE else None
+        if reason:
             levels[field] = "unverified"
             findings.append(Finding(
                 check="grounding_unverified", severity=NOTE, path=field,
                 title=f"We couldn't re-read the page the {field} came from",
-                message=f"{url} is built with JavaScript, so our checker can't read its text. Please check this "
-                        "reads correctly.",
-                technical=f"Fetched page has almost no text ({len(normalize(page))} characters); likely a JavaScript app.",
+                message=f"{url} {reason}. Please check this reads correctly.",
+                technical=f"Page {reason} ({len(normalize(page))} characters of text).",
             ))
             continue
         levels[field] = level
-        if level in (MATCH_PARTIAL, MATCH_NONE):
+        if level in (MATCH_PARTIAL, MATCH_NONE) and field == "citeAs":
+            # Citations are routinely reformatted (PubMed, BibTeX, journal style), so a mismatch is weak evidence.
+            findings.append(Finding(
+                check="grounding_citation_reformatted", severity=NOTE, path=field,
+                title="The citation is formatted differently from your page",
+                message=f"We couldn't find this exact citation on {url}. Citations are often reformatted, so this "
+                        "may be fine, but please check it's the one you want people to use.",
+                technical=f"Match level {level!r} for `citeAs` against {url}.",
+            ))
+        elif level in (MATCH_PARTIAL, MATCH_NONE):
             findings.append(Finding(
                 check="grounding_mismatch", severity=WARNING, path=field,
                 title=f"The {field} doesn't match your web page word for word",
@@ -201,7 +218,16 @@ def check_links(croissant: dict, sample_size: int = 40, seed: str = "") -> tuple
     findings = []
     broken = 0
     for (i, url), status in zip(sample, statuses):
-        if isinstance(status, Exception) or status >= 400:
+        if status in (401, 403):
+            broken += 1
+            findings.append(Finding(
+                check="link_needs_login", severity=NOTE, path=f"distribution[{i}].contentUrl",
+                title="Some downloads need a login or key",
+                message="We couldn't download some files without signing in or an access key. If that's expected, "
+                        "it helps to say so under access conditions.",
+                technical=f"HTTP {status} for {url}",
+            ))
+        elif isinstance(status, Exception) or status >= 400:
             broken += 1
             detail = f"HTTP {status}" if isinstance(status, int) else f"{type(status).__name__}: {status}"
             findings.append(Finding(

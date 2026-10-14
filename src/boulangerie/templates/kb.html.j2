@@ -118,7 +118,7 @@
   <h2>What we checked</h2>
   <p class="muted">We run automatic checks on every croissant. Here's what they found, most important first.
     {% if results.links.checked %}We also tried {{ results.links.checked }} of your {{ results.links.total|thousands }} download
-    links, and {{ results.links.broken }} didn't work.{% endif %}</p>
+    links; {{ results.links.broken }} of them didn&rsquo;t download (some may just need a login).{% endif %}</p>
   {% if not results.groups %}
     <p class="all-good">Everything we check looks good. 🎉</p>
   {% endif %}

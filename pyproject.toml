@@ -1,7 +1,7 @@
 [project]
 name = "boulangerie"
 version = "0.1.0"
-description = "Add your description here"
+description = "Serve and check Croissant metadata for biomedical knowledge bases"
 authors = [
     { name = "Chris Bizon", email = "bizon@renci.org" }
 ]

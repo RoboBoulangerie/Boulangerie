@@ -34,8 +34,13 @@ def test_no_match_for_paraphrase():
 def test_javascript_shell_detection():
     shell = online.page_text("<html><body><noscript>You need to enable JavaScript to run this app.</noscript>"
                              "<div id='root'></div></body></html>")
-    assert online.looks_like_javascript_shell(shell)
-    assert not online.looks_like_javascript_shell("Real content about genes. " * 40)
+    assert "JavaScript" in online.unreadable_reason(shell)
+    assert online.unreadable_reason("Real content about genes. " * 40) is None
+
+
+def test_bot_wall_detection():
+    wall = "Comparative Toxicogenomic Database To continue, we need to verify you are a human. " * 10
+    assert online.unreadable_reason(wall) == "blocks automated visitors"
 
 
 def test_grounding_skips_maintainer_confirmed_values():

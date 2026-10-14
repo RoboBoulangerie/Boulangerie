@@ -62,13 +62,18 @@ There are three groups:
   so the two agree.
 - **Official validator** (`mlcroissant validate`): the authority on spec compliance, but slow and memory-hungry
   on big croissants (BRCA Exchange: about 9 minutes and 8.6 GB). Results are cached by the croissant's SHA-256 and
-  re-run only when the file changes. Its "is recommended" warnings duplicate our own checks and are dropped.
+  re-run only when the file changes. Its "is recommended" warnings duplicate our own checks, and its warning that versions aren't MAJOR.MINOR.PATCH
+  flags KBs' real release names (`2026-07-15`, `FB2026_02`), so both are dropped. All 20 croissants pass it with
+  no errors; the first full run took 1 h 40 min, and later runs take about a minute.
 - **Online** (`online.py`):
   - **Grounding:** re-fetches the page each dataset-level value came from and checks that the text really appears
     there (exact, then ignoring spacing, case, quotes and dashes, then sentence-by-sentence). This addresses
-    RoboBoulangerie/robo-croissant-pipeline#5. A page that won't load is reported as "couldn't verify", never as a mismatch.
+    RoboBoulangerie/robo-croissant-pipeline#5. A page we can't read is reported as "couldn't verify", never as a
+    mismatch. That covers pages that fail to load, JavaScript apps (Alliance), bot walls and CAPTCHAs (CTD), and
+    403s (BioPortal). Citation mismatches are only a note, because citations are routinely reformatted (PubMed, BibTeX).
   - **Links:** a deterministic sample of 40 download links per KB. FlyBase lists 122k files, and checking them all
-    weekly would be slow and unkind to their servers.
+    weekly would be slow and unkind to their servers. A 401 or 403 is reported as "needs a login or key" (BioPortal
+    downloads need an API key), not as a broken link.
 
 Thousands of identical findings (one per file) are grouped into one entry with a count and five examples, so the
 issue and the page stay readable.

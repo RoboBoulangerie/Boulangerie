@@ -96,7 +96,8 @@ def run_all_checks(
 
     mlc: list[Finding] | None = None
     if unchanged and previous.get("mlcroissant") is not None and mlcroissant != MLC_ALWAYS:
-        mlc = [Finding(**f) for f in previous["mlcroissant"]]
+        # Re-filter so changes to which validator warnings we ignore apply to cached results too.
+        mlc = [f for f in (Finding(**d) for d in previous["mlcroissant"]) if checks.is_useful_mlcroissant_finding(f)]
     elif mlcroissant in (MLC_ALWAYS, MLC_CHANGED):
         mlc = checks.run_mlcroissant(kb.croissant_path)
     if mlc:
@@ -115,7 +116,7 @@ def run_all_checks(
         findings += [Finding(**f) for f in previous.get("online_findings", [])]
 
     findings = checks.sort_findings(findings)
-    online_checks = {"grounding_mismatch", "grounding_unverified", "grounding_no_source", "broken_link"}
+    online_checks = {"grounding_mismatch", "grounding_unverified", "grounding_no_source", "broken_link", "link_needs_login", "grounding_citation_reformatted"}
     results = {
         "kb": kb.name,
         "slug": kb.slug,
