@@ -9,7 +9,7 @@
  * All text from croissants goes into the page with textContent, never as HTML.
  */
 (function () {
-  var PAGE = 50, CHUNK = 100, FILE_LIST = 20;
+  var PAGE = 50, CHUNK = 100;
   var SEV = { problem: 'Needs fixing', warning: 'Worth checking', note: 'Nice to have' };
   var ICON = { folder: '📁', archive: '🗜️', group: '🗂️', family: '🗂️',
                formats: '📑', fileset: '🗃️', file: '📄' };
@@ -223,6 +223,36 @@
     return body;
   }
 
+  // ── Loading files: the short rows up front, full details per chunk when opened ─
+  function fileStore(opts) {
+    var tree = null, chunks = {}, byPath = null;
+    function load() {
+      if (!tree) tree = getJSON(opts.treeUrl, opts.version);
+      return tree;
+    }
+    function details(i) {
+      return load().then(function (data) {
+        var k = Math.floor(i / data.chunk);
+        if (!chunks[k]) chunks[k] = getJSON(opts.detailsBase + k + '.json', opts.version);
+        return chunks[k].then(function (list) { return list[i - k * data.chunk]; });
+      });
+    }
+    function indexOf(path) {
+      return load().then(function (data) {
+        if (!byPath) { byPath = {}; data.files.forEach(function (row, i) { byPath[row[0]] = i; }); }
+        return byPath[path];
+      });
+    }
+    // Put a file's details into `container`, showing progress and any failure.
+    function fill(container, i) {
+      var wait = el('p', 'muted small', 'Loading\u2026');
+      container.appendChild(wait);
+      details(i).then(function (f) { container.replaceChild(fileDetails(f, opts), wait); })
+        .catch(function (e) { wait.textContent = 'Sorry, the details didn\u2019t load (' + e.message + ').'; });
+    }
+    return { load: load, indexOf: indexOf, fill: fill };
+  }
+
   // ── Files: the folder tree, with search ──────────────────────────────────
   // files-tree.json rows: [path, kind, size, needs a look (0/1), rank]
   var PATH = 0, KIND = 1, SIZE = 2, LOOK = 3, RANK = 4;
@@ -230,19 +260,8 @@
   function files(root, opts) {
     var c = controls(root, 'Search file names and folders…');
     var state = { q: '', lookOnly: false, page: 0 };
-    var data = null, chunks = {};
-
-    function details(i) {
-      var k = Math.floor(i / data.chunk);
-      if (!chunks[k]) chunks[k] = getJSON(opts.detailsBase + k + '.json', opts.version);
-      return chunks[k].then(function (list) { return list[i - k * data.chunk]; });
-    }
-    function fillDetails(container, i) {
-      var wait = el('p', 'muted small', 'Loading…');
-      container.appendChild(wait);
-      details(i).then(function (f) { container.replaceChild(fileDetails(f, opts), wait); })
-        .catch(function (e) { wait.textContent = 'Sorry, the details didn’t load (' + e.message + ').'; });
-    }
+    var data = null, store = fileStore(opts);
+    var fillDetails = store.fill;
     function nodeMeta(n) {
       var bits = [];
       if (n.type === 'group') bits.push(plural(n.count, n.of === 'files' ? 'file' : 'folder') + ' named like this');
@@ -317,7 +336,7 @@
     c.look.addEventListener('change', function () { state.lookOnly = c.look.checked; state.page = 0; render(); });
     c.prev.addEventListener('click', function () { state.page--; render(); root.scrollIntoView(); });
     c.next.addEventListener('click', function () { state.page++; render(); root.scrollIntoView(); });
-    getJSON(opts.treeUrl, opts.version).then(function (d) { data = d; render(); })
+    store.load().then(function (d) { data = d; render(); })
       .catch(function (e) { c.status.textContent = 'Sorry, the files didn’t load (' + e.message + ').'; });
   }
 
@@ -326,7 +345,7 @@
     var c = controls(root, 'Search table kinds, columns and files\u2026');
     var state = { q: new URLSearchParams(location.search).get('q') || '', lookOnly: false, page: 0 };
     c.q.value = state.q;
-    var data = null;
+    var data = null, files = fileStore(opts);
 
     function kindIssues(kind) {
       var seen = {};
@@ -363,13 +382,32 @@
       box.appendChild(ul);
       return box;
     }
+    // Every file of a kind, in a section that starts closed.
     function fileList(paths) {
-      var box = el('div', 'family-files');
-      box.appendChild(el('p', 'small muted', paths.length === 1 ? 'In this file:' : 'In these ' + paths.length.toLocaleString() + ' files:'));
-      var ul = el('ul', 'file-list');
-      chunked(ul, paths, function (p) { var li = el('li'); li.appendChild(pathLabel(p)); return li; }, FILE_LIST);
-      box.appendChild(ul);
-      return box;
+      var d = el('details', 'family-files');
+      d.appendChild(el('summary', 'small', paths.length === 1 ? 'In this file' : 'In these ' + paths.length.toLocaleString() + ' files'));
+      onFirstOpen(d, function () {
+        var ul = el('ul', 'file-list');
+        paths.forEach(function (p) {
+          var li = el('li');
+          var fd = el('details', 'file-entry');
+          var fs = el('summary');
+          fs.appendChild(pathLabel(p));
+          fd.appendChild(fs);
+          onFirstOpen(fd, function () {
+            var box = el('div');
+            fd.appendChild(box);
+            files.indexOf(p).then(function (i) {
+              if (i === undefined) box.appendChild(el('p', 'muted small', 'This file isn\u2019t in the list of files.'));
+              else files.fill(box, i);
+            });
+          });
+          li.appendChild(fd);
+          ul.appendChild(li);
+        });
+        d.appendChild(ul);
+      });
+      return d;
     }
     function kindCard(kind, inGroup) {
       var li = el('li', 'item' + (kind.look ? ' item-look' : '') + (inGroup ? ' item-in-group' : ''));

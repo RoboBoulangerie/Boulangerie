@@ -239,3 +239,6 @@ code { font-size: 0.88em; background: var(--butter); padding: 0.05em 0.35em; bor
 .example { overflow-wrap: anywhere; }
 .item-group > details > .item-body > .items { margin-top: 4px; }
 .item-in-group { margin-left: 4px; }
+.family-files > summary { cursor: pointer; color: var(--muted); margin: 8px 0 4px; }
+.file-entry > summary { cursor: pointer; padding: 2px 0; }
+.file-entry .item-body { margin: 4px 0 8px 1em; }

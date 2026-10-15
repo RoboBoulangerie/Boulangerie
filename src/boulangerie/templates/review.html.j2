@@ -20,7 +20,9 @@
 <script src="{{ root }}static/browse.js?v={{ build }}"></script>
 <script>
   Boulangerie.tables(document.getElementById('table-browser'), {
-    url: '../tables.json', version: {{ build|tojson }}, tableForm: {{ forms['table-problem']|tojson }}
+    url: '../tables.json', version: {{ build|tojson }},
+    treeUrl: '../files-tree.json', detailsBase: '../files/', tablesUrl: 'index.html',
+    fileForm: {{ forms['file-problem']|tojson }}, tableForm: {{ forms['table-problem']|tojson }}
   });
 </script>
 {% endblock %}

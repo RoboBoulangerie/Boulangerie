@@ -156,3 +156,10 @@ def test_friendly_names_handle_codes_repeats_and_places():
         "Harmonized PGS hmPOS GRCh (TXT)"
     assert organize.friendly_name("*.csv in rwd › data › surflex › surflex.tar › * and data › surflex › *") == "Surflex (CSV)"
     assert organize.friendly_name("2026 › 01 › CADRE_Core_Data_Elements_2025_10_07.csv") == "CADRE core data elements (CSV)"
+
+
+def test_files_of_a_kind_are_in_date_order():
+    record_sets = [_rs(i, ["a"], f"f{i}") for i in range(3)]
+    paths = {"f0": "01-Apr-2022 › x.tsv", "f1": "01-Aug-2021 › x.tsv", "f2": "01-Jan-2023 › x.tsv"}
+    [kind] = organize.build_table_kinds(record_sets, paths, [False] * 3)
+    assert kind["files"] == ["01-Aug-2021 › x.tsv", "01-Apr-2022 › x.tsv", "01-Jan-2023 › x.tsv"]

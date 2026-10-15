@@ -278,7 +278,12 @@ def _columns(fields: list[dict], prefix: str = "") -> list[list[str]]:
 
 
 def _natural_sorted(names) -> list[str]:
-    return sorted(names, key=lambda n: [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", n)])
+    """Dated names in date order (01-Aug-2021 before 01-Apr-2022), then natural order (file_2 before file_10)."""
+    def key(n):
+        date = name_date(n)
+        natural = [(0, int(t), "") if t.isdigit() else (1, 0, t.lower()) for t in re.split(r"(\d+)", n)]
+        return (date is None, date or datetime.date.min, natural)
+    return sorted(names, key=key)
 
 
 def _sources(fields: list[dict]) -> set[str]:
