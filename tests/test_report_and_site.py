@@ -87,6 +87,8 @@ def test_build_site(kbs_dir, tmp_path):
     assert 'id="file-browser"' in page and 'id="table-browser"' in page and "static/browse.js" in page
     assert (out / "kb" / "tiny-kb" / "review" / "index.html").exists()
     assert (out / "static" / "browse.js").exists()
+    crawler = (out / "crawler" / "index.html").read_text()
+    assert "RoboCroissantBot/1.0" in crawler and "User-agent: RoboCroissantBot" in crawler
 
 
 def test_parse_and_show_sizes():

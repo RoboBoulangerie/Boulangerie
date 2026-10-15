@@ -186,6 +186,29 @@ FORMS = {f.key: f for f in [
         ],
     ),
     Form(
+        key="crawler-access",
+        name="Let our crawler in",
+        about="Tell us how you've allowed RoboCroissantBot to read your site, or ask for help.",
+        title="Crawler access for {kb}",
+        intro="Thanks for letting us in! See https://roboboulangerie.github.io/Boulangerie/crawler/ for the options.\n\n"
+              "**Never paste a password, token or secret header value here.** GitHub issues are public. Tell us "
+              "you've set one up, and we'll arrange to get the value from you privately.",
+        fields=[
+            _dropdown("method", "How did you let us in?", [
+                "I allowed RoboCroissantBot in robots.txt",
+                "I added a firewall exception for your IP addresses (please send them)",
+                "I want to use a secret header (contact me privately)",
+                "I published a list of our files",
+                "I'm not sure, or I need help",
+            ]),
+            _input("url", "Link to your file list, if you published one"),
+            _textarea("details", "Anything else we should know? (optional)",
+                      "Which parts of your site we may read, a rate limit, or who to contact. No secrets, please."),
+        ],
+        thanks="Thank you! A member of our team will follow up here. If you're using a secret header, we'll contact "
+               "you privately for the value, so please don't post it here.",
+    ),
+    Form(
         key="download-page",
         name="A better download page",
         about="Point us at the best page for finding your downloads.",

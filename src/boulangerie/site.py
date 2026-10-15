@@ -12,6 +12,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 from boulangerie import checks, config, feedback, report, review, summary
 from boulangerie.catalog import REPO_ROOT, KnowledgeBase, read_confidence, read_croissant, read_provenance
 from boulangerie.checks import Finding
+from boulangerie import online
 from boulangerie.online import MATCH_EXACT, MATCH_NORMALIZED
 
 STATIC_DIR = Path(__file__).parent / "static"
@@ -189,6 +190,9 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
         })
 
     (out_dir / "index.html").write_text(env.get_template("index.html.j2").render(root="", cards=cards), encoding="utf-8")
+    (out_dir / "crawler").mkdir()
+    (out_dir / "crawler" / "index.html").write_text(env.get_template("crawler.html.j2").render(
+        root="../", user_agent=online.USER_AGENT, link_sample=online.LINK_SAMPLE), encoding="utf-8")
     (out_dir / "about").mkdir()
     (out_dir / "about" / "index.html").write_text(
         env.get_template("about.html.j2").render(root="../"), encoding="utf-8")

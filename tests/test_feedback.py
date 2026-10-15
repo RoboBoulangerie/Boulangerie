@@ -158,3 +158,14 @@ def test_pr_body_mentions_issue_and_notes():
     assert "Closes #7" in body
     assert "_(empty)_" in body
     assert "hello" in body
+
+
+def test_crawler_access_form_goes_to_a_person_and_warns_about_secrets():
+    form = feedback.FORMS["crawler-access"]
+    assert not form.applies_changes
+    assert "Never paste a password, token or secret" in form.intro
+    body = ("### Which resource is this about?\n\ncivic\n\n### How did you let us in?\n\n"
+            "I allowed RoboCroissantBot in robots.txt\n\n### Link to your file list, if you published one\n\n_No response_\n")
+    key, answers = feedback.parse_issue_form(body)
+    assert key == "crawler-access"
+    assert answers == {"kb": "civic", "method": "I allowed RoboCroissantBot in robots.txt"}

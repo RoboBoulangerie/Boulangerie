@@ -1,0 +1,62 @@
+{% extends "base.html.j2" %}
+{% block title %}Our crawler · Boulangerie{% endblock %}
+{% block description %}What RoboCroissantBot fetches from your site, and how to let it in.{% endblock %}
+{% block content %}
+<article class="prose crawler">
+  <h1>Our crawler, and how to let it in</h1>
+  <p class="lede">To write your croissant, we read your public download pages and the files they list. Some sites
+    block automated visitors, through <code>robots.txt</code> or a service like Cloudflare. That's your choice, and
+    we respect it. If you'd like your croissant to be complete, here's how to let our crawler in, and only ours.</p>
+
+  <h2>Who we are</h2>
+  <p>Our crawler identifies itself in every request with this user agent:</p>
+  <pre><code>{{ user_agent }}</code></pre>
+  <ul>
+    <li><strong>What it fetches:</strong> your download pages, the files they list, and the pages that describe your
+      resource (about, license, how to cite).</li>
+    <li><strong>How often:</strong> a full read when we rebuild croissants (about once a month), and a weekly check of
+      a small sample of download links (at most {{ link_sample }} per resource).</li>
+    <li><strong>How fast:</strong> at most one request per second to your site, slower if your
+      <code>robots.txt</code> sets a <code>Crawl-delay</code>.</li>
+    <li><strong>Who runs it:</strong> the Renaissance Computing Institute (RENCI) at UNC-Chapel Hill.
+      <a href="https://github.com/{{ repo }}/issues/new?template=crawler-access.yml">Contact us</a> any time.</li>
+  </ul>
+
+  <h2>Ways to let us in</h2>
+  <p>Pick whichever suits your site. Then <a href="https://github.com/{{ repo }}/issues/new?template=crawler-access.yml">tell
+    us which you chose</a>, so we can start using it.</p>
+
+  <h3>1. Allow us in <code>robots.txt</code></h3>
+  <p>If your site blocks crawlers through <code>robots.txt</code>, add a section for ours. Everyone else stays
+    blocked. Limit it to the parts of your site we need:</p>
+  <pre><code>User-agent: RoboCroissantBot
+Allow: /downloads/
+Allow: /about/
+Crawl-delay: 2</code></pre>
+
+  <h3>2. Let us through your firewall (Cloudflare and similar)</h3>
+  <p>A <code>robots.txt</code> rule doesn't get us past a firewall or a "checking your browser" page. Your site's
+    administrator can add an exception for our requests. Because anyone can copy a user agent, an exception should
+    also check one of these:</p>
+  <ul>
+    <li><strong>Our addresses.</strong> We crawl from a fixed set of IP addresses at RENCI. Ask us for the current
+      list.</li>
+    <li><strong>A secret header.</strong> You choose a value, and we send it with every request as
+      <code>X-Croissant-Access</code>. Tell us you've set one up, and we'll arrange to get the value from you
+      privately. Please <strong>never post it in a GitHub issue</strong>, since issues are public.</li>
+  </ul>
+  <p>In Cloudflare, this is a custom rule with the action "Skip", matching our user agent and our addresses or
+    header. Some settings, such as Bot Fight Mode on the free plan, can't make exceptions. If that's what's
+    blocking us, option 3 may be easier.</p>
+
+  <h3>3. Publish a list of your files</h3>
+  <p>Often the simplest. Put a list of your downloadable files at a fixed address: a sitemap, a JSON or text
+    file with one link per line, or a page listing them all. Then we read that one file instead of crawling, and we
+    only need to be able to download the files it lists.</p>
+
+  <h2>To block us</h2>
+  <p>Add this to your <code>robots.txt</code>, and we'll stop:</p>
+  <pre><code>User-agent: RoboCroissantBot
+Disallow: /</code></pre>
+</article>
+{% endblock %}

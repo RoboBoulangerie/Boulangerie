@@ -19,7 +19,9 @@ import requests
 from boulangerie.checks import NOTE, WARNING, Finding
 
 HTTP_TIMEOUT = 20
-USER_AGENT = "Boulangerie croissant checker (+https://github.com/RoboBoulangerie/Boulangerie)"
+# The same identity as the pipeline's crawler, so a site that lets one in lets in both. See /crawler/ on the site.
+USER_AGENT = "RoboCroissantBot/1.0 (+https://roboboulangerie.github.io/Boulangerie/crawler/)"
+LINK_SAMPLE = 60  # download links checked per KB per weekly run
 
 # Dataset-level text fields whose wording should come straight from the KB's own pages.
 GROUNDED_FIELDS = ("name", "description", "citeAs", "conditionsOfAccess")
@@ -211,7 +213,7 @@ def link_kind(dist: dict) -> tuple[str, str]:
     return (parts.netloc + "/" + "/".join(folders), str(dist.get("encodingFormat") or ""))
 
 
-def sample_links(croissant: dict, sample_size: int = 60, seed: str = "") -> tuple[list[tuple[int, str]], int, int]:
+def sample_links(croissant: dict, sample_size: int = LINK_SAMPLE, seed: str = "") -> tuple[list[tuple[int, str]], int, int]:
     """A deterministic sample of download links that covers every kind of file before repeating any.
 
     Kinds are where a file sits (host and first two folders) and its file type, so BindingDB's monthly zips
@@ -237,7 +239,7 @@ def sample_links(croissant: dict, sample_size: int = 60, seed: str = "") -> tupl
     return sorted(sample), len(candidates), len(by_kind)
 
 
-def check_links(croissant: dict, sample_size: int = 60, seed: str = "") -> tuple[list[Finding], dict]:
+def check_links(croissant: dict, sample_size: int = LINK_SAMPLE, seed: str = "") -> tuple[list[Finding], dict]:
     """Check a sample of download links that covers every kind of file. Returns findings and a summary."""
     sample, total, kinds = sample_links(croissant, sample_size, seed)
     with ThreadPoolExecutor(max_workers=10) as pool:
