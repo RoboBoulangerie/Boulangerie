@@ -129,3 +129,29 @@ def test_dated_names_sort_by_date():
     tree = organize.build_file_tree(dists, [False] * 4)
     assert [c["name"] for c in tree["children"]] == ["01-May-2015", "01-Apr-2016", "01-Jul-2026", "nightly"]
     assert organize.name_date("release-07-27-20").isoformat() == "2020-07-27"
+
+
+def test_friendly_names_for_kinds_of_tables():
+    assert organize.friendly_name("* › *-FeatureSummaries.tsv") == "Feature summaries (TSV)"
+    assert organize.friendly_name("annotations › gaf › *.gaf.gz (and 1 file named differently)") == "Annotations (GAF)"
+    assert organize.friendly_name("ontologies › ICF-d* › download?download_format=csv") == "Ontologies ICF"
+    assert organize.friendly_name("INTERACTION-*.tsv.gz") == "Interaction (TSV)"
+    assert organize.friendly_name("CTD_chem_gene_ixns.*.gz") == "CTD chem gene ixns"
+    # When the pattern says nothing, the example file does.
+    assert organize.friendly_name("release-* › output › *", "release-1 › output › added_data.tsv") == "Added data (TSV)"
+
+
+def test_example_file_is_the_newest_when_files_are_dated():
+    record_sets = [_rs(i, ["a"], f"f{i}") for i in range(3)]
+    paths = {"f0": "01-Apr-2016 › 01-Apr-2016-X.tsv", "f1": "01-Jul-2026 › 01-Jul-2026-X.tsv",
+             "f2": "01-May-2015 › 01-May-2015-X.tsv"}
+    [family] = organize.build_table_families(record_sets, paths, [False] * 3)
+    assert family["example"] == "01-Jul-2026 › 01-Jul-2026-X.tsv"
+
+
+def test_friendly_names_handle_codes_repeats_and_places():
+    assert organize.friendly_name("* › *-VariantGroupSummaries.tsv") == "Variant group summaries (TSV)"
+    assert organize.friendly_name("scores › PGS* › ScoringFiles › Harmonized › PGS*_hmPOS_GRCh*.txt.gz") == \
+        "Harmonized PGS hmPOS GRCh (TXT)"
+    assert organize.friendly_name("*.csv in rwd › data › surflex › surflex.tar › * and data › surflex › *") == "Surflex (CSV)"
+    assert organize.friendly_name("2026 › 01 › CADRE_Core_Data_Elements_2025_10_07.csv") == "CADRE core data elements (CSV)"

@@ -252,8 +252,12 @@ def build_table_families(record_sets: list[dict], file_paths: dict[str, str], lo
             layout["extra"] = [c for c in layout["columns"] if c[0] not in common_names]
         family_layouts.sort(key=lambda l: (-l["look"], -len(l["tables"])))
         files = _natural_sorted({f for l in family_layouts for f in l["files"]})
+        name = _family_name(record_sets, members, files)
+        example = _representative(files)
         out.append({
-            "name": _family_name(record_sets, members, files),
+            "name": name,
+            "title": friendly_name(name, example),
+            "example": example,
             "common": common,
             "layouts": family_layouts,
             "files": len(files),
@@ -261,6 +265,15 @@ def build_table_families(record_sets: list[dict], file_paths: dict[str, str], lo
             "look": sum(l["look"] for l in family_layouts),
         })
     return sorted(_merge_same_name(out), key=lambda f: (f["look"] == 0, -f["tables"], f["name"].lower()))
+
+
+def _representative(files: list[str]) -> str:
+    """An example file to show for a family: the newest, if the files are dated, else the first."""
+    if not files:
+        return ""
+    dated = [(name_date(f), f) for f in files]
+    dated = [(d, f) for d, f in dated if d]
+    return max(dated)[1] if dated else files[0]
 
 
 def _merge_same_name(families: list[dict]) -> list[dict]:
@@ -280,6 +293,8 @@ def _merge_same_name(families: list[dict]) -> list[dict]:
         layouts.sort(key=lambda l: (-l["look"], -len(l["tables"])))
         merged.append({
             "name": name,
+            "title": group[0]["title"],
+            "example": group[0]["example"],
             "common": [c for c in layouts[0]["columns"] if c[0] in common_names],
             "layouts": layouts,
             "files": sum(f["files"] for f in group),
@@ -555,3 +570,94 @@ def _group_flat(children: list[dict]) -> list[dict]:
             "look": sum(m["look"] for m in members),
         })
     return others + grouped
+
+
+# ── Plain names for kinds of tables ──────────────────────────────────────────
+
+_MONTH_WORDS = {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "sept", "oct", "nov", "dec"}
+_COMPRESSION_EXTS = {"gz", "zip", "bz2", "xz", "tgz", "tar"}
+_FORMAT_EXTS = {"csv", "tsv", "txt", "json", "jsonl", "ndjson", "xml", "vcf", "xlsx", "xls", "tab", "parquet", "gmt",
+                "chip", "obo", "owl", "gaf", "gpad", "gpi", "gff", "gff3", "gtf", "fasta", "fa", "sdf", "mol2", "pdb",
+                "ttl", "nt", "db", "dat", "sql"}
+# Words that say nothing about what a file holds.
+_GENERIC_WORDS = {"download", "downloads", "content", "contents", "search", "files", "file", "data", "export",
+                  "index", "output", "release", "current", "latest", "all", "tar", "zip"}
+_HEXLIKE = re.compile(r"^[0-9a-f]{8,}$", re.IGNORECASE)
+
+
+def _split_words(text: str) -> list[str]:
+    # Split joined words, but not codes: FeatureSummaries -> Feature Summaries, NCBITaxon -> NCBI Taxon,
+    # while hmPOS and GRCh stay whole.
+    text = re.sub(r"(?<=[a-z])(?=[A-Z][a-z]{2,})", " ", text)
+    text = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z]{2,})", " ", text)
+    return [w for w in re.split(r"[-_.\s*%+=&]+", text) if w]
+
+
+def _segment_words(segment: str) -> tuple[list[str], str]:
+    """The meaningful words in one path segment, and the file format its extension names."""
+    segment = segment.split("?")[0]
+    fmt = ""
+    while "." in segment and segment.rsplit(".", 1)[1].lower() in _FORMAT_EXTS | _COMPRESSION_EXTS:
+        segment, ext = segment.rsplit(".", 1)
+        if ext.lower() in _FORMAT_EXTS and not fmt:
+            fmt = ext.lower()
+    words: list[str] = []
+    for w in _split_words(segment):
+        lw = w.lower()
+        if (w.isdigit() or lw in _MONTH_WORDS or len(w) < 2 or _HEXLIKE.match(w) or lw == fmt
+                or re.fullmatch(r"v?\d[\d.]*", lw) or lw in (x.lower() for x in words)):
+            continue
+        words.append(w)
+    return words, fmt
+
+
+def _is_plain_word(word: str) -> bool:
+    """An ordinary word ('summaries', 'Harmonized'), as opposed to a code ('hmPOS', 'GRCh', 'PGS')."""
+    return len(word) >= 4 and word.isalpha() and (word.islower() or (word[0].isupper() and word[1:].islower()))
+
+
+def _sentence_case(words: list[str]) -> str:
+    out = []
+    for i, w in enumerate(words):
+        # Short all-caps words are acronyms (CTD, CADRE, NCBI); long ones are shouting (INTERACTION).
+        acronym = (w.isupper() and len(w) <= 5) or (any(c.isupper() for c in w[1:]) and not w.isupper())
+        if acronym:
+            out.append(w)
+        else:
+            out.append(w.capitalize() if i == 0 else w.lower())
+    return " ".join(out)
+
+
+def friendly_name(pattern: str, example: str = "") -> str:
+    """A plain name for a kind of table, from its file pattern: '* › *-FeatureSummaries.tsv' -> 'Feature summaries (TSV)'.
+
+    Uses the words in the file name, adding the folder's when the file name says too little, and the format.
+    Falls back to the words of an example file.
+    """
+    pattern = pattern.split(" (and ")[0]
+    if " in " in pattern:
+        # "*.csv in A › * and B": the file pattern, sitting in the first place named.
+        files, places = pattern.split(" in ", 1)
+        pattern = places.split(" and ")[0].replace(" › *", "") + " › " + files
+    parts = [p for p in pattern.split(" › ") if p]
+    words, fmt = _segment_words(parts[-1]) if parts else ([], "")
+    meaningful = [w for w in words if w.lower() not in _GENERIC_WORDS and len(w) >= 3]
+    folders = parts[:-1]
+    # Climb into folder names while the file name says too little, or is nothing but codes (PGS*_hmPOS_GRCh*).
+    while not any(_is_plain_word(w) for w in meaningful) and folders:
+        folder_words, folder_fmt = _segment_words(folders.pop())
+        fmt = fmt or folder_fmt
+        folder_words = [w for w in folder_words if w.lower() not in _GENERIC_WORDS | _FORMAT_EXTS]
+        if folder_words:
+            seen = {w.lower() for w in folder_words}
+            words = folder_words + [w for w in words if w.lower() not in _GENERIC_WORDS and w.lower() not in seen]
+            meaningful = [w for w in words if len(w) >= 3]
+    words = [w for w in words if w.lower() not in _FORMAT_EXTS]
+    if not words and example:
+        words, example_fmt = _segment_words(example.split(" › ")[-1])
+        fmt = fmt or example_fmt
+        words = [w for w in words if w.lower() not in _FORMAT_EXTS]
+    if not words:
+        return f"{fmt.upper()} files" if fmt else "Tables"
+    title = _sentence_case(words)
+    return f"{title} ({fmt.upper()})" if fmt else title

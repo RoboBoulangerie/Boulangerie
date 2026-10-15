@@ -97,9 +97,10 @@
   <ul class="families">
     {% for fam in families %}
     <li>
-      <span class="path">{% set parts = fam.name.split(" › ") %}{% if parts|length > 1 %}<span class="path-folders">{{ parts[:-1]|join(" › ") }} › </span>{% endif %}<strong>{{ parts[-1] }}</strong></span>
+      <strong class="kind-title">{{ fam.title }}</strong>
       <span class="node-meta">{{ fam.files|thousands }} file{{ "" if fam.files == 1 else "s" }} ·
-        {% if fam.layouts|length == 1 %}{{ fam.layouts[0].columns|length }} columns{% else %}{{ fam.layouts|length|thousands }} column layouts{% endif %}</span>
+        {% if fam.layouts|length == 1 %}{{ fam.layouts[0].columns|length }} columns{% else %}{{ fam.layouts|length|thousands }} column layouts{% endif %}
+        {%- if fam.example %} · e.g. <span class="example">{{ fam.example }}</span>{% endif %}</span>
       {% if fam.layouts|length == 1 %}
       <p class="columns small">{% for c in fam.layouts[0].columns[:12] %}<code>{{ c[0] }}</code> {% endfor %}{% if fam.layouts[0].columns|length > 12 %}<span class="muted">…and {{ fam.layouts[0].columns|length - 12 }} more</span>{% endif %}</p>
       {% elif fam.common %}

@@ -114,7 +114,7 @@ def write_browse_data(review_data: dict, kb_dir: Path) -> None:
         chunk = []
         for f in files[start:start + DETAILS_CHUNK]:
             detail = {k: v for k, v in f.items() if k not in ("table_kinds", "rank", "order")}
-            detail["table_kind_names"] = [families[k]["name"] for k in f.get("table_kinds", [])]
+            detail["table_kind_names"] = [families[k]["title"] for k in f.get("table_kinds", [])]
             chunk.append(detail)
         (details_dir / f"{start // DETAILS_CHUNK}.json").write_text(_compact(chunk), encoding="utf-8")
     (kb_dir / "tables.json").write_text(_compact({

@@ -382,16 +382,23 @@
       var s = el('summary');
       var head = el('div', 'item-head');
       var badge = lookBadge(fam.look); if (badge) head.appendChild(badge);
-      head.appendChild(pathLabel(fam.name));
+      head.appendChild(el('strong', 'kind-title', fam.title));
       s.appendChild(head);
       var cols = fam.layouts.length === 1 ? plural(fam.layouts[0].columns.length, 'column')
         : plural(fam.layouts.length, 'column layout');
-      s.appendChild(el('span', 'item-meta', plural(fam.files, 'file') + ' · ' + cols));
+      var meta = el('span', 'item-meta', plural(fam.files, 'file') + ' · ' + cols + (fam.example ? ' · e.g. ' : ''));
+      if (fam.example) meta.appendChild(el('span', 'example', fam.example));
+      s.appendChild(meta);
       d.appendChild(s);
       onFirstOpen(d, function () {
         var body = el('div', 'item-body');
         var description = data.tables[fam.layouts[0].tables[0]].description;
         if (description && fam.tables === 1) body.appendChild(el('p', null, description));
+        if (fam.files > 1) {
+          var named = el('p', 'small muted', 'Files named like ');
+          named.appendChild(el('code', null, fam.name));
+          body.appendChild(named);
+        }
         if (fam.layouts.length === 1) {
           body.appendChild(chips(fam.layouts[0].columns));
           layoutBody(body, fam.layouts[0]);
@@ -425,7 +432,7 @@
           }, PAGE);
           body.appendChild(ul);
         }
-        body.appendChild(reportLink(opts.tableForm, fam.name, 'Something wrong with these tables? Tell us →'));
+        body.appendChild(reportLink(opts.tableForm, fam.title + ' (' + fam.name + ')', 'Something wrong with these tables? Tell us →'));
         d.appendChild(body);
       });
       li.appendChild(d);
@@ -439,7 +446,7 @@
       var has = function (t) { return t.toLowerCase().indexOf(q) !== -1; };
       var families = data.families.filter(function (fam) {
         if (state.lookOnly && !fam.look) return false;
-        if (!q || has(fam.name)) return true;
+        if (!q || has(fam.name) || has(fam.title)) return true;
         return fam.layouts.some(function (l) {
           return l.columns.some(function (col) { return has(col[0]); }) || l.files.some(has);
         });
