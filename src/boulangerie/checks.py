@@ -329,6 +329,51 @@ def check_record_sets(croissant: dict) -> list[Finding]:
     return findings
 
 
+TABULAR_FORMATS = {"text/csv", "text/tab-separated-values", "text/tsv", "text/vcf", "application/parquet",
+                   "application/vnd.apache.parquet", "application/jsonlines", "application/x-ndjson"}
+# For compressed files, whose type only says "gzip", the name tells us what's inside.
+TABULAR_SUFFIXES = (".csv", ".tsv", ".vcf", ".parquet", ".jsonl", ".ndjson")
+_COMPRESSION = re.compile(r"\.(gz|bz2|xz|zip)$", re.IGNORECASE)
+
+
+def looks_tabular(dist: dict) -> bool:
+    """Is this file a table, by its type or (for compressed files) its name?"""
+    formats = _as_list(dist.get("encodingFormat"))
+    if any(isinstance(f, str) and f.lower() in TABULAR_FORMATS for f in formats):
+        return True
+    name = _COMPRESSION.sub("", str(dist.get("name") or dist.get("contentUrl") or "")).lower()
+    return dist.get("@type") == "cr:FileObject" and name.endswith(TABULAR_SUFFIXES)
+
+
+def _table_sources(fields) -> set[str]:
+    ids = set()
+    for f in _as_list(fields):
+        source = f.get("source") or {}
+        for key in ("fileObject", "fileSet"):
+            ref = source.get(key)
+            if isinstance(ref, dict) and ref.get("@id"):
+                ids.add(ref["@id"])
+        ids |= _table_sources(f.get("subField"))
+    return ids
+
+
+def check_tables_described(croissant: dict) -> list[Finding]:
+    """Files that hold tables should say what their columns are."""
+    described = {i for rs in _as_list(croissant.get("recordSet")) for i in _table_sources(rs.get("field"))}
+    findings = []
+    for i, d in enumerate(_as_list(croissant.get("distribution"))):
+        if looks_tabular(d) and d.get("@id") not in described:
+            findings.append(Finding(
+                check="table_not_described", severity=WARNING, path=f"distribution[{i}]",
+                title="We didn't describe the columns of a table",
+                message="This file holds a table, but we didn't list its columns, so people can't tell what's in it "
+                        "without downloading it. We'll add them on our side.",
+                technical=f"{d.get('name') or d.get('contentUrl')} ({d.get('encodingFormat')}) has no recordSet "
+                          "whose fields read from it.",
+            ))
+    return findings
+
+
 OFFLINE_CHECKS = [
     check_core_fields,
     check_license_is_terms_page,
@@ -336,6 +381,7 @@ OFFLINE_CHECKS = [
     check_distributions,
     check_compressed_without_inner_file,
     check_record_sets,
+    check_tables_described,
 ]
 
 

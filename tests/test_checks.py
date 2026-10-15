@@ -144,3 +144,14 @@ def test_run_mlcroissant_on_real_file(tiny_kb):
     findings = checks.run_mlcroissant(tiny_kb.croissant_path)
     errors = [f.technical for f in findings if f.check == "mlcroissant_error"]
     assert any("file-missing" in e for e in errors)
+
+
+def test_tables_without_columns_are_flagged():
+    croissant = {"distribution": [
+        {"@id": "v", "@type": "cr:FileObject", "name": "x.vcf", "encodingFormat": "text/vcf"},
+        {"@id": "g", "@type": "cr:FileObject", "name": "genes.tsv.gz", "encodingFormat": "application/gzip"},
+        {"@id": "d", "@type": "cr:FileObject", "name": "manual.pdf", "encodingFormat": "application/pdf"},
+        {"@id": "t", "@type": "cr:FileObject", "name": "ok.csv", "encodingFormat": "text/csv"},
+    ], "recordSet": [{"field": [{"name": "a", "source": {"fileObject": {"@id": "t"}}}]}]}
+    flagged = [f.path for f in checks.check_tables_described(croissant)]
+    assert flagged == ["distribution[0]", "distribution[1]"]  # the VCF and the gzipped TSV, not the PDF

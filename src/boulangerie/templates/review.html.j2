@@ -157,7 +157,8 @@
       });
       fact('Tables in it', kinds);
     } else {
-      fact('Tables in it', 'None described (fine for documents, images and archives)');
+      fact('Tables in it', f.tabular ? 'None described yet. This file holds a table, so we should list its columns.'
+                                     : 'None (it isn\u2019t a table)');
     }
     if (!f.description) {
       body.appendChild(el('p', 'small muted', 'We don\u2019t have a description of this file yet. If you can tell us what it is, ' +

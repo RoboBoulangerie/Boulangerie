@@ -12,6 +12,7 @@ the ones most likely to be wrong come first:
 import re
 
 from boulangerie import organize, paths
+from boulangerie import checks
 from boulangerie.checks import SEVERITY_ORDER, WARNING, Finding
 from boulangerie.summary import format_name, human_size, parse_size
 
@@ -123,6 +124,7 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
             "modified": d.get("dateModified") or "",
             "same_as": [x for x in (d.get("sameAs") if isinstance(d.get("sameAs"), list) else [d.get("sameAs")])
                         if isinstance(x, str)],
+            "tabular": checks.looks_tabular(d),
             "link_check": (_link_status((link_checks or {})[str(order)]) + (f", {checked_at[:10]}" if checked_at else ""))
                           if str(order) in (link_checks or {}) else "",
             "confidence": conf.get("confidence") if conf else None,
