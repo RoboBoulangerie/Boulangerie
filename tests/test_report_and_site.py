@@ -113,3 +113,8 @@ def test_link_dois_escapes_everything_else():
     assert "&lt;b&gt;Tiny&lt;/b&gt; &amp; co" in html
     assert '<a href="https://doi.org/10.1234/a">10.1234/a</a>&lt;b&gt;' in html
     assert str(summary.link_dois("No identifiers here.")) == "No identifiers here."
+
+
+def test_link_dois_written_as_bare_doi_org():
+    html = str(summary.link_dois("Nat Genet. 49, 170–174 (2017); doi: doi.org/10.1038/ng.3774. *Equal"))
+    assert 'doi: <a href="https://doi.org/10.1038/ng.3774">doi.org/10.1038/ng.3774</a>. *Equal' in html

@@ -176,8 +176,8 @@ def summarize(croissant: dict, max_examples: int = 8) -> dict:
     }
 
 
-# A DOI, optionally written as a doi.org link. Trailing punctuation from the surrounding sentence isn't part of it.
-_DOI = re.compile(r"(?:https?://(?:dx\.)?doi\.org/)?(10\.\d{4,9}/[^\s\"<>]+)", re.IGNORECASE)
+# A DOI, optionally written as a doi.org link (with or without https://). Trailing punctuation from the surrounding sentence isn't part of it.
+_DOI = re.compile(r"(?:(?:https?://)?(?:dx\.)?doi\.org/)?(10\.\d{4,9}/[^\s\"<>]+)", re.IGNORECASE)
 _DOI_TRAILING = ".,;:)]}'"
 
 
