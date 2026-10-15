@@ -68,10 +68,13 @@ with the page, and each file's full details load only when that file is opened, 
   - Folders with many loose files are grouped into families by name (CTD's `CTD_chem_*`, GlyGen's species),
     and copies of one dataset in several formats merge into one entry (`CTD_anatomy` · CSV, TSV, XML).
   - Folders open on demand, and long lists render 100 at a time.
-- **Tables, by kind.** Tables belong to one family if they have the same columns, or if their files share a path
-  pattern: PGS's 17,091 tables are 13 kinds, and Gene Ontology's 2,760 are 12. Within a family, each column
-  layout lists only the columns that differ from what the whole family shares. PGS's harmonized scoring files
-  come in 203 layouts over 6 shared columns. Each layout lists the files that use it.
+- **Tables, by kind.** A kind of table is one set of column headers: tables whose fields have the same names, read
+  the same way, wherever their files are. The recorded kind of value is ignored, because the pipeline guesses it from
+  each file's first rows; disagreements are shown as a note with counts. Files with similar names but different
+  headers are different kinds (CIViC's FeatureSummaries files are 5 kinds), so some KBs have many kinds with the
+  same plain name, told apart by their column count and an example file.
+- **Plain names** come from the files' names (dates, numbers, hashes, query strings and extensions dropped, joined
+  words split, codes kept whole), with the folder's name added when the file name is only codes, and the format.
 - **Search, or "only ones that need a look,"** switches to a flat list of matching files or table kinds,
   most-likely-wrong first, with each file's folder path shown.
 - **"Needs a look"** is ranked by check findings (worst first), then the pipeline's confidence below 0.9, then

@@ -4,7 +4,7 @@
  * files-tree.json (the tree plus one short row per file) up front, and each file's full details only when that
  * file is opened, from files/<chunk>.json, so even PGS Catalog's 17,000 files load quickly.
  *
- * Boulangerie.tables(root, opts) renders the kinds of tables from tables.json.
+ * Boulangerie.tables(root, opts) renders the kinds of tables (one set of columns each) from tables.json.
  *
  * All text from croissants goes into the page with textContent, never as HTML.
  */
@@ -319,16 +319,16 @@
       .catch(function (e) { c.status.textContent = 'Sorry, the files didn’t load (' + e.message + ').'; });
   }
 
-  // ── Tables: kinds of tables, then column layouts ─────────────────────────
+  // ── Tables: kinds of tables (one set of columns each) ────────────────────
   function tables(root, opts) {
-    var c = controls(root, 'Search table kinds, columns and files…');
+    var c = controls(root, 'Search table kinds, columns and files\u2026');
     var state = { q: new URLSearchParams(location.search).get('q') || '', lookOnly: false, page: 0 };
     c.q.value = state.q;
     var data = null;
 
-    function layoutIssues(layout) {
+    function kindIssues(kind) {
       var seen = {};
-      layout.tables.forEach(function (i) {
+      kind.tables.forEach(function (i) {
         data.tables[i].issues.forEach(function (x) {
           var key = x.severity + x.title;
           if (!seen[key]) seen[key] = { severity: x.severity, title: x.title, count: 0 };
@@ -337,20 +337,20 @@
       });
       return Object.keys(seen).map(function (k) { return seen[k]; });
     }
-    function layoutUnsure(layout) {
+    function kindUnsure(kind) {
       var out = [];
-      layout.tables.slice(0, 5).forEach(function (i) { out = out.concat(data.tables[i].unsure); });
+      kind.tables.slice(0, 5).forEach(function (i) { out = out.concat(data.tables[i].unsure); });
       return out.slice(0, 5);
     }
-    // Files that share a layout but disagree on a column's kind of value (guessed from each file's first rows).
-    function typeNotes(layout) {
-      if (!layout.types_vary || !layout.types_vary.length) return null;
+    // Files with the same columns that disagree on a column's kind of value (guessed from each file's first rows).
+    function typeNotes(kind) {
+      if (!kind.types_vary || !kind.types_vary.length) return null;
       var box = el('div', 'type-notes');
       box.appendChild(el('p', 'small', 'These files have the same columns, but the kind of value we recorded for some ' +
         'columns differs from file to file. Usually that means a column is mostly numbers with some text, or some files ' +
         'are mostly empty. Please tell us the right kind if you know it.'));
       var ul = el('ul', 'small');
-      layout.types_vary.forEach(function (v) {
+      kind.types_vary.forEach(function (v) {
         var li = el('li');
         li.appendChild(el('code', null, v.column));
         li.appendChild(document.createTextNode(': ' + v.types.map(function (t) {
@@ -369,70 +369,35 @@
       box.appendChild(ul);
       return box;
     }
-    function layoutBody(container, l) {
-      var notes = typeNotes(l); if (notes) container.appendChild(notes);
-      var issues = layoutIssues(l);
-      if (l.look && !issues.length) container.appendChild(el('p', 'why', WHY_FLAGGED));
-      issuesAndDoubts(container, issues, layoutUnsure(l));
-      container.appendChild(fileList(l.files));
-    }
-    function familyCard(fam) {
-      var li = el('li', 'item' + (fam.look ? ' item-look' : ''));
+    function kindCard(kind) {
+      var li = el('li', 'item' + (kind.look ? ' item-look' : ''));
       var d = el('details');
       var s = el('summary');
       var head = el('div', 'item-head');
-      var badge = lookBadge(fam.look); if (badge) head.appendChild(badge);
-      head.appendChild(el('strong', 'kind-title', fam.title));
+      var badge = lookBadge(kind.look); if (badge) head.appendChild(badge);
+      head.appendChild(el('strong', 'kind-title', kind.title));
       s.appendChild(head);
-      var cols = fam.layouts.length === 1 ? plural(fam.layouts[0].columns.length, 'column')
-        : plural(fam.layouts.length, 'column layout');
-      var meta = el('span', 'item-meta', plural(fam.files, 'file') + ' · ' + cols + (fam.example ? ' · e.g. ' : ''));
-      if (fam.example) meta.appendChild(el('span', 'example', fam.example));
+      var meta = el('span', 'item-meta', plural(kind.columns.length, 'column') + ' \u00b7 ' + plural(kind.files.length, 'file') +
+                    (kind.example ? ' \u00b7 e.g. ' : ''));
+      if (kind.example) meta.appendChild(el('span', 'example', kind.example));
       s.appendChild(meta);
       d.appendChild(s);
       onFirstOpen(d, function () {
         var body = el('div', 'item-body');
-        var description = data.tables[fam.layouts[0].tables[0]].description;
-        if (description && fam.tables === 1) body.appendChild(el('p', null, description));
-        if (fam.files > 1) {
+        var description = data.tables[kind.tables[0]].description;
+        if (description && kind.tables.length === 1) body.appendChild(el('p', null, description));
+        body.appendChild(chips(kind.columns));
+        var notes = typeNotes(kind); if (notes) body.appendChild(notes);
+        var issues = kindIssues(kind);
+        if (kind.look && !issues.length) body.appendChild(el('p', 'why', WHY_FLAGGED));
+        issuesAndDoubts(body, issues, kindUnsure(kind));
+        body.appendChild(fileList(kind.files));
+        if (kind.files.length > 1) {
           var named = el('p', 'small muted', 'Files named like ');
-          named.appendChild(el('code', null, fam.name));
+          named.appendChild(el('code', null, kind.name));
           body.appendChild(named);
         }
-        if (fam.layouts.length === 1) {
-          body.appendChild(chips(fam.layouts[0].columns));
-          layoutBody(body, fam.layouts[0]);
-        } else {
-          if (fam.common.length) {
-            body.appendChild(el('p', 'small', 'Columns every one of these files has:'));
-            body.appendChild(chips(fam.common));
-          }
-          body.appendChild(el('p', 'small', 'These files come in ' + fam.layouts.length.toLocaleString() +
-            ' layouts. Each one below lists only the columns that differ.'));
-          var ul = el('ul', 'layouts');
-          chunked(ul, fam.layouts.map(function (l, k) { return [l, k]; }), function (pair) {
-            var l = pair[0], k = pair[1];
-            var li2 = el('li', 'layout');
-            var d2 = el('details');
-            var s2 = el('summary');
-            var b2 = lookBadge(l.look); if (b2) s2.appendChild(b2);
-            s2.appendChild(el('strong', null, 'Layout ' + (k + 1)));
-            s2.appendChild(el('span', 'node-meta', plural(l.files.length, 'file') + ' · ' +
-              (l.extra.length ? 'also has ' + l.extra.slice(0, 4).map(function (x) { return x[0]; }).join(', ') +
-                (l.extra.length > 4 ? ' and ' + (l.extra.length - 4) + ' more' : '') : 'only the shared columns')));
-            d2.appendChild(s2);
-            onFirstOpen(d2, function () {
-              var b = el('div', 'item-body');
-              if (l.extra.length) b.appendChild(chips(l.extra));
-              layoutBody(b, l);
-              d2.appendChild(b);
-            });
-            li2.appendChild(d2);
-            return li2;
-          }, PAGE);
-          body.appendChild(ul);
-        }
-        body.appendChild(reportLink(opts.tableForm, fam.title + ' (' + fam.name + ')', 'Something wrong with these tables? Tell us →'));
+        body.appendChild(reportLink(opts.tableForm, kind.title + ' (' + kind.example + ')', 'Something wrong with these tables? Tell us \u2192'));
         d.appendChild(body);
       });
       li.appendChild(d);
@@ -441,24 +406,22 @@
     function render() {
       c.view.textContent = '';
       c.pager.hidden = true;
-      c.lookLabel.textContent = 'Only tables that need a look (' + data.counts.families_look.toLocaleString() + ' kinds)';
+      c.lookLabel.textContent = 'Only tables that need a look (' + data.counts.kinds_look.toLocaleString() + ' kinds)';
       var q = state.q.trim().toLowerCase();
       var has = function (t) { return t.toLowerCase().indexOf(q) !== -1; };
-      var families = data.families.filter(function (fam) {
-        if (state.lookOnly && !fam.look) return false;
-        if (!q || has(fam.name) || has(fam.title)) return true;
-        return fam.layouts.some(function (l) {
-          return l.columns.some(function (col) { return has(col[0]); }) || l.files.some(has);
-        });
+      var kinds = data.kinds.filter(function (kind) {
+        if (state.lookOnly && !kind.look) return false;
+        if (!q || has(kind.title) || has(kind.name)) return true;
+        return kind.columns.some(function (col) { return has(col[0]); }) || kind.files.some(has);
       });
-      pagedList(c, state, families, familyCard, 'kind of table');
+      pagedList(c, state, kinds, kindCard, 'kind of table');
     }
     c.q.addEventListener('input', function () { state.q = c.q.value; state.page = 0; render(); });
     c.look.addEventListener('change', function () { state.lookOnly = c.look.checked; state.page = 0; render(); });
     c.prev.addEventListener('click', function () { state.page--; render(); root.scrollIntoView(); });
     c.next.addEventListener('click', function () { state.page++; render(); root.scrollIntoView(); });
     getJSON(opts.url).then(function (d) { data = d; render(); })
-      .catch(function (e) { c.status.textContent = 'Sorry, the tables didn’t load (' + e.message + ').'; });
+      .catch(function (e) { c.status.textContent = 'Sorry, the tables didn\u2019t load (' + e.message + ').'; });
   }
 
   window.Boulangerie = { files: files, tables: tables };

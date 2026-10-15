@@ -155,7 +155,7 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
             "order": order,
         })
 
-    # Lists stay in croissant order (the tree and table families point into them by position);
+    # Lists stay in croissant order (the tree and table kinds point into them by position);
     # "rank" is each item's place in most-likely-wrong-first order.
     for items in (files, tables):
         for position, item in enumerate(sorted(items, key=lambda i: (i["rank"], i["order"]))):
@@ -165,24 +165,23 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
     for f in files:
         f["path"] = paths.get(f["id"], f["name"])
     tree = organize.build_file_tree(dists, [f["look"] for f in files])
-    families = organize.build_table_families(croissant.get("recordSet") or [], paths, [t["look"] for t in tables])
+    kinds = organize.build_table_kinds(croissant.get("recordSet") or [], paths, [t["look"] for t in tables])
     # Which kinds of tables each file holds.
     kinds_by_path: dict[str, list[int]] = {}
-    for k, family in enumerate(families):
-        for layout in family["layouts"]:
-            for path in layout["files"]:
-                kinds_by_path.setdefault(path, []).append(k)
+    for k, kind in enumerate(kinds):
+        for path in kind["files"]:
+            kinds_by_path.setdefault(path, []).append(k)
     for f in files:
         f["table_kinds"] = sorted(set(kinds_by_path.get(f["path"], [])))
     return {
         "files": files,
         "tables": tables,
         "tree": tree,
-        "families": families,
+        "kinds": kinds,
         "counts": {
             "files": len(files), "tables": len(tables),
             "files_look": sum(i["look"] for i in files), "tables_look": sum(i["look"] for i in tables),
-            "families": len(families), "families_look": sum(f["look"] > 0 for f in families),
+            "kinds": len(kinds), "kinds_look": sum(k["look"] > 0 for k in kinds),
         },
     }
 

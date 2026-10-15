@@ -7,13 +7,13 @@
 <section class="review-hero">
   <h1>The tables in your files</h1>
   <p class="lede">For files that hold tables, we listed the columns so people know what's inside before they
-    download. Files with the same kind of table are grouped together. Where those files differ in their columns, each
-    layout is listed separately. You know your data best, so please tell us what we got wrong.</p>
+    download. Files with exactly the same columns are grouped as one kind of table. You know your data best, so please
+    tell us what we got wrong.</p>
   <p><a href="../index.html#files">← Back to your files</a></p>
 </section>
 
 <section class="card review" id="tables">
-  <h2>{{ counts.families|thousands }} kind{{ "" if counts.families == 1 else "s" }} of tables</h2>
+  <h2>{{ counts.kinds|thousands }} kind{{ "" if counts.kinds == 1 else "s" }} of tables</h2>
   <div id="table-browser" class="browser"></div>
 </section>
 

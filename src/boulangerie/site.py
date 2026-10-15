@@ -102,7 +102,7 @@ def write_browse_data(review_data: dict, kb_dir: Path) -> None:
     - ``files/<n>.json``: full details for files n*500 to n*500+499, fetched when one of them is opened
     - ``tables.json``: the kinds of tables and their layouts
     """
-    families = review_data["families"]
+    kinds = review_data["kinds"]
     files = review_data["files"]
     rows = [[f["path"], f["kind"], f["size"], int(f["look"]), f["rank"]] for f in files]
     (kb_dir / "files-tree.json").write_text(_compact({
@@ -114,11 +114,11 @@ def write_browse_data(review_data: dict, kb_dir: Path) -> None:
         chunk = []
         for f in files[start:start + DETAILS_CHUNK]:
             detail = {k: v for k, v in f.items() if k not in ("table_kinds", "rank", "order")}
-            detail["table_kind_names"] = [families[k]["title"] for k in f.get("table_kinds", [])]
+            detail["table_kind_names"] = [kinds[k]["title"] for k in f.get("table_kinds", [])]
             chunk.append(detail)
         (details_dir / f"{start // DETAILS_CHUNK}.json").write_text(_compact(chunk), encoding="utf-8")
     (kb_dir / "tables.json").write_text(_compact({
-        "families": families, "tables": review_data["tables"], "counts": review_data["counts"],
+        "kinds": kinds, "tables": review_data["tables"], "counts": review_data["counts"],
     }), encoding="utf-8")
 
 
@@ -172,7 +172,7 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
             croissant_url=f"{config.SITE_URL.rstrip('/')}/kb/{kb.slug}/croissant.json",
             has_provenance=bool(provenance),
             review_counts=review_data["counts"],
-            families=review_data["families"][:8],
+            kinds=review_data["kinds"][:8],
             forms=forms,
         )
         (out_dir / "kb" / kb.slug / "index.html").write_text(page, encoding="utf-8")

@@ -63,36 +63,38 @@ def _rs(i, cols, file_id):
                                        for c in cols]}
 
 
-def test_table_families_group_by_path_pattern_and_layout():
+def test_kinds_of_tables_are_sets_of_columns_not_file_patterns():
     record_sets = [_rs(0, ["a", "b"], "s1"), _rs(1, ["a", "b", "c"], "s2"), _rs(2, ["a", "b"], "s3"),
                    _rs(3, ["x"], "m")]
     paths = {"s1": "scores › PGS000001.txt", "s2": "scores › PGS000002.txt", "s3": "scores › PGS000003.txt",
              "m": "metadata.csv"}
-    families = organize.build_table_families(record_sets, paths, [False, True, False, False])
-    scores, meta = families  # the one needing a look comes first
-    assert scores["name"] == "scores › PGS*.txt"
-    assert scores["look"] == 1 and scores["files"] == 3
-    assert scores["common"] == [["a", "Text"], ["b", "Text"]]
-    assert [l["extra"] for l in scores["layouts"]] == [[["c", "Text"]], []]
-    assert meta["name"] == "metadata.csv" and len(meta["layouts"]) == 1
+    kinds = organize.build_table_kinds(record_sets, paths, [False, True, False, False])
+    # Same file pattern, different columns: two kinds. The one needing a look comes first.
+    assert [(k["files"], [c[0] for c in k["columns"]]) for k in kinds] == [
+        (["scores › PGS000002.txt"], ["a", "b", "c"]),
+        (["metadata.csv"], ["x"]),
+        (["scores › PGS000001.txt", "scores › PGS000003.txt"], ["a", "b"]),
+    ]
+    assert kinds[0]["look"] == 1
+    assert kinds[2]["name"] == "scores › PGS*.txt"
 
 
-def test_tables_with_the_same_columns_share_a_family_even_with_unrelated_names():
+def test_tables_with_the_same_columns_are_one_kind_even_with_unrelated_names():
     record_sets = [_rs(0, ["id", "name"], "a"), _rs(1, ["id", "name"], "b")]
-    families = organize.build_table_families(record_sets, {"a": "human_x.csv", "b": "mouse_y.csv"}, [False, False])
-    assert len(families) == 1 and families[0]["files"] == 2
+    kinds = organize.build_table_kinds(record_sets, {"a": "human_x.csv", "b": "mouse_y.csv"}, [False, False])
+    assert len(kinds) == 1 and len(kinds[0]["files"]) == 2
 
 
 def test_family_names_only_mention_files_the_pattern_misses():
     record_sets = [_rs(i, ["a"], f"f{i}") for i in range(4)]
     paths = {"f0": "INTERACTION-GEN_FB.tsv.gz", "f1": "INTERACTION-MOL_HUMAN.tsv.gz",
              "f2": "INTERACTION-GEN_WB.tsv.gz", "f3": "INTERACTION-MOL_SARS-CoV-2.tsv.gz"}
-    [family] = organize.build_table_families(record_sets, paths, [False] * 4)
-    assert family["name"] == "INTERACTION-*.tsv.gz"  # the glob matches the odd one out too
+    [kind] = organize.build_table_kinds(record_sets, paths, [False] * 4)
+    assert kind["name"] == "INTERACTION-*.tsv.gz"  # the glob matches the odd one out too
 
     paths["f3"] = "summary.txt"
-    [family] = organize.build_table_families(record_sets, paths, [False] * 4)
-    assert family["name"].endswith("(and 1 file named differently)")
+    [kind] = organize.build_table_kinds(record_sets, paths, [False] * 4)
+    assert kind["name"].endswith("(and 1 file named differently)")
 
 
 def test_trim_partial_word():
@@ -101,7 +103,7 @@ def test_trim_partial_word():
     assert organize.trim_partial_word("CTD_chemicals", ["CTD_chemicals.csv", "CTD_chemicals_diseases.csv"]) == "CTD_chemicals"
 
 
-def test_layouts_ignore_recorded_types_but_report_disagreements():
+def test_kinds_ignore_recorded_types_but_report_disagreements():
     def rs(i, ic50_type, file_id):
         return {"@id": f"rs{i}", "field": [
             {"name": "Compound", "dataType": "sc:Text", "source": {"fileObject": {"@id": file_id}, "extract": {"column": "Compound"}}},
@@ -109,18 +111,17 @@ def test_layouts_ignore_recorded_types_but_report_disagreements():
         ]}
     record_sets = [rs(0, "sc:Integer", "a"), rs(1, "sc:Text", "b"), rs(2, "sc:Integer", "c")]
     paths = {"a": "x › 1A29.csv", "b": "x › 1AO8.csv", "c": "x › 1BCD.csv"}
-    [family] = organize.build_table_families(record_sets, paths, [False] * 3)
-    [layout] = family["layouts"]
-    assert layout["columns"] == [["Compound", "Text"], ["IC50", "Integer or Text"]]
-    assert layout["types_vary"] == [{"column": "IC50", "types": [["Integer", 2], ["Text", 1]]}]
+    [kind] = organize.build_table_kinds(record_sets, paths, [False] * 3)
+    assert kind["columns"] == [["Compound", "Text"], ["IC50", "Integer or Text"]]
+    assert kind["types_vary"] == [{"column": "IC50", "types": [["Integer", 2], ["Text", 1]]}]
 
 
 def test_files_in_two_places_are_named_by_file_and_places():
     paths = [f"rwd › surflex.tar › {i:04d}_X › {i:04d}.csv" for i in range(6)] + \
             [f"data › surflex › {i:04d}_X › {i:04d}.csv" for i in range(4)]
     record_sets = [_rs(i, ["a"], f"f{i}") for i in range(10)]
-    family = organize.build_table_families(record_sets, {f"f{i}": p for i, p in enumerate(paths)}, [False] * 10)[0]
-    assert family["name"] == "*.csv in rwd › surflex.tar › * and data › surflex › *"
+    kind = organize.build_table_kinds(record_sets, {f"f{i}": p for i, p in enumerate(paths)}, [False] * 10)[0]
+    assert kind["name"] == "*.csv in rwd › surflex.tar › * and data › surflex › *"
 
 
 def test_dated_names_sort_by_date():
@@ -145,8 +146,8 @@ def test_example_file_is_the_newest_when_files_are_dated():
     record_sets = [_rs(i, ["a"], f"f{i}") for i in range(3)]
     paths = {"f0": "01-Apr-2016 › 01-Apr-2016-X.tsv", "f1": "01-Jul-2026 › 01-Jul-2026-X.tsv",
              "f2": "01-May-2015 › 01-May-2015-X.tsv"}
-    [family] = organize.build_table_families(record_sets, paths, [False] * 3)
-    assert family["example"] == "01-Jul-2026 › 01-Jul-2026-X.tsv"
+    [kind] = organize.build_table_kinds(record_sets, paths, [False] * 3)
+    assert kind["example"] == "01-Jul-2026 › 01-Jul-2026-X.tsv"
 
 
 def test_friendly_names_handle_codes_repeats_and_places():

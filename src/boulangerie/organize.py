@@ -191,80 +191,40 @@ def relative_paths(dists: list[dict]) -> dict[str, str]:
     return {i: " › ".join(p[shared:]) for i, p in paths.items()}
 
 
-def build_table_families(record_sets: list[dict], file_paths: dict[str, str], look: list[bool]) -> list[dict]:
-    """Group tables the way people think of them: a family of files, then each column layout in it.
+def build_table_kinds(record_sets: list[dict], file_paths: dict[str, str], look: list[bool]) -> list[dict]:
+    """Group tables into kinds: a kind of table is one set of column headers, wherever its files are.
 
-    Tables are in the same family if they have the same columns, or if their files have the same path pattern
-    (digit runs and months as ``*``): GO's 2,130 GO-CAM models are one family, and so are PGS Catalog's scoring
-    files even though they come in 146 column layouts. Within a family, each layout lists only the columns that
-    differ from what the whole family shares (``common``).
+    Tables whose fields have the same names, read the same way, are one kind. The recorded kind of value
+    (dataType) is left out: the pipeline guesses it from a file's first rows, so identical files can disagree
+    (BindingDB's surflex CSVs differed only in whether Ki/IC50 were Text, Integer or Float). Files with similar
+    names but different headers are different kinds, even if their names match (CIViC's FeatureSummaries files
+    have five sets of headers over the years).
 
-    Returns families, those needing a look first, then the most widely used:
-    {"name", "common": [[col, type]], "layouts": [{"tables", "files", "columns", "extra", "look"}], "files", "look"}
+    Returns kinds, those needing a look first, then by name and size:
+    {"name": glob of the files, "title", "example", "columns": [[col, type]], "types_vary", "tables", "files", "look"}
     """
-    # A layout is the columns and how they're read. The recorded kind of value (dataType) is left out: the pipeline
-    # guesses it from a file's first rows, so identical files can disagree (BindingDB's 1,907 surflex CSVs came out
-    # as 7 "layouts" that differed only in whether Ki/IC50 were Text, Integer or Float).
-    signatures = [_layout_signature(rs.get("field") or []) for rs in record_sets]
     sources = [sorted(_sources(rs.get("field") or [])) for rs in record_sets]
+    groups: dict[tuple, list[int]] = defaultdict(list)
+    for i, rs in enumerate(record_sets):
+        groups[_layout_signature(rs.get("field") or [])].append(i)
 
-    # Union-find over tables: join tables with the same layout or the same file path pattern.
-    parent = list(range(len(record_sets)))
-
-    def find(i):
-        while parent[i] != i:
-            parent[i] = parent[parent[i]]
-            i = parent[i]
-        return i
-
-    first_with: dict = {}
-    for i in range(len(record_sets)):
-        keys = [("layout", signatures[i])] + [("path", name_pattern(file_paths.get(s, s))) for s in sources[i]]
-        for key in keys:
-            if key in first_with:
-                parent[find(i)] = find(first_with[key])
-            else:
-                first_with[key] = i
-
-    members_of: dict[int, list[int]] = defaultdict(list)
-    for i in range(len(record_sets)):
-        members_of[find(i)].append(i)
-
-    out = []
-    for members in members_of.values():
-        layouts: dict[tuple, list[int]] = defaultdict(list)
-        for i in members:
-            layouts[signatures[i]].append(i)
-        family_layouts = []
-        for tables in layouts.values():
-            columns, types_vary = _columns_with_types([record_sets[i].get("field") or [] for i in tables])
-            family_layouts.append({
-                "tables": tables,
-                "files": _natural_sorted({file_paths.get(s, s) for i in tables for s in sources[i]}),
-                "columns": columns,
-                "types_vary": types_vary,
-                "look": sum(look[i] for i in tables),
-            })
-        column_sets = [{c[0] for c in layout["columns"]} for layout in family_layouts]
-        common_names = set.intersection(*column_sets)
-        common = [c for c in family_layouts[0]["columns"] if c[0] in common_names]
-        for layout in family_layouts:
-            layout["extra"] = [c for c in layout["columns"] if c[0] not in common_names]
-        family_layouts.sort(key=lambda l: (-l["look"], -len(l["tables"])))
-        files = _natural_sorted({f for l in family_layouts for f in l["files"]})
-        name = _family_name(record_sets, members, files)
+    kinds = []
+    for tables in groups.values():
+        columns, types_vary = _columns_with_types([record_sets[i].get("field") or [] for i in tables])
+        files = _natural_sorted({file_paths.get(s, s) for i in tables for s in sources[i]})
+        name = _family_name(record_sets, tables, files)
         example = _representative(files)
-        out.append({
+        kinds.append({
             "name": name,
             "title": friendly_name(name, example),
             "example": example,
-            "common": common,
-            "layouts": family_layouts,
-            "files": len(files),
-            "tables": len(members),
-            "look": sum(l["look"] for l in family_layouts),
+            "columns": columns,
+            "types_vary": types_vary,
+            "tables": tables,
+            "files": files,
+            "look": sum(look[i] for i in tables),
         })
-    return sorted(_merge_same_name(out), key=lambda f: (f["look"] == 0, -f["tables"], f["name"].lower()))
+    return sorted(kinds, key=lambda k: (k["look"] == 0, k["title"].lower(), -len(k["files"])))
 
 
 def _representative(files: list[str]) -> str:
@@ -274,34 +234,6 @@ def _representative(files: list[str]) -> str:
     dated = [(name_date(f), f) for f in files]
     dated = [(d, f) for d, f in dated if d]
     return max(dated)[1] if dated else files[0]
-
-
-def _merge_same_name(families: list[dict]) -> list[dict]:
-    """Families that would show the same name (e.g. each BioPortal ontology's CSV) are shown as one."""
-    by_name: dict[str, list[dict]] = defaultdict(list)
-    for f in families:
-        by_name[f["name"]].append(f)
-    merged = []
-    for name, group in by_name.items():
-        if len(group) == 1:
-            merged.append(group[0])
-            continue
-        layouts = [l for f in group for l in f["layouts"]]
-        common_names = set.intersection(*({c[0] for c in l["columns"]} for l in layouts))
-        for l in layouts:
-            l["extra"] = [c for c in l["columns"] if c[0] not in common_names]
-        layouts.sort(key=lambda l: (-l["look"], -len(l["tables"])))
-        merged.append({
-            "name": name,
-            "title": group[0]["title"],
-            "example": group[0]["example"],
-            "common": [c for c in layouts[0]["columns"] if c[0] in common_names],
-            "layouts": layouts,
-            "files": sum(f["files"] for f in group),
-            "tables": sum(f["tables"] for f in group),
-            "look": sum(f["look"] for f in group),
-        })
-    return merged
 
 
 def _layout_signature(fields: list[dict]) -> tuple:
@@ -362,7 +294,7 @@ def _sources(fields: list[dict]) -> set[str]:
 
 
 def _family_name(record_sets: list[dict], members: list[int], files: list[str]) -> str:
-    """Name a family after its files: their shared path pattern, else what their paths share, else an example.
+    """Name a kind of table after its files: their shared path pattern, else what their paths share, else an example.
 
     The name is a glob. Files spread over a few places are named by their file names plus the places
     ("*.csv in data › surflex › * and rwd › … › surflex.tar › *"). Otherwise, if the glob doesn't match
