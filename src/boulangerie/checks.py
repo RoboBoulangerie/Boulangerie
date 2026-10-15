@@ -17,6 +17,9 @@ import shutil
 from collections import Counter
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+
+from boulangerie import paths
 
 PROBLEM = "problem"  # the croissant is wrong or unusable here
 WARNING = "warning"  # probably wrong, or missing something people will want
@@ -329,6 +332,38 @@ def check_record_sets(croissant: dict) -> list[Finding]:
     return findings
 
 
+# Query parameters that carry credentials. A link with one of these gives every reader the key.
+CREDENTIAL_PARAMS = {"apikey", "api_key", "api-key", "key", "token", "access_token", "auth", "password",
+                     "secret", "client_secret", "sig", "signature"}
+
+
+def strip_credentials(url: str) -> str:
+    """The URL without credential query parameters (``?apikey=...``)."""
+    parts = urlsplit(url)
+    kept = [(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True) if k.lower() not in CREDENTIAL_PARAMS]
+    return urlunsplit(parts._replace(query=urlencode(kept)))
+
+
+def check_credentials_in_links(croissant: dict) -> list[Finding]:
+    """No value anywhere in the croissant may carry a credential in a URL."""
+    findings = []
+    for path, value in paths.leaves(croissant):
+        if not isinstance(value, str) or "?" not in value or not value.startswith(("http://", "https://", "ftp://")):
+            continue
+        params = {k.lower() for k, _ in parse_qsl(urlsplit(value).query, keep_blank_values=True)}
+        leaked = sorted(params & CREDENTIAL_PARAMS)
+        if leaked:
+            findings.append(Finding(
+                check="credential_in_link", severity=PROBLEM, path=path,
+                title="A link contains a password or access key",
+                message="One of the links includes an access key, which anyone reading the croissant can copy. "
+                        "We'll remove it; if it's yours, please replace the key.",
+                technical=f"Query parameter(s) {', '.join(leaked)} in {strip_credentials(value)} (value withheld).",
+                fix={"path": path, "value": strip_credentials(value)},
+            ))
+    return findings
+
+
 TABULAR_FORMATS = {"text/csv", "text/tab-separated-values", "text/tsv", "text/vcf", "application/parquet",
                    "application/vnd.apache.parquet", "application/jsonlines", "application/x-ndjson"}
 # For compressed files, whose type only says "gzip", the name tells us what's inside.
@@ -382,6 +417,7 @@ OFFLINE_CHECKS = [
     check_compressed_without_inner_file,
     check_record_sets,
     check_tables_described,
+    check_credentials_in_links,
 ]
 
 

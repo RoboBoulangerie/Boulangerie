@@ -155,3 +155,16 @@ def test_tables_without_columns_are_flagged():
     ], "recordSet": [{"field": [{"name": "a", "source": {"fileObject": {"@id": "t"}}}]}]}
     flagged = [f.path for f in checks.check_tables_described(croissant)]
     assert flagged == ["distribution[0]", "distribution[1]"]  # the VCF and the gzipped TSV, not the PDF
+
+
+def test_credentials_in_links_are_problems_with_a_fix():
+    croissant = {"distribution": [
+        {"@id": "a", "contentUrl": "https://data.example.org/onto/VO/download?apikey=SECRET123&download_format=csv"},
+        {"@id": "b", "contentUrl": "https://example.org/ok?download_format=csv"},
+    ], "sameAs": "https://x.org/y?token=abcdef12"}
+    found = checks.check_credentials_in_links(croissant)
+    assert [(f.path, f.severity) for f in found] == [
+        ("distribution[0].contentUrl", checks.PROBLEM), ("sameAs", checks.PROBLEM)]
+    assert found[0].fix["value"] == "https://data.example.org/onto/VO/download?download_format=csv"
+    assert "SECRET123" not in found[0].technical + found[0].message
+    assert found[1].fix["value"] == "https://x.org/y"
