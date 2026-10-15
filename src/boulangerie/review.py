@@ -182,6 +182,7 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
             "files": len(files), "tables": len(tables),
             "files_look": sum(i["look"] for i in files), "tables_look": sum(i["look"] for i in tables),
             "kinds": len(kinds), "kinds_look": sum(k["look"] > 0 for k in kinds),
+            "table_files": len({path for k in kinds for path in k["files"]}),
         },
     }
 

@@ -13,8 +13,8 @@
   </div>
   <div class="pickup">
     <h2>Your croissant</h2>
-    <p>One file, {{ download_size }}. It describes {{ stats.file_count|thousands }} file{{ "" if stats.file_count == 1 else "s" }}
-      {%- if stats.table_count %} and {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }}{% endif %}.</p>
+    <p>{{ download_size }}. It describes {{ stats.file_count|thousands }} file{{ "" if stats.file_count == 1 else "s" }}
+      {%- if review_counts.kinds %} and {{ review_counts.kinds|thousands }} kind{{ "" if review_counts.kinds == 1 else "s" }} of tables{% endif %}.</p>
     <a class="button" href="croissant.json" download="{{ kb.slug }}-croissant.json">Download croissant</a>
     <a class="button button-quiet" href="{{ feedback_url }}">Suggest a correction</a>
     <p class="small pickup-review"><a href="#files">Check the files</a> and <a href="#tables">tables</a> we described ↓</p>
@@ -93,8 +93,8 @@
   <h2>Your tables</h2>
   <p class="muted">For files that hold tables, we listed the columns, so people know what's inside before they
     download. Files with exactly the same columns are one kind of table; kinds whose files have similar names are
-    listed together. There are {{ review_counts.kinds|thousands }} kind{{ "" if review_counts.kinds == 1 else "s" }},
-    {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }} in all. Open a kind to see its
+    listed together. There are {{ review_counts.kinds|thousands }} kind{{ "" if review_counts.kinds == 1 else "s" }} of
+    tables, in {{ review_counts.table_files|thousands }} file{{ "" if review_counts.table_files == 1 else "s" }}. Open a kind to see its
     columns and files.</p>
   <div id="table-browser" class="browser"></div>
 </section>

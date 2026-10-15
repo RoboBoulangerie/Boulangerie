@@ -28,7 +28,7 @@ def test_build_review_ranks_likely_problems_first(tiny_croissant):
     [table] = data["tables"]
     assert table["issues"][0]["severity"] == checks.PROBLEM
     assert data["counts"] == {"files": 2, "tables": 1, "files_look": 2, "tables_look": 1,
-                              "kinds": 1, "kinds_look": 1}
+                              "kinds": 1, "kinds_look": 1, "table_files": 2}
 
     # Tables are shown by kind: one set of columns, and the files it's in.
     [kind] = data["kinds"]
