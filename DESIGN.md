@@ -50,9 +50,15 @@ robo-croissant-pipeline ──► kbs/<slug>/ (croissant + provenance) ──►
 
 ### Reviewing files and tables
 
-Maintainers are the judges of whether we described their data correctly, not just its name and license. Each KB
-has a "Did we describe your data correctly?" page (`kb/<slug>/review/`), and the KB page previews the same
-structure. Both show files and tables the way their owners organize them (`organize.py`), not by file type.
+Maintainers are the judges of whether we described their data correctly, not just its name and license. The KB
+page itself is where they review files: "Your files" is the whole folder tree with expandable folders, search and a
+"needs a look" filter, for every KB, PGS Catalog's 17,000 files included. Tables are on `kb/<slug>/review/` for now.
+Both show files and tables the way their owners organize them (`organize.py`), not by file type.
+
+The browser code is one static script (`static/browse.js`) shared by both pages. To keep the KB page fast, the data
+is split: `files-tree.json` (the tree plus one short row per file; PGS Catalog's is 5 MB before compression) loads
+with the page, and each file's full details load only when that file is opened, from `files/<n>.json` chunks of 500.
+`tables.json` holds the kinds of tables.
 
 - **Files, in their folders.** The tree comes from the download URLs, and archive contents sit inside their
   archive. To keep big KBs readable:
@@ -76,8 +82,7 @@ structure. Both show files and tables the way their owners organize them (`organ
   (`needs-review`).
 - **Three standing questions at the top:** did we miss files, is anything listed that shouldn't be, and is there
   a better download page.
-- **Data:** one compact `review.json` per KB holds the file details, the tree and the table families. The largest
-  is BioPortal at 24 MB, mostly its ontologies' long column IRIs; Pages compresses it in transit.
+- Dated folder names sort by their date (`01-May-2015` before `01-Apr-2016`, BRCA's `release-07-27-20` as month-day-year).
 - `confidence.json` holds one summary per file and table from the database: lowest confidence, how many values
   have been reviewed, and the least certain values. The database stores rows by position (`distribution[12]`),
   so positions are mapped to `@id`s through the database's own copy of each croissant (checked to match ours for

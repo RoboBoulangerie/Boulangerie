@@ -28,7 +28,7 @@ def test_numbered_folders_and_month_folders_are_grouped():
     assert groups["scores"]["children"][0]["type"] == "group"
     assert groups["scores"]["children"][0]["count"] == 6
     # "*-*-*" says nothing, so a group of dated folders is labelled with its range.
-    assert groups["rel"]["children"][0]["name"] == "01-Apr-2026 … 01-May-2026"
+    assert groups["rel"]["children"][0]["name"] == "01-Jan-2026 … 01-May-2026"  # in date order
     assert groups["rel"]["children"][0]["count"] == 5
 
 
@@ -121,3 +121,11 @@ def test_files_in_two_places_are_named_by_file_and_places():
     record_sets = [_rs(i, ["a"], f"f{i}") for i in range(10)]
     family = organize.build_table_families(record_sets, {f"f{i}": p for i, p in enumerate(paths)}, [False] * 10)[0]
     assert family["name"] == "*.csv in rwd › surflex.tar › * and data › surflex › *"
+
+
+def test_dated_names_sort_by_date():
+    names = ["01-Apr-2016", "nightly", "01-May-2015", "01-Jul-2026"]
+    dists = [_dist(i, f"https://x.org/{n}/s.tsv") for i, n in enumerate(names)]
+    tree = organize.build_file_tree(dists, [False] * 4)
+    assert [c["name"] for c in tree["children"]] == ["01-May-2015", "01-Apr-2016", "01-Jul-2026", "nightly"]
+    assert organize.name_date("release-07-27-20").isoformat() == "2020-07-27"

@@ -87,6 +87,41 @@ def _publish_croissant(kb: KnowledgeBase, dest: Path) -> int:
     return dest.stat().st_size
 
 
+DETAILS_CHUNK = 500  # files per details file; opening a file loads only its chunk
+
+
+def _compact(value) -> str:
+    return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+
+
+def write_browse_data(review_data: dict, kb_dir: Path) -> None:
+    """Split the review data so pages load only what they show.
+
+    - ``files-tree.json``: the folder tree plus one short row per file (path, kind, size, needs a look, rank), for
+      browsing and searching; PGS Catalog's is about 5 MB before compression
+    - ``files/<n>.json``: full details for files n*500 to n*500+499, fetched when one of them is opened
+    - ``tables.json``: the kinds of tables and their layouts
+    """
+    families = review_data["families"]
+    files = review_data["files"]
+    rows = [[f["path"], f["kind"], f["size"], int(f["look"]), f["rank"]] for f in files]
+    (kb_dir / "files-tree.json").write_text(_compact({
+        "tree": review_data["tree"], "files": rows, "chunk": DETAILS_CHUNK, "counts": review_data["counts"],
+    }), encoding="utf-8")
+    details_dir = kb_dir / "files"
+    details_dir.mkdir(parents=True, exist_ok=True)
+    for start in range(0, max(len(files), 1), DETAILS_CHUNK):
+        chunk = []
+        for f in files[start:start + DETAILS_CHUNK]:
+            detail = {k: v for k, v in f.items() if k not in ("table_kinds", "rank", "order")}
+            detail["table_kind_names"] = [families[k]["name"] for k in f.get("table_kinds", [])]
+            chunk.append(detail)
+        (details_dir / f"{start // DETAILS_CHUNK}.json").write_text(_compact(chunk), encoding="utf-8")
+    (kb_dir / "tables.json").write_text(_compact({
+        "families": families, "tables": review_data["tables"], "counts": review_data["counts"],
+    }), encoding="utf-8")
+
+
 def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = report.RESULTS_DIR) -> None:
     env = _env()
     if out_dir.exists():
@@ -112,15 +147,15 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
         review_data = review.build_review(croissant, read_confidence(kb), findings,
                                           link_checks=results.get("links", {}).get("sampled"),
                                           checked_at=results.get("checked_at", ""))
-        (out_dir / "kb" / kb.slug / "review.json").write_text(
-            json.dumps(review_data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        write_browse_data(review_data, out_dir / "kb" / kb.slug)
+        forms = {key: report.feedback_url(kb, config.REPO, key) for key in
+                 ("file-problem", "table-problem", "missing-files", "extra-files", "download-page")}
         (out_dir / "kb" / kb.slug / "review").mkdir()
         (out_dir / "kb" / kb.slug / "review" / "index.html").write_text(env.get_template("review.html.j2").render(
             root="../../../",
             kb=kb,
             counts=review_data["counts"],
-            forms={key: report.feedback_url(kb, config.REPO, key) for key in
-                   ("file-problem", "table-problem", "missing-files", "extra-files", "download-page")},
+            forms=forms,
         ), encoding="utf-8")
 
         page = env.get_template("kb.html.j2").render(
@@ -137,8 +172,8 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
             croissant_url=f"{config.SITE_URL.rstrip('/')}/kb/{kb.slug}/croissant.json",
             has_provenance=bool(provenance),
             review_counts=review_data["counts"],
-            tree=review_data["tree"],
             families=review_data["families"][:8],
+            forms=forms,
         )
         (out_dir / "kb" / kb.slug / "index.html").write_text(page, encoding="utf-8")
         cards.append({

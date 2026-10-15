@@ -17,7 +17,7 @@
       {%- if stats.table_count %} and {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }}{% endif %}.</p>
     <a class="button" href="croissant.json" download="{{ kb.slug }}-croissant.json">Download croissant</a>
     <a class="button button-quiet" href="{{ feedback_url }}">Suggest a correction</a>
-    <p class="small pickup-review"><a href="review/index.html">Check every file and table we described →</a></p>
+    <p class="small pickup-review"><a href="#files">Check the files we described ↓</a></p>
   </div>
 </section>
 
@@ -72,26 +72,20 @@
   {% endif %}
 </section>
 
-{% set icons = {"folder": "📁", "archive": "🗜️", "group": "🗂️", "family": "🗂️", "formats": "📑", "fileset": "🗃️", "file": "📄"} %}
-<section class="card">
+<section class="card" id="files">
   <h2>Your files</h2>
   <p class="muted">These are the {{ stats.file_count|thousands }} downloadable files we found{% if stats.total_size %},
-    {{ stats.total_size }} in all{% endif %}, in the folders they live in. If we missed some, or included some that
-    aren't really part of your data, please <a href="{{ feedback_url }}">let us know</a>.</p>
-  <p class="tree-root"><span class="node-icon">📁</span><strong>{{ tree.name or kb.name }}</strong></p>
-  <ul class="tree tree-top tree-static">
-    {% for node in tree.children[:12] %}
-    <li><span class="node-icon">{{ icons[node.type] }}</span><span class="node-name">{{ node.name }}</span>
-      <span class="node-meta">
-        {%- if node.type == "group" %}{{ node.count|thousands }} {{ node.of if node.count != 1 else node.of[:-1] }} named like this
-        {%- elif node.type == "formats" %}{{ node.formats|join(", ") }}
-        {%- elif node.type in ("file", "fileset") %}{% else %}{{ node.files|thousands }} file{{ "" if node.files == 1 else "s" }}{% endif %}
-        {%- if node.size %} · {{ node.size|size }}{% endif %}</span></li>
-    {% endfor %}
-    {% if tree.children|length > 12 %}<li class="muted">…and {{ (tree.children|length - 12)|thousands }} more</li>{% endif %}
-  </ul>
-  <p><a class="review-link" href="review/index.html#files">Browse all {{ review_counts.files|thousands }} files →</a>
-    {% if review_counts.files_look %}<span class="muted">({{ review_counts.files_look|thousands }} we think need a look)</span>{% endif %}</p>
+    {{ stats.total_size }} in all{% endif %}, in the folders they live in. Open a folder to see inside it, and a file
+    to see exactly what your croissant says about it.</p>
+  <div class="questions">
+    <a class="question" href="{{ forms['missing-files'] }}">
+      <strong>Did we miss any files?</strong><span>Tell us where they are.</span></a>
+    <a class="question" href="{{ forms['extra-files'] }}">
+      <strong>Is anything here that shouldn't be?</strong><span>Old, internal or test files, for example.</span></a>
+    <a class="question" href="{{ forms['download-page'] }}">
+      <strong>Is there a better download page?</strong><span>We'll start from there next time.</span></a>
+  </div>
+  <div id="file-browser" class="browser"></div>
 </section>
 
 {% if families %}
@@ -114,7 +108,7 @@
     </li>
     {% endfor %}
   </ul>
-  <p><a class="review-link" href="review/index.html#tables">See all {{ review_counts.families|thousands }} kinds of tables →</a>
+  <p><a class="review-link" href="review/index.html">See all {{ review_counts.families|thousands }} kinds of tables →</a>
     {% if review_counts.families_look %}<span class="muted">({{ review_counts.families_look|thousands }} we think need a look)</span>{% endif %}</p>
 </section>
 {% endif %}
@@ -174,4 +168,11 @@
       <a href="https://github.com/{{ repo }}/tree/main/kbs/{{ kb.slug }}">see its history on GitHub</a>.</p>
   </details>
 </section>
+<script src="{{ root }}static/browse.js"></script>
+<script>
+  Boulangerie.files(document.getElementById('file-browser'), {
+    treeUrl: 'files-tree.json', detailsBase: 'files/', tablesUrl: 'review/index.html',
+    fileForm: {{ forms['file-problem']|tojson }}, kbName: {{ kb.name|tojson }}
+  });
+</script>
 {% endblock %}

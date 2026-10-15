@@ -13,6 +13,7 @@ To keep big KBs readable:
   folders and CIViC's monthly release folders are one entry each
 """
 
+import datetime
 import fnmatch
 import re
 from collections import Counter, defaultdict
@@ -115,10 +116,32 @@ def _finish(node: dict, dists: list[dict], look: list[bool]) -> None:
         node["children"] = only["children"]
 
 
+_DATE_FORMATS = [
+    (re.compile(r"(\d{1,2})-([A-Za-z]{3})-(\d{4})"), "%d-%b-%Y"),  # CIViC: 01-Apr-2016
+    (re.compile(r"(\d{4})-(\d{2})-(\d{2})"), "%Y-%m-%d"),  # 2026-07-15
+    (re.compile(r"release-(\d{2})-(\d{2})-(\d{2})"), "%m-%d-%y"),  # BRCA Exchange: release-07-27-20
+]
+
+
+def name_date(name: str) -> datetime.date | None:
+    """The date in a name like '01-Apr-2016' or 'release-07-27-20', if there is one."""
+    for pattern, fmt in _DATE_FORMATS:
+        m = pattern.search(name)
+        if m:
+            try:
+                return datetime.datetime.strptime("-".join(m.groups()), fmt).date()
+            except ValueError:
+                continue
+    return None
+
+
 def _sort_key(node: dict):
-    # Folders before files, then natural order (file_2 before file_10).
+    # Folders before files; dated names in date order (01-May-2015 before 01-Apr-2016); then natural order
+    # (file_2 before file_10).
     leaf = node["type"] in ("file", "fileset")
-    return (leaf, [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", node["name"])])
+    date = name_date(node["name"])
+    natural = [(0, int(t), "") if t.isdigit() else (1, 0, t.lower()) for t in re.split(r"(\d+)", node["name"])]
+    return (leaf, date is None, date or datetime.date.min, natural)
 
 
 def _group_siblings(children: list[dict]) -> list[dict]:

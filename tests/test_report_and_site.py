@@ -76,11 +76,17 @@ def test_build_site(kbs_dir, tmp_path):
     assert "We couldn't find this on your website." in page
     assert "Found on <a href=\"https://example.org/about\">" in page
     assert json.loads((out / "catalog.json").read_text())[0]["slug"] == "tiny-kb"
-    # Every file and table is published for review, and the KB page links to it.
-    review_data = json.loads((out / "kb" / "tiny-kb" / "review.json").read_text())
-    assert review_data["counts"]["files"] == 2 and review_data["counts"]["tables"] == 1
+    # The KB page browses every file: a small tree up front, details per chunk of files, tables separately.
+    tree = json.loads((out / "kb" / "tiny-kb" / "files-tree.json").read_text())
+    assert tree["counts"]["files"] == 2 and tree["counts"]["tables"] == 1
+    assert [row[0] for row in tree["files"]] == ["genes.tsv", "README.pdf"]
+    details = json.loads((out / "kb" / "tiny-kb" / "files" / "0.json").read_text())
+    assert details[0]["entry"]["name"] == "genes.tsv" and len(details[0]["table_kind_names"]) == 1
+    tables = json.loads((out / "kb" / "tiny-kb" / "tables.json").read_text())
+    assert tables["families"][0]["layouts"][0]["columns"] == [["symbol", "Text"], ["where", "Text"]]
+    assert 'id="file-browser"' in page and "static/browse.js" in page
     assert (out / "kb" / "tiny-kb" / "review" / "index.html").exists()
-    assert 'href="review/index.html#files"' in page
+    assert (out / "static" / "browse.js").exists()
 
 
 def test_parse_and_show_sizes():
