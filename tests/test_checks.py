@@ -168,3 +168,14 @@ def test_credentials_in_links_are_problems_with_a_fix():
     assert found[0].fix["value"] == "https://data.example.org/onto/VO/download?download_format=csv"
     assert "SECRET123" not in found[0].technical + found[0].message
     assert found[1].fix["value"] == "https://x.org/y"
+
+
+def test_empty_files_are_reported_as_empty_not_as_undescribed_tables():
+    croissant = {"distribution": [
+        {"@id": "e", "@type": "cr:FileObject", "name": "01-Feb-2020-civic_accepted.vcf", "encodingFormat": "text/vcf",
+         "contentSize": "0 B"},
+        {"@id": "z", "@type": "cr:FileObject", "name": "errors.txt", "contentSize": "0"},
+        {"@id": "f", "@type": "cr:FileObject", "name": "full.pdf", "contentSize": "12 KB"},
+    ]}
+    assert [f.path for f in checks.check_empty_files(croissant)] == ["distribution[0]", "distribution[1]"]
+    assert checks.check_tables_described(croissant) == []

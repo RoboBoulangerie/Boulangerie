@@ -183,7 +183,8 @@
       });
       found.push(['Tables in it', kinds]);
     } else {
-      found.push(['Tables in it', f.tabular ? 'None described yet. This file holds a table, so we should list its columns.'
+      found.push(['Tables in it', f.empty ? 'None (the file is empty)'
+                                : f.tabular ? 'None described yet. This file holds a table, so we should list its columns.'
                                             : 'None (it isn\u2019t a table)']);
     }
     body.appendChild(facts(found));

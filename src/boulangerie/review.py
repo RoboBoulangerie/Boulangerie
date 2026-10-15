@@ -125,7 +125,8 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
             "modified": d.get("dateModified") or "",
             "same_as": [x for x in (d.get("sameAs") if isinstance(d.get("sameAs"), list) else [d.get("sameAs")])
                         if isinstance(x, str)],
-            "tabular": checks.looks_tabular(d),
+            "tabular": checks.looks_tabular(d) and not checks.is_empty_file(d),
+            "empty": checks.is_empty_file(d),
             "link_check": (_link_status((link_checks or {})[str(order)]) + (f", {checked_at[:10]}" if checked_at else ""))
                           if str(order) in (link_checks or {}) else "",
             "confidence": conf.get("confidence") if conf else None,

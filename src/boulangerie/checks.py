@@ -20,6 +20,7 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from boulangerie import paths
+from boulangerie.summary import parse_size
 
 PROBLEM = "problem"  # the croissant is wrong or unusable here
 WARNING = "warning"  # probably wrong, or missing something people will want
@@ -392,12 +393,32 @@ def _table_sources(fields) -> set[str]:
     return ids
 
 
+def is_empty_file(dist: dict) -> bool:
+    return dist.get("@type") == "cr:FileObject" and parse_size(dist.get("contentSize")) == 0
+
+
+def check_empty_files(croissant: dict) -> list[Finding]:
+    """A published file with nothing in it is usually a broken release, sometimes expected (an empty error list)."""
+    findings = []
+    for i, d in enumerate(_as_list(croissant.get("distribution"))):
+        if is_empty_file(d):
+            findings.append(Finding(
+                check="empty_file", severity=WARNING, path=f"distribution[{i}]",
+                title="A file is empty",
+                message=f"{d.get('name') or d.get('contentUrl')} has nothing in it (0 bytes). That can be expected, "
+                        "for example a list of errors when there were none, but if it should have data, it may need "
+                        "to be published again.",
+                technical=f"contentSize {d.get('contentSize')!r} for {d.get('contentUrl')}.",
+            ))
+    return findings
+
+
 def check_tables_described(croissant: dict) -> list[Finding]:
-    """Files that hold tables should say what their columns are."""
+    """Files that hold tables should say what their columns are. Empty files are reported as empty instead."""
     described = {i for rs in _as_list(croissant.get("recordSet")) for i in _table_sources(rs.get("field"))}
     findings = []
     for i, d in enumerate(_as_list(croissant.get("distribution"))):
-        if looks_tabular(d) and d.get("@id") not in described:
+        if looks_tabular(d) and d.get("@id") not in described and not is_empty_file(d):
             findings.append(Finding(
                 check="table_not_described", severity=WARNING, path=f"distribution[{i}]",
                 title="We didn't describe the columns of a table",
@@ -417,6 +438,7 @@ OFFLINE_CHECKS = [
     check_compressed_without_inner_file,
     check_record_sets,
     check_tables_described,
+    check_empty_files,
     check_credentials_in_links,
 ]
 
