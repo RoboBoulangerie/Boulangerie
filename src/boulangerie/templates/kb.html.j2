@@ -96,13 +96,17 @@
     {{ review_counts.kinds|thousands }} kind{{ "" if review_counts.kinds == 1 else "s" }},
     {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }} in all.</p>
   <ul class="families">
-    {% for kind in kinds %}
+    {% for group in kinds %}
     <li>
-      <strong class="kind-title">{{ kind.title }}</strong>
-      <span class="node-meta">{{ kind.columns|length }} column{{ "" if kind.columns|length == 1 else "s" }} ·
-        {{ kind.files|length|thousands }} file{{ "" if kind.files|length == 1 else "s" }}
-        {%- if kind.example %} · e.g. <span class="example">{{ kind.example }}</span>{% endif %}</span>
-      <p class="columns small">{% for c in kind.columns[:12] %}<code>{{ c[0] }}</code> {% endfor %}{% if kind.columns|length > 12 %}<span class="muted">…and {{ kind.columns|length - 12 }} more</span>{% endif %}</p>
+      <strong class="kind-title">{{ group.title }}</strong>
+      <span class="node-meta">
+        {%- if group.kinds|length > 1 %}{{ group.kinds|length|thousands }} kinds with different columns
+        {%- else %}{{ group.columns|length }} column{{ "" if group.columns|length == 1 else "s" }}{% endif %} ·
+        {{ group.files|thousands }} file{{ "" if group.files == 1 else "s" }}
+        {%- if group.example %} · e.g. <span class="example">{{ group.example }}</span>{% endif %}</span>
+      {% if group.kinds|length == 1 %}
+      <p class="columns small">{% for c in group.columns[:12] %}<code>{{ c[0] }}</code> {% endfor %}{% if group.columns|length > 12 %}<span class="muted">…and {{ group.columns|length - 12 }} more</span>{% endif %}</p>
+      {% endif %}
     </li>
     {% endfor %}
   </ul>

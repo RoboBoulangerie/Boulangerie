@@ -369,16 +369,17 @@
       box.appendChild(ul);
       return box;
     }
-    function kindCard(kind) {
-      var li = el('li', 'item' + (kind.look ? ' item-look' : ''));
+    function kindCard(kind, inGroup) {
+      var li = el('li', 'item' + (kind.look ? ' item-look' : '') + (inGroup ? ' item-in-group' : ''));
       var d = el('details');
       var s = el('summary');
       var head = el('div', 'item-head');
       var badge = lookBadge(kind.look); if (badge) head.appendChild(badge);
-      head.appendChild(el('strong', 'kind-title', kind.title));
+      // Inside a group every kind has the group's name, so lead with what tells them apart.
+      head.appendChild(el('strong', 'kind-title', inGroup ? plural(kind.columns.length, 'column') : kind.title));
       s.appendChild(head);
-      var meta = el('span', 'item-meta', plural(kind.columns.length, 'column') + ' \u00b7 ' + plural(kind.files.length, 'file') +
-                    (kind.example ? ' \u00b7 e.g. ' : ''));
+      var meta = el('span', 'item-meta', (inGroup ? '' : plural(kind.columns.length, 'column') + ' \u00b7 ') +
+                    plural(kind.files.length, 'file') + (kind.example ? ' \u00b7 e.g. ' : ''));
       if (kind.example) meta.appendChild(el('span', 'example', kind.example));
       s.appendChild(meta);
       d.appendChild(s);
@@ -403,6 +404,41 @@
       li.appendChild(d);
       return li;
     }
+    // Kinds that share a plain name, under one heading. Each kind inside is still its own set of columns.
+    function groupCard(group) {
+      if (group.kinds.length === 1) return kindCard(group.kinds[0], false);
+      var look = group.kinds.reduce(function (n, k) { return n + (k.look ? 1 : 0); }, 0);
+      var files = group.kinds.reduce(function (n, k) { return n + k.files.length; }, 0);
+      var li = el('li', 'item item-group' + (look ? ' item-look' : ''));
+      var d = el('details');
+      var s = el('summary');
+      var head = el('div', 'item-head');
+      var badge = lookBadge(look); if (badge) head.appendChild(badge);
+      head.appendChild(el('strong', 'kind-title', group.title));
+      s.appendChild(head);
+      s.appendChild(el('span', 'item-meta', group.kinds.length.toLocaleString() + ' kinds with different columns \u00b7 ' +
+                                            plural(files, 'file')));
+      d.appendChild(s);
+      onFirstOpen(d, function () {
+        var body = el('div', 'item-body');
+        body.appendChild(el('p', 'small muted', 'These files have similar names but different columns, so each set of ' +
+          'columns is listed as its own kind of table.'));
+        var ul = el('ul', 'items');
+        chunked(ul, group.kinds, function (k) { return kindCard(k, true); }, PAGE);
+        body.appendChild(ul);
+        d.appendChild(body);
+      });
+      li.appendChild(d);
+      return li;
+    }
+    function groupByTitle(kinds) {
+      var groups = [], byTitle = {};
+      kinds.forEach(function (k) {
+        if (!byTitle[k.title]) { byTitle[k.title] = { title: k.title, kinds: [] }; groups.push(byTitle[k.title]); }
+        byTitle[k.title].kinds.push(k);
+      });
+      return groups;
+    }
     function render() {
       c.view.textContent = '';
       c.pager.hidden = true;
@@ -414,7 +450,13 @@
         if (!q || has(kind.title) || has(kind.name)) return true;
         return kind.columns.some(function (col) { return has(col[0]); }) || kind.files.some(has);
       });
-      pagedList(c, state, kinds, kindCard, 'kind of table');
+      var groups = groupByTitle(kinds);
+      pagedList(c, state, groups, groupCard, 'name');
+      if (kinds.length) {
+        var start = state.page * PAGE, end = Math.min(groups.length, start + PAGE);
+        c.status.textContent = plural(kinds.length, 'kind of table') + ' under ' + plural(groups.length, 'name') +
+          (groups.length > PAGE ? ' (showing names ' + (start + 1).toLocaleString() + '\u2013' + end.toLocaleString() + ')' : '') + '.';
+      }
     }
     c.q.addEventListener('input', function () { state.q = c.q.value; state.page = 0; render(); });
     c.look.addEventListener('change', function () { state.lookOnly = c.look.checked; state.page = 0; render(); });

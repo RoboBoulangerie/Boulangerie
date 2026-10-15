@@ -237,3 +237,5 @@ code { font-size: 0.88em; background: var(--butter); padding: 0.05em 0.35em; bor
 .field-label .prop { font-size: 0.75rem; font-weight: 400; color: var(--muted); background: none; padding: 0; }
 .kind-title { font-size: 1.02rem; }
 .example { overflow-wrap: anywhere; }
+.item-group > details > .item-body > .items { margin-top: 4px; }
+.item-in-group { margin-left: 4px; }
