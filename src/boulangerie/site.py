@@ -1,7 +1,9 @@
 """Build the static site that maintainers visit to pick up their croissant."""
 
+import datetime
 import gzip
 import json
+import os
 import shutil
 from pathlib import Path
 
@@ -135,6 +137,9 @@ def kinds_by_name(kinds: list[dict]) -> list[dict]:
 
 def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = report.RESULTS_DIR) -> None:
     env = _env()
+    # GitHub Pages lets browsers cache files for 10 minutes. Pages ask for the script and data with this build's id,
+    # so a new build never mixes with an old cached script or data file.
+    env.globals["build"] = os.environ.get("GITHUB_SHA", "")[:12] or datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     if out_dir.exists():
         shutil.rmtree(out_dir)
     (out_dir / "kb").mkdir(parents=True)

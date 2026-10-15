@@ -170,10 +170,10 @@
       <a href="https://github.com/{{ repo }}/tree/main/kbs/{{ kb.slug }}">see its history on GitHub</a>.</p>
   </details>
 </section>
-<script src="{{ root }}static/browse.js"></script>
+<script src="{{ root }}static/browse.js?v={{ build }}"></script>
 <script>
   Boulangerie.files(document.getElementById('file-browser'), {
-    treeUrl: 'files-tree.json', detailsBase: 'files/', tablesUrl: 'review/index.html',
+    treeUrl: 'files-tree.json', detailsBase: 'files/', tablesUrl: 'review/index.html', version: {{ build|tojson }},
     fileForm: {{ forms['file-problem']|tojson }}, kbName: {{ kb.name|tojson }}
   });
 </script>

@@ -74,7 +74,9 @@
     more.addEventListener('click', function () { more.parentNode.removeChild(more); next(); });
     next();
   }
-  function getJSON(url) {
+  // `version` is the site build: asking for it means a cached file from an older build is never used.
+  function getJSON(url, version) {
+    if (version) url += (url.indexOf('?') < 0 ? '?' : '&') + 'v=' + encodeURIComponent(version);
     return fetch(url).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + url); return r.json(); });
   }
   // Fill a <details> the first time it's opened.
@@ -232,7 +234,7 @@
 
     function details(i) {
       var k = Math.floor(i / data.chunk);
-      if (!chunks[k]) chunks[k] = getJSON(opts.detailsBase + k + '.json');
+      if (!chunks[k]) chunks[k] = getJSON(opts.detailsBase + k + '.json', opts.version);
       return chunks[k].then(function (list) { return list[i - k * data.chunk]; });
     }
     function fillDetails(container, i) {
@@ -315,7 +317,7 @@
     c.look.addEventListener('change', function () { state.lookOnly = c.look.checked; state.page = 0; render(); });
     c.prev.addEventListener('click', function () { state.page--; render(); root.scrollIntoView(); });
     c.next.addEventListener('click', function () { state.page++; render(); root.scrollIntoView(); });
-    getJSON(opts.treeUrl).then(function (d) { data = d; render(); })
+    getJSON(opts.treeUrl, opts.version).then(function (d) { data = d; render(); })
       .catch(function (e) { c.status.textContent = 'Sorry, the files didn’t load (' + e.message + ').'; });
   }
 
@@ -462,7 +464,7 @@
     c.look.addEventListener('change', function () { state.lookOnly = c.look.checked; state.page = 0; render(); });
     c.prev.addEventListener('click', function () { state.page--; render(); root.scrollIntoView(); });
     c.next.addEventListener('click', function () { state.page++; render(); root.scrollIntoView(); });
-    getJSON(opts.url).then(function (d) { data = d; render(); })
+    getJSON(opts.url, opts.version).then(function (d) { data = d; render(); })
       .catch(function (e) { c.status.textContent = 'Sorry, the tables didn\u2019t load (' + e.message + ').'; });
   }
 

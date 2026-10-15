@@ -17,10 +17,10 @@
   <div id="table-browser" class="browser"></div>
 </section>
 
-<script src="{{ root }}static/browse.js"></script>
+<script src="{{ root }}static/browse.js?v={{ build }}"></script>
 <script>
   Boulangerie.tables(document.getElementById('table-browser'), {
-    url: '../tables.json', tableForm: {{ forms['table-problem']|tojson }}
+    url: '../tables.json', version: {{ build|tojson }}, tableForm: {{ forms['table-problem']|tojson }}
   });
 </script>
 {% endblock %}
