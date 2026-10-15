@@ -120,6 +120,7 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
             "group": d.get("@type") == "cr:FileSet",
             "pattern": d.get("includes") if d.get("@type") == "cr:FileSet" else "",
             "description": d.get("description") or "",
+            "entry": d,  # exactly what the croissant says, shown on the page with its property names
             "checksum": (["SHA-256", d["sha256"]] if d.get("sha256") else ["MD5", d["md5"]] if d.get("md5") else None),
             "modified": d.get("dateModified") or "",
             "same_as": [x for x in (d.get("sameAs") if isinstance(d.get("sameAs"), list) else [d.get("sameAs")])

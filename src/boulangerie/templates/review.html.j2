@@ -111,62 +111,84 @@
   }
 
   // ── What we know about one file ──────────────────────────────────────────
+  // Plain names for the croissant properties a file can have.
+  var PROPERTY_LABELS = {
+    '@type': 'Croissant type', '@id': 'Identifier', name: 'Name', description: 'Description',
+    contentUrl: 'Download link', encodingFormat: 'Kind of file', contentSize: 'Size',
+    sha256: 'Checksum (SHA-256)', md5: 'Checksum (MD5)', containedIn: 'Inside', includes: 'Files matching',
+    excludes: 'Except files matching', sameAs: 'Same content as', dateModified: 'Last modified'
+  };
+  var PROPERTY_ORDER = ['name', 'description', 'encodingFormat', 'contentSize', 'contentUrl', 'includes', 'excludes',
+                        'containedIn', 'dateModified', 'sha256', 'md5', 'sameAs', '@type', '@id'];
+  function facts(rows) {
+    var dl = el('dl', 'facts');
+    rows.forEach(function (r) {
+      var dt = el('dt');
+      dt.appendChild(document.createTextNode(r[0]));
+      if (r[2]) { dt.appendChild(document.createTextNode(' ')); dt.appendChild(el('code', 'prop', r[2])); }
+      dl.appendChild(dt);
+      var dd = el('dd');
+      if (typeof r[1] === 'string') dd.textContent = r[1]; else dd.appendChild(r[1]);
+      dl.appendChild(dd);
+    });
+    return dl;
+  }
+  function propertyValue(key, value, f) {
+    if (Array.isArray(value)) {
+      var span = el('span');
+      value.forEach(function (v, k) { if (k) span.appendChild(document.createTextNode(', ')); span.appendChild(propertyValue(key, v, f)); });
+      return span;
+    }
+    if (value && typeof value === 'object') {
+      if (key === 'containedIn' && value['@id']) return document.createTextNode(f.inside || value['@id']);
+      return el('code', null, JSON.stringify(value));
+    }
+    var text = String(value);
+    if (/^(https?|ftp):\/\//.test(text)) return link(text, text);
+    if (key === 'encodingFormat' && f.kind && f.kind !== text) return document.createTextNode(text + ' (' + f.kind + ')');
+    if (key === 'contentSize' && f.size && f.size !== text) return document.createTextNode(text + ' (' + f.size + ')');
+    if (key === 'sha256' || key === 'md5') return el('code', 'checksum', text);
+    return document.createTextNode(text);
+  }
   function fileDetails(f) {
     var body = el('div', 'item-body');
-    if (f.description) body.appendChild(el('p', null, f.description));
-    if (f.group && f.pattern) {
-      var p = el('p', 'small', 'A group of files matching ');
-      p.appendChild(el('code', null, f.pattern));
-      body.appendChild(p);
-    }
-    if (f.url) { var u = el('p', 'small'); u.appendChild(link(f.url, f.url)); body.appendChild(u); }
-    // Everything else the croissant says about this file, plus what we found out.
-    var facts = el('dl', 'facts');
-    function fact(label, value) {
-      if (!value) return;
-      facts.appendChild(el('dt', null, label));
-      var dd = el('dd'); if (typeof value === 'string') dd.textContent = value; else dd.appendChild(value);
-      facts.appendChild(dd);
-    }
-    fact('Kind of file', f.kind);
-    fact('Size', f.size);
-    fact('Last modified', f.modified);
-    fact('Inside', f.inside);
-    if (f.checksum) {
-      var code = el('code', 'checksum', f.checksum[1]);
-      code.title = 'A fingerprint of the file, so people can confirm they downloaded it completely.';
-      var wrap = el('span'); wrap.appendChild(document.createTextNode(f.checksum[0] + ' ')); wrap.appendChild(code);
-      fact('Checksum', wrap);
-    }
-    if (f.same_as && f.same_as.length) {
-      var alt = el('span');
-      f.same_as.forEach(function (u, k) { if (k) alt.appendChild(document.createTextNode(', ')); alt.appendChild(link(u, u)); });
-      fact('Same content as', alt);
-    }
-    fact('Link check', f.link_check);
+
+    // 1. Exactly what the croissant says, with its property names.
+    body.appendChild(el('h4', 'facts-heading', 'What the croissant says about this file'));
+    var keys = Object.keys(f.entry).sort(function (a, b) {
+      var ia = PROPERTY_ORDER.indexOf(a), ib = PROPERTY_ORDER.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    });
+    var rows = keys.map(function (k) {
+      var v = propertyValue(k, f.entry[k], f);
+      return [PROPERTY_LABELS[k] || k, v, k];
+    });
+    if (!f.entry.description) rows.splice(1, 0, ['Description', el('em', 'muted', 'none. If you can tell us what this file is, please use the link below.'), 'description']);
+    body.appendChild(facts(rows));
+
+    // 2. What we found out ourselves.
+    body.appendChild(el('h4', 'facts-heading', 'What we found'));
+    var found = [];
+    if (f.link_check) found.push(['Link check', f.link_check]);
     if (f.table_kinds && f.table_kinds.length) {
       var kinds = el('span');
       f.table_kinds.forEach(function (k, n) {
         if (n) kinds.appendChild(document.createTextNode(', '));
         var a = link('#tables', data.families[k].name);
         a.addEventListener('click', function (e) {
-          e.preventDefault(); state.tab = 'tables'; state.q = ''; $('q').value = data.families[k].name;
-          state.q = data.families[k].name; state.page = 0; history.replaceState(null, '', '#tables'); render();
+          e.preventDefault(); state.tab = 'tables'; state.q = data.families[k].name; $('q').value = state.q;
+          state.page = 0; history.replaceState(null, '', '#tables'); render();
         });
         kinds.appendChild(a);
       });
-      fact('Tables in it', kinds);
+      found.push(['Tables in it', kinds]);
     } else {
-      fact('Tables in it', f.tabular ? 'None described yet. This file holds a table, so we should list its columns.'
-                                     : 'None (it isn\u2019t a table)');
+      found.push(['Tables in it', f.tabular ? 'None described yet. This file holds a table, so we should list its columns.'
+                                            : 'None (it isn\u2019t a table)']);
     }
-    if (!f.description) {
-      body.appendChild(el('p', 'small muted', 'We don\u2019t have a description of this file yet. If you can tell us what it is, ' +
-        'please use the link below.'));
-    }
-    body.appendChild(facts);
+    body.appendChild(facts(found));
     if (f.look && !f.issues.length) {
-      body.appendChild(el('p', 'why', 'Why we flagged this: the pipeline that wrote your croissant wasn’t fully sure about it.'));
+      body.appendChild(el('p', 'why', 'Why we flagged this: the pipeline that wrote your croissant wasn\u2019t fully sure about it.'));
     }
     issuesAndDoubts(body, f.issues, f.unsure);
     body.appendChild(reportLink(FILE_FORM, f.path));

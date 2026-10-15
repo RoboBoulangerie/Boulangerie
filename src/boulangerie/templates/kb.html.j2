@@ -29,7 +29,7 @@
     {% for f in fields %}
     <div class="field{% if f.missing %} field-missing{% endif %}">
       <dt>
-        <span class="field-label">{{ f.label }}</span>
+        <span class="field-label">{{ f.label }} <code class="prop">{{ f.field }}</code></span>
         <span class="field-help">{{ f.explanation }}</span>
       </dt>
       <dd>
