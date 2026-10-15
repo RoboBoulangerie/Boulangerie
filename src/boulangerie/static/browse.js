@@ -208,7 +208,12 @@
       var kinds = el('span');
       f.table_kind_names.forEach(function (name, n) {
         if (n) kinds.appendChild(document.createTextNode(', '));
-        kinds.appendChild(link(opts.tablesUrl + '?q=' + encodeURIComponent(name), name));
+        var a = link(opts.tablesUrl + '?q=' + encodeURIComponent(name), name);
+        if (opts.onTableKind) {
+          a.href = '#tables';
+          a.addEventListener('click', function (e) { e.preventDefault(); opts.onTableKind(name); });
+        }
+        kinds.appendChild(a);
       });
       found.push(['Tables in it', kinds]);
     } else {
@@ -504,6 +509,19 @@
     c.next.addEventListener('click', function () { state.page++; render(); root.scrollIntoView(); });
     getJSON(opts.url, opts.version).then(function (d) { data = d; render(); })
       .catch(function (e) { c.status.textContent = 'Sorry, the tables didn\u2019t load (' + e.message + ').'; });
+    // Show one kind of table, e.g. from a file's "Tables in it".
+    return {
+      show: function (q) {
+        c.q.value = state.q = q; state.lookOnly = false; c.look.checked = false; state.page = 0;
+        if (data) {
+          render();
+          // One match: open it, so the jump lands on the columns rather than a closed heading.
+          var only = c.view.querySelectorAll('.items > li > details');
+          if (only.length === 1) only[0].open = true;
+        }
+        root.scrollIntoView();
+      }
+    };
   }
 
   window.Boulangerie = { files: files, tables: tables };

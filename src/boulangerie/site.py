@@ -124,17 +124,6 @@ def write_browse_data(review_data: dict, kb_dir: Path) -> None:
     }), encoding="utf-8")
 
 
-def kinds_by_name(kinds: list[dict]) -> list[dict]:
-    """Kinds of tables that share a plain name, in order: {"title", "kinds", "files", "example", "columns"}."""
-    groups: dict[str, dict] = {}
-    for kind in kinds:
-        g = groups.setdefault(kind["title"], {"title": kind["title"], "kinds": [], "files": 0,
-                                             "example": kind["example"], "columns": kind["columns"]})
-        g["kinds"].append(kind)
-        g["files"] += len(kind["files"])
-    return list(groups.values())
-
-
 def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = report.RESULTS_DIR) -> None:
     env = _env()
     # GitHub Pages lets browsers cache files for 10 minutes. Pages ask for the script and data with this build's id,
@@ -188,7 +177,6 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
             croissant_url=f"{config.SITE_URL.rstrip('/')}/kb/{kb.slug}/croissant.json",
             has_provenance=bool(provenance),
             review_counts=review_data["counts"],
-            kinds=kinds_by_name(review_data["kinds"])[:8],
             forms=forms,
         )
         (out_dir / "kb" / kb.slug / "index.html").write_text(page, encoding="utf-8")

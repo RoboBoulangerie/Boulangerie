@@ -1,28 +1,12 @@
-{% extends "base.html.j2" %}
-{% block title %}Tables · {{ kb.name }} · Boulangerie{% endblock %}
-{% block description %}The kinds of tables in the {{ kb.name }} croissant, for its maintainers to check.{% endblock %}
-{% block content %}
-<p class="crumbs"><a href="{{ root }}index.html">All croissants</a> / <a href="../index.html">{{ kb.name }}</a> / Tables</p>
-
-<section class="review-hero">
-  <h1>The tables in your files</h1>
-  <p class="lede">For files that hold tables, we listed the columns so people know what's inside before they
-    download. Files with exactly the same columns are grouped as one kind of table. You know your data best, so please
-    tell us what we got wrong.</p>
-  <p><a href="../index.html#files">← Back to your files</a></p>
-</section>
-
-<section class="card review" id="tables">
-  <h2>{{ counts.kinds|thousands }} kind{{ "" if counts.kinds == 1 else "s" }} of tables</h2>
-  <div id="table-browser" class="browser"></div>
-</section>
-
-<script src="{{ root }}static/browse.js?v={{ build }}"></script>
-<script>
-  Boulangerie.tables(document.getElementById('table-browser'), {
-    url: '../tables.json', version: {{ build|tojson }},
-    treeUrl: '../files-tree.json', detailsBase: '../files/', tablesUrl: 'index.html',
-    fileForm: {{ forms['file-problem']|tojson }}, tableForm: {{ forms['table-problem']|tojson }}
-  });
-</script>
-{% endblock %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tables · {{ kb.name }} · Boulangerie</title>
+  <meta http-equiv="refresh" content="0; url=../index.html#tables">
+  <link rel="canonical" href="../index.html#tables">
+</head>
+<body>
+  <p>The tables for {{ kb.name }} are now on <a href="../index.html#tables">its main page</a>.</p>
+</body>
+</html>

@@ -84,7 +84,7 @@ def test_build_site(kbs_dir, tmp_path):
     assert details[0]["entry"]["name"] == "genes.tsv" and len(details[0]["table_kind_names"]) == 1
     tables = json.loads((out / "kb" / "tiny-kb" / "tables.json").read_text())
     assert tables["kinds"][0]["columns"] == [["symbol", "Text"], ["where", "Text"]]
-    assert 'id="file-browser"' in page and "static/browse.js" in page
+    assert 'id="file-browser"' in page and 'id="table-browser"' in page and "static/browse.js" in page
     assert (out / "kb" / "tiny-kb" / "review" / "index.html").exists()
     assert (out / "static" / "browse.js").exists()
 

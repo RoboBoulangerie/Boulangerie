@@ -17,7 +17,7 @@
       {%- if stats.table_count %} and {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }}{% endif %}.</p>
     <a class="button" href="croissant.json" download="{{ kb.slug }}-croissant.json">Download croissant</a>
     <a class="button button-quiet" href="{{ feedback_url }}">Suggest a correction</a>
-    <p class="small pickup-review"><a href="#files">Check the files we described ↓</a></p>
+    <p class="small pickup-review"><a href="#files">Check the files</a> and <a href="#tables">tables</a> we described ↓</p>
   </div>
 </section>
 
@@ -88,30 +88,15 @@
   <div id="file-browser" class="browser"></div>
 </section>
 
-{% if kinds %}
-<section class="card">
+{% if review_counts.kinds %}
+<section class="card" id="tables">
   <h2>Your tables</h2>
   <p class="muted">For files that hold tables, we listed the columns, so people know what's inside before they
-    download. Files with exactly the same columns are grouped as one kind of table: there are
-    {{ review_counts.kinds|thousands }} kind{{ "" if review_counts.kinds == 1 else "s" }},
-    {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }} in all.</p>
-  <ul class="families">
-    {% for group in kinds %}
-    <li>
-      <strong class="kind-title">{{ group.title }}</strong>
-      <span class="node-meta">
-        {%- if group.kinds|length > 1 %}{{ group.kinds|length|thousands }} kinds with different columns
-        {%- else %}{{ group.columns|length }} column{{ "" if group.columns|length == 1 else "s" }}{% endif %} ·
-        {{ group.files|thousands }} file{{ "" if group.files == 1 else "s" }}
-        {%- if group.example %} · e.g. <span class="example">{{ group.example }}</span>{% endif %}</span>
-      {% if group.kinds|length == 1 %}
-      <p class="columns small">{% for c in group.columns[:12] %}<code>{{ c[0] }}</code> {% endfor %}{% if group.columns|length > 12 %}<span class="muted">…and {{ group.columns|length - 12 }} more</span>{% endif %}</p>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-  <p><a class="review-link" href="review/index.html">See all {{ review_counts.kinds|thousands }} kinds of tables →</a>
-    {% if review_counts.kinds_look %}<span class="muted">({{ review_counts.kinds_look|thousands }} we think need a look)</span>{% endif %}</p>
+    download. Files with exactly the same columns are one kind of table; kinds whose files have similar names are
+    listed together. There are {{ review_counts.kinds|thousands }} kind{{ "" if review_counts.kinds == 1 else "s" }},
+    {{ stats.table_count|thousands }} table{{ "" if stats.table_count == 1 else "s" }} in all. Open a kind to see its
+    columns and files.</p>
+  <div id="table-browser" class="browser"></div>
 </section>
 {% endif %}
 
@@ -172,9 +157,16 @@
 </section>
 <script src="{{ root }}static/browse.js?v={{ build }}"></script>
 <script>
-  Boulangerie.files(document.getElementById('file-browser'), {
-    treeUrl: 'files-tree.json', detailsBase: 'files/', tablesUrl: 'review/index.html', version: {{ build|tojson }},
-    fileForm: {{ forms['file-problem']|tojson }}, kbName: {{ kb.name|tojson }}
-  });
+  (function () {
+    var common = {
+      treeUrl: 'files-tree.json', detailsBase: 'files/', tablesUrl: 'index.html', version: {{ build|tojson }},
+      fileForm: {{ forms['file-problem']|tojson }}, tableForm: {{ forms['table-problem']|tojson }}, kbName: {{ kb.name|tojson }}
+    };
+    var tableBrowser = document.getElementById('table-browser');
+    var tables = tableBrowser ? Boulangerie.tables(tableBrowser, Object.assign({ url: 'tables.json' }, common)) : null;
+    Boulangerie.files(document.getElementById('file-browser'), Object.assign({
+      onTableKind: tables ? function (name) { tables.show(name); } : null
+    }, common));
+  })();
 </script>
 {% endblock %}

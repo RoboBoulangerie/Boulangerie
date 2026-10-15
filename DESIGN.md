@@ -51,8 +51,10 @@ robo-croissant-pipeline ──► kbs/<slug>/ (croissant + provenance) ──►
 ### Reviewing files and tables
 
 Maintainers are the judges of whether we described their data correctly, not just its name and license. The KB
-page itself is where they review files: "Your files" is the whole folder tree with expandable folders, search and a
-"needs a look" filter, for every KB, PGS Catalog's 17,000 files included. Tables are on `kb/<slug>/review/` for now.
+page itself is where they review everything: "Your files" is the whole folder tree with expandable folders, and "Your
+tables" is every kind of table, each with search and a "needs a look" filter, for every KB, PGS Catalog's 17,000
+files included. A file's "Tables in it" jumps to its kind on the same page. The old `kb/<slug>/review/` page
+redirects there.
 Both show files and tables the way their owners organize them (`organize.py`), not by file type.
 
 The browser code is one static script (`static/browse.js`) shared by both pages. To keep the KB page fast, the data
