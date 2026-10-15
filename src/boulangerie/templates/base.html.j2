@@ -10,6 +10,12 @@
   {% block head %}{% endblock %}
 </head>
 <body>
+  {% if preview %}
+  <div class="preview-banner" role="note">
+    <div class="wrap"><strong>This is a preview.</strong> Feel free to try everything, including the forms, but
+      nothing you submit here will be kept. The real site is coming soon.</div>
+  </div>
+  {% endif %}
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="{{ root }}index.html"><span class="brand-mark" aria-hidden="true">🥐</span> Boulangerie</a>

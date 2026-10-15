@@ -244,3 +244,4 @@ code { font-size: 0.88em; background: var(--butter); padding: 0.05em 0.35em; bor
 .file-entry .item-body { margin: 4px 0 8px 1em; }
 .crawler pre { background: var(--butter); padding: 12px 14px; border-radius: 8px; overflow-x: auto; }
 .crawler pre code { background: none; padding: 0; }
+.preview-banner { background: var(--warn-bg); color: var(--ink); border-bottom: 1px solid var(--line); padding: 10px 0; font-size: 0.95rem; }

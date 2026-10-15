@@ -15,3 +15,7 @@ def _pages_url(repo: str) -> str:
 
 
 SITE_URL = os.environ.get("BOULANGERIE_SITE_URL") or _pages_url(REPO)
+
+# A copy of the site (like the sandbox) says it's a preview, so nobody puts real effort into it.
+MAIN_REPO = "RoboBoulangerie/Boulangerie"
+PREVIEW = REPO != MAIN_REPO

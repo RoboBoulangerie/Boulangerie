@@ -28,6 +28,7 @@ def _env() -> Environment:
     )
     env.globals.update(
         repo=config.REPO,
+        preview=config.PREVIEW,
         status_labels=report.STATUS_LABELS,
         severity_words=report.SEVERITY_WORDS,
     )
