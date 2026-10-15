@@ -120,6 +120,50 @@
       body.appendChild(p);
     }
     if (f.url) { var u = el('p', 'small'); u.appendChild(link(f.url, f.url)); body.appendChild(u); }
+    // Everything else the croissant says about this file, plus what we found out.
+    var facts = el('dl', 'facts');
+    function fact(label, value) {
+      if (!value) return;
+      facts.appendChild(el('dt', null, label));
+      var dd = el('dd'); if (typeof value === 'string') dd.textContent = value; else dd.appendChild(value);
+      facts.appendChild(dd);
+    }
+    fact('Kind of file', f.kind);
+    fact('Size', f.size);
+    fact('Last modified', f.modified);
+    fact('Inside', f.inside);
+    if (f.checksum) {
+      var code = el('code', 'checksum', f.checksum[1]);
+      code.title = 'A fingerprint of the file, so people can confirm they downloaded it completely.';
+      var wrap = el('span'); wrap.appendChild(document.createTextNode(f.checksum[0] + ' ')); wrap.appendChild(code);
+      fact('Checksum', wrap);
+    }
+    if (f.same_as && f.same_as.length) {
+      var alt = el('span');
+      f.same_as.forEach(function (u, k) { if (k) alt.appendChild(document.createTextNode(', ')); alt.appendChild(link(u, u)); });
+      fact('Same content as', alt);
+    }
+    fact('Link check', f.link_check);
+    if (f.table_kinds && f.table_kinds.length) {
+      var kinds = el('span');
+      f.table_kinds.forEach(function (k, n) {
+        if (n) kinds.appendChild(document.createTextNode(', '));
+        var a = link('#tables', data.families[k].name);
+        a.addEventListener('click', function (e) {
+          e.preventDefault(); state.tab = 'tables'; state.q = ''; $('q').value = data.families[k].name;
+          state.q = data.families[k].name; state.page = 0; history.replaceState(null, '', '#tables'); render();
+        });
+        kinds.appendChild(a);
+      });
+      fact('Tables in it', kinds);
+    } else {
+      fact('Tables in it', 'None described (fine for documents, images and archives)');
+    }
+    if (!f.description) {
+      body.appendChild(el('p', 'small muted', 'We don\u2019t have a description of this file yet. If you can tell us what it is, ' +
+        'please use the link below.'));
+    }
+    body.appendChild(facts);
     if (f.look && !f.issues.length) {
       body.appendChild(el('p', 'why', 'Why we flagged this: the pipeline that wrote your croissant wasn’t fully sure about it.'));
     }

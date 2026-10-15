@@ -10,6 +10,7 @@ import html
 import random
 import re
 import unicodedata
+from urllib.parse import urlsplit
 from concurrent.futures import ThreadPoolExecutor
 from html.parser import HTMLParser
 
@@ -203,20 +204,50 @@ def _head_status(url: str) -> int | Exception:
         return e
 
 
-def check_links(croissant: dict, sample_size: int = 40, seed: str = "") -> tuple[list[Finding], dict]:
-    """Check a deterministic sample of download links. Returns findings and a summary."""
+def link_kind(dist: dict) -> tuple[str, str]:
+    """What kind of download a file is, for sampling: its host and first two folders, and its file type."""
+    parts = urlsplit(dist["contentUrl"])
+    folders = [s for s in parts.path.split("/") if s][:-1][:2]
+    return (parts.netloc + "/" + "/".join(folders), str(dist.get("encodingFormat") or ""))
+
+
+def sample_links(croissant: dict, sample_size: int = 60, seed: str = "") -> tuple[list[tuple[int, str]], int, int]:
+    """A deterministic sample of download links that covers every kind of file before repeating any.
+
+    Kinds are where a file sits (host and first two folders) and its file type, so BindingDB's monthly zips
+    in rwd/bind/downloads are checked even though 13,000 surflex CSVs outnumber them. Returns the sample, the
+    number of candidate links and the number of kinds.
+    """
+    dists = croissant.get("distribution") or []
     candidates = [
-        (i, d["contentUrl"]) for i, d in enumerate(croissant.get("distribution") or [])
+        (i, d["contentUrl"]) for i, d in enumerate(dists)
         if isinstance(d.get("contentUrl"), str) and d["contentUrl"].startswith(("http://", "https://"))
         and "containedIn" not in d
     ]
     rng = random.Random(seed or croissant.get("name", ""))
-    sample = candidates if len(candidates) <= sample_size else rng.sample(candidates, sample_size)
+    by_kind: dict[tuple, list[tuple[int, str]]] = {}
+    for candidate in candidates:
+        by_kind.setdefault(link_kind(dists[candidate[0]]), []).append(candidate)
+    # One from each kind (largest kinds first if there are more kinds than the budget), then fill at random.
+    kinds = sorted(by_kind.values(), key=len, reverse=True)
+    sample = [rng.choice(members) for members in kinds[:sample_size]]
+    chosen = {i for i, _ in sample}
+    rest = [c for c in candidates if c[0] not in chosen]
+    sample += rng.sample(rest, min(len(rest), sample_size - len(sample)))
+    return sorted(sample), len(candidates), len(by_kind)
+
+
+def check_links(croissant: dict, sample_size: int = 60, seed: str = "") -> tuple[list[Finding], dict]:
+    """Check a sample of download links that covers every kind of file. Returns findings and a summary."""
+    sample, total, kinds = sample_links(croissant, sample_size, seed)
     with ThreadPoolExecutor(max_workers=10) as pool:
         statuses = list(pool.map(_head_status, [url for _, url in sample]))
 
     findings = []
     broken = 0
+    # Every sampled link's result, by position in the distribution, so the review page can show it.
+    sampled = {str(i): (status if isinstance(status, int) else type(status).__name__)
+               for (i, _), status in zip(sample, statuses)}
     for (i, url), status in zip(sample, statuses):
         if status in (401, 403):
             broken += 1
@@ -236,5 +267,5 @@ def check_links(croissant: dict, sample_size: int = 40, seed: str = "") -> tuple
                 message=f"We couldn't download {url}. The file may have moved, or need a login.",
                 technical=detail,
             ))
-    summary = {"total": len(candidates), "checked": len(sample), "broken": broken}
+    summary = {"total": total, "checked": len(sample), "kinds": kinds, "broken": broken, "sampled": sampled}
     return findings, summary

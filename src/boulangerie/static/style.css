@@ -227,3 +227,8 @@ code { font-size: 0.88em; background: var(--butter); padding: 0.05em 0.35em; bor
 .type-notes { margin: 8px 0; padding: 8px 12px; background: var(--note-bg); border-radius: 8px; }
 .type-notes p { margin: 0 0 4px; }
 .type-notes ul { margin: 0; padding-left: 18px; }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 2px 14px; margin: 8px 0; font-size: 0.9rem; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; overflow-wrap: anywhere; }
+.checksum { font-size: 0.78rem; }
+@media (max-width: 720px) { .facts { grid-template-columns: 1fr; } .facts dd { margin-bottom: 6px; } }

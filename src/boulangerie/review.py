@@ -83,7 +83,17 @@ def _unsure(conf: dict | None, fields: list[dict] | None = None) -> list[dict]:
             for u in (conf or {}).get("unsure", [])]
 
 
-def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Finding]) -> dict:
+def _link_status(status) -> str:
+    if isinstance(status, int) and status < 400:
+        return "works"
+    if status in (401, 403):
+        return "needs a login"
+    return "doesn't work" + (f" (HTTP {status})" if isinstance(status, int) else f" ({status})")
+
+
+def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Finding],
+                 link_checks: dict | None = None, checked_at: str = "") -> dict:
+    """``link_checks`` maps distribution positions to the status our last link check got, if sampled."""
     """Every file and table, with what we know about it, ranked most-likely-wrong first."""
     dists = croissant.get("distribution") or []
     names = {d.get("@id"): d.get("name") or d.get("contentUrl") or d.get("@id") for d in dists}
@@ -109,6 +119,12 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
             "group": d.get("@type") == "cr:FileSet",
             "pattern": d.get("includes") if d.get("@type") == "cr:FileSet" else "",
             "description": d.get("description") or "",
+            "checksum": (["SHA-256", d["sha256"]] if d.get("sha256") else ["MD5", d["md5"]] if d.get("md5") else None),
+            "modified": d.get("dateModified") or "",
+            "same_as": [x for x in (d.get("sameAs") if isinstance(d.get("sameAs"), list) else [d.get("sameAs")])
+                        if isinstance(x, str)],
+            "link_check": (_link_status((link_checks or {})[str(order)]) + (f", {checked_at[:10]}" if checked_at else ""))
+                          if str(order) in (link_checks or {}) else "",
             "confidence": conf.get("confidence") if conf else None,
             "unsure": _unsure(conf),
             "issues": item_issues,
@@ -146,6 +162,14 @@ def build_review(croissant: dict, confidence: dict[str, dict], findings: list[Fi
         f["path"] = paths.get(f["id"], f["name"])
     tree = organize.build_file_tree(dists, [f["look"] for f in files])
     families = organize.build_table_families(croissant.get("recordSet") or [], paths, [t["look"] for t in tables])
+    # Which kinds of tables each file holds.
+    kinds_by_path: dict[str, list[int]] = {}
+    for k, family in enumerate(families):
+        for layout in family["layouts"]:
+            for path in layout["files"]:
+                kinds_by_path.setdefault(path, []).append(k)
+    for f in files:
+        f["table_kinds"] = sorted(set(kinds_by_path.get(f["path"], [])))
     return {
         "files": files,
         "tables": tables,

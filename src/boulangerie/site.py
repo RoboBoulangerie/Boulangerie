@@ -109,7 +109,9 @@ def build_site(catalog: list[KnowledgeBase], out_dir: Path, results_dir: Path = 
         }
         size = _publish_croissant(kb, out_dir / "kb" / kb.slug / "croissant.json")
         findings = checks.run_offline_checks(croissant) + [Finding(**f) for f in results.get("online_findings", [])]
-        review_data = review.build_review(croissant, read_confidence(kb), findings)
+        review_data = review.build_review(croissant, read_confidence(kb), findings,
+                                          link_checks=results.get("links", {}).get("sampled"),
+                                          checked_at=results.get("checked_at", ""))
         (out_dir / "kb" / kb.slug / "review.json").write_text(
             json.dumps(review_data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         (out_dir / "kb" / kb.slug / "review").mkdir()

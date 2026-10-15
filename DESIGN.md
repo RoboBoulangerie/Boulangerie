@@ -115,8 +115,11 @@ There are three groups:
     RoboBoulangerie/robo-croissant-pipeline#5. A page we can't read is reported as "couldn't verify", never as a
     mismatch. That covers pages that fail to load, JavaScript apps (Alliance), bot walls and CAPTCHAs (CTD), and
     403s (BioPortal). Citation mismatches are only a note, because citations are routinely reformatted (PubMed, BibTeX).
-  - **Links:** a deterministic sample of 40 download links per KB. FlyBase lists 122k files, and checking them all
-    weekly would be slow and unkind to their servers. A 401 or 403 is reported as "needs a login or key" (BioPortal
+  - **Links:** a deterministic sample of 60 download links per KB that covers every kind of file before repeating
+    any. A kind is where a file sits (host and first two folders) plus its file type. A purely random sample of
+    40 missed BindingDB's moved monthly downloads, because 13,000 surflex files outnumber them; the covering
+    sample catches them. Checking every link weekly would be slow and unkind to the KBs' servers. Each sampled
+    link's result is shown on that file in the review page. A 401 or 403 is reported as "needs a login or key" (BioPortal
     downloads need an API key), not as a broken link.
 
 Thousands of identical findings (one per file) are grouped into one entry with a count and five examples, so the
